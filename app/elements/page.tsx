@@ -1,15 +1,50 @@
+/**
+ * App Elements Page public module surface.
+ */
+import Image from "next/image";
 import { SinkDemosCanvas, SinkDemosDialog } from "@/components/sink-demos";
 import Layout from "@/components/ui/layout";
-import Image from "next/image";
+
+const goldenRatioScaleRows = [
+  ["--text-xs", "core ÷ φ²", "~8px"],
+  ["--text-sm", "core ÷ φ", "~13px"],
+  ["--text-core", "1×", "~21px"],
+  ["--text-md", "core × φ", "~34px"],
+  ["--text-lg", "core × φ²", "~55px"],
+];
+
+const revenueRows = [
+  ["Net sales", "$32,479", "$38,154", "$45,598"],
+  ["Cost of sales", "$21,334", "$24,852", "$28,717"],
+];
+
+const languageRows = [
+  ["No", "Nej", "Nee", "Non", "No"],
+  ["Yes", "Ja", "Ja", "Oui", "Sí"],
+  ["Bear", "Björn", "Beer", "Ours", "Oso"],
+];
+
+function TextCells({ values }: { values: string[] }) {
+  return values.map((value) => <td key={value}>{value}</td>);
+}
+
+function LabeledTableRow({ cells }: { cells: string[] }) {
+  const [label, ...values] = cells;
+
+  return (
+    <tr>
+      <th scope="row">{label}</th>
+      <TextCells values={values} />
+    </tr>
+  );
+}
 
 export default function Home() {
   return (
     <Layout variant="default" className="*:p-md *:w-full">
-      <header id="top" role="banner" className="shrink">
+      <header id="top" className="shrink">
         <h1>
-          <span id="page-title">
-            Completely WCAG Compliant HTML Kitchen Sink
-          </span>
+          <span id="page-title">Completely WCAG Compliant HTML Kitchen Sink</span>
           <a href="#table-of-contents" className="sr-nav-link">
             Skip to Table of Contents.
           </a>
@@ -66,7 +101,6 @@ export default function Home() {
         </aside>
       </header>
       <main
-        role="main"
         id="main"
         className="flex flex-col gap-md grow place-items-stretch place-content-stretch *:w-full"
       >
@@ -159,8 +193,8 @@ export default function Home() {
               <a href="#" className="bg-surface-0">
                 Surface-0
               </a>
-              <a href="#" className="bg-base">
-                Base
+              <a href="#" className="bg-core">
+                Core
               </a>
               <a href="#" className="bg-mantle">
                 Mantle
@@ -189,13 +223,12 @@ export default function Home() {
             <code>h1</code>
             through
             <code>h6</code>
-            form the heading content category. Each level carries semantic
-            weight —<code>h1</code>
+            form the heading content category. Each level carries semantic weight —<code>h1</code>
             is the page title,
             <code>h2</code>
             marks major sections, and so on down. Skipping levels (e.g.
-            <code>h2</code>→<code>h4</code>) breaks the document outline and
-            harms assistive technology navigation.
+            <code>h2</code>→<code>h4</code>) breaks the document outline and harms assistive
+            technology navigation.
           </p>
 
           <p className="h1">
@@ -224,9 +257,9 @@ export default function Home() {
           </p>
 
           <p>
-            The heading demonstrations above are shown in descending order for
-            visual reference only. In a real document, heading levels must
-            reflect the content hierarchy, not the desired font size.
+            The heading demonstrations above are shown in descending order for visual reference
+            only. In a real document, heading levels must reflect the content hierarchy, not the
+            desired font size.
           </p>
         </section>
 
@@ -246,16 +279,15 @@ export default function Home() {
             The elements
             <code>article</code>,<code>aside</code>,<code>nav</code>, and
             <code>section</code>
-            create distinct regions in the document outline. Each can contain
-            its own heading hierarchy.
+            create distinct regions in the document outline. Each can contain its own heading
+            hierarchy.
           </p>
 
           <nav aria-label="Sample navigation">
             <h3>Navigation</h3>
             <p>
               A<code>nav</code>
-              element with a list of links, as you might find in a site header
-              or sidebar:
+              element with a list of links, as you might find in a site header or sidebar:
             </p>
             <ul>
               <li>
@@ -278,13 +310,10 @@ export default function Home() {
             <p>
               An
               <code>article</code>
-              represents a self-contained composition — a blog post, a news
-              story, a forum thread. This paragraph is nested inside one. It
-              contains many different, sometimes useful,
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
-                HTML elements
-              </a>
-              . Of course there are classics like
+              represents a self-contained composition — a blog post, a news story, a forum thread.
+              This paragraph is nested inside one. It contains many different, sometimes useful,
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML elements</a>. Of
+              course there are classics like
               <em>emphasis</em>,<strong>strong importance</strong>, and
               <small>small print</small>, but there are many others as well.
             </p>
@@ -293,8 +322,8 @@ export default function Home() {
               <p>
                 This paragraph lives inside a<code>section</code>
                 within the parent
-                <code>article</code>. Nesting sections like this is valid and
-                useful for long-form content with internal structure.
+                <code>article</code>. Nesting sections like this is valid and useful for long-form
+                content with internal structure.
               </p>
               <p>
                 ↓ The following paragraph has the
@@ -311,9 +340,9 @@ export default function Home() {
             <p>
               An
               <code>aside</code>
-              holds content tangentially related to its surrounding context — a
-              pull quote, a sidebar, a related-links panel. Screen readers can
-              jump directly to it via landmark navigation.
+              holds content tangentially related to its surrounding context — a pull quote, a
+              sidebar, a related-links panel. Screen readers can jump directly to it via landmark
+              navigation.
             </p>
           </aside>
         </section>
@@ -331,9 +360,8 @@ export default function Home() {
             </a>
           </h2>
           <p>
-            Block-level elements that group runs of text or other content
-            together: paragraphs, lists, blockquotes, preformatted text,
-            figures, and more.
+            Block-level elements that group runs of text or other content together: paragraphs,
+            lists, blockquotes, preformatted text, figures, and more.
           </p>
 
           <h3>Blockquote</h3>
@@ -342,10 +370,9 @@ export default function Home() {
           </blockquote>
           <blockquote cite="https://en.wikipedia.org/wiki/Steve_Jobs">
             <p>
-              People think focus means saying yes to the thing you&apos;ve got
-              to focus on. But that&apos;s not what it means at all. It means
-              saying no to the hundred other good ideas that there are. You have
-              to pick carefully.
+              People think focus means saying yes to the thing you&apos;ve got to focus on. But
+              that&apos;s not what it means at all. It means saying no to the hundred other good
+              ideas that there are. You have to pick carefully.
             </p>
             <footer>
               — Steve Jobs,
@@ -397,19 +424,15 @@ export default function Home() {
             <dt>Golden ratio</dt>
             <dd>
               An irrational number approximately equal to
-              <span className="phi-expand">1.618</span>, often denoted by the
-              Greek letter phi (φ).
+              <span className="phi-expand">1.618</span>, often denoted by the Greek letter phi (φ).
             </dd>
             <dt>Fibonacci sequence</dt>
             <dd>
-              A sequence where each number is the sum of the two preceding ones.
-              The ratio of consecutive terms converges to φ.
+              A sequence where each number is the sum of the two preceding ones. The ratio of
+              consecutive terms converges to φ.
             </dd>
             <dt>Kitchen sink</dt>
-            <dd>
-              A document containing every conceivable element, used for testing
-              styles.
-            </dd>
+            <dd>A document containing every conceivable element, used for testing styles.</dd>
           </dl>
 
           <h3>Preformatted text</h3>
@@ -421,10 +444,7 @@ export default function Home() {
 
           <pre>
             <samp>
-              ${" "}
-              <kbd>
-                node -e &ldquo;console.log((1 + Math.sqrt(5)) / 2)&rdquo;
-              </kbd>
+              $ <kbd>node -e &ldquo;console.log((1 + Math.sqrt(5)) / 2)&rdquo;</kbd>
               1.618033988749895
             </samp>
           </pre>
@@ -436,9 +456,7 @@ export default function Home() {
               width={200}
               height={124}
             />
-            <figcaption>
-              Figure 1: A 200×124 image — approximately φ:1 aspect ratio.
-            </figcaption>
+            <figcaption>Figure 1: A 200×124 image — approximately φ:1 aspect ratio.</figcaption>
           </figure>
 
           <h3>Horizontal rule</h3>
@@ -468,10 +486,7 @@ export default function Home() {
               back to previous section: {`"Grouping Content"`}.
             </a>
           </h2>
-          <p>
-            Inline elements that mark up runs of text within block-level
-            containers.
-          </p>
+          <p>Inline elements that mark up runs of text within block-level containers.</p>
 
           <h3>Emphasis and importance</h3>
           <p>
@@ -508,8 +523,7 @@ export default function Home() {
           </p>
           <p>
             <code>mark</code>
-            is the HTML equivalent of a<mark>yellow highlighter</mark>.
-            <code>u</code>
+            is the HTML equivalent of a<mark>yellow highlighter</mark>.<code>u</code>
             underlines without semantic meaning:
             <u>underlined text</u>.
           </p>
@@ -533,15 +547,15 @@ export default function Home() {
             <code>cite</code>: In the words of
             <cite>Charles Bukowski</cite>—
             <q>
-              An intellectual says a simple thing in a hard way. An artist says
-              a hard thing in a simple way.
+              An intellectual says a simple thing in a hard way. An artist says a hard thing in a
+              simple way.
             </q>
           </p>
           <p>
             <code>q</code>: The {"W3C's"} mission is
             <q cite="https://www.w3.org/Consortium/">
-              to lead the World Wide Web to its full potential by developing
-              protocols and guidelines that ensure long-term growth for the Web
+              to lead the World Wide Web to its full potential by developing protocols and
+              guidelines that ensure long-term growth for the Web
             </q>
             .
           </p>
@@ -597,12 +611,10 @@ export default function Home() {
             <bdi lang="ar">مرحبا</bdi>.
           </p>
           <p>
-            <code>bdo</code>:
-            <bdo dir="rtl">This sentence has been reversed.</bdo>
+            <code>bdo</code>:<bdo dir="rtl">This sentence has been reversed.</bdo>
           </p>
           <p>
-            <code>wbr</code>
-            : A very long word like super
+            <code>wbr</code>: A very long word like super
             <wbr />
             cali
             <wbr />
@@ -617,8 +629,7 @@ export default function Home() {
             cious can break at the indicated points.
           </p>
           <p>
-            <code>br</code>
-            : A line break
+            <code>br</code>: A line break
             <br />
             occurred here.
           </p>
@@ -668,8 +679,7 @@ export default function Home() {
             </a>
           </h2>
           <p>
-            Interactive controls for collecting user input. Every input must
-            have an associated
+            Interactive controls for collecting user input. Every input must have an associated
             <code>label</code>— either wrapping the input or linked via
             <code>for</code>/<code>id</code>.
           </p>
@@ -682,76 +692,42 @@ export default function Home() {
                 <p>
                   <label htmlFor="input-text">Text</label>
                   <br />
-                  <input
-                    type="text"
-                    id="input-text"
-                    placeholder="Plain text input"
-                  />
+                  <input type="text" id="input-text" placeholder="Plain text input" />
                 </p>
                 <p>
                   <label htmlFor="input-email">Email address</label>
                   <br />
-                  <input
-                    type="email"
-                    id="input-email"
-                    placeholder="you@example.com"
-                  />
+                  <input type="email" id="input-email" placeholder="you@example.com" />
                 </p>
                 <p>
                   <label htmlFor="input-password">Password</label>
                   <br />
-                  <input
-                    type="password"
-                    id="input-password"
-                    placeholder="••••••••"
-                  />
+                  <input type="password" id="input-password" placeholder="••••••••" />
                 </p>
                 <p>
                   <label htmlFor="input-search">Search</label>
                   <br />
-                  <input
-                    type="search"
-                    id="input-search"
-                    placeholder="Search…"
-                  />
+                  <input type="search" id="input-search" placeholder="Search…" />
                 </p>
                 <p>
                   <label htmlFor="input-url">URL</label>
                   <br />
-                  <input
-                    type="url"
-                    id="input-url"
-                    placeholder="https://example.com"
-                  />
+                  <input type="url" id="input-url" placeholder="https://example.com" />
                 </p>
                 <p>
                   <label htmlFor="input-tel">Telephone</label>
                   <br />
-                  <input
-                    type="tel"
-                    id="input-tel"
-                    placeholder="+1 (555) 000-0000"
-                  />
+                  <input type="tel" id="input-tel" placeholder="+1 (555) 000-0000" />
                 </p>
                 <p>
                   <label htmlFor="input-readonly">Read-only</label>
                   <br />
-                  <input
-                    type="text"
-                    id="input-readonly"
-                    readOnly
-                    defaultValue="Cannot edit this"
-                  />
+                  <input type="text" id="input-readonly" readOnly defaultValue="Cannot edit this" />
                 </p>
                 <p>
                   <label htmlFor="input-disabled">Disabled</label>
                   <br />
-                  <input
-                    type="text"
-                    id="input-disabled"
-                    disabled
-                    defaultValue="Not available"
-                  />
+                  <input type="text" id="input-disabled" disabled defaultValue="Not available" />
                 </p>
               </div>
               <div className="flex flex-col gap-md grow">
@@ -774,9 +750,7 @@ export default function Home() {
                   <input type="date" id="input-date" />
                 </p>
                 <p>
-                  <label htmlFor="input-datetime-local">
-                    Date &amp; time (local)
-                  </label>
+                  <label htmlFor="input-datetime-local">Date &amp; time (local)</label>
                   <br />
                   <input type="datetime-local" id="input-datetime-local" />
                 </p>
@@ -806,13 +780,7 @@ export default function Home() {
                 <p>
                   <label htmlFor="input-range">Range</label>
                   <br />
-                  <input
-                    type="range"
-                    id="input-range"
-                    min={0}
-                    max={100}
-                    defaultValue={62}
-                  />
+                  <input type="range" id="input-range" min={0} max={100} defaultValue={62} />
                 </p>
                 <p>
                   <label htmlFor="input-file">File upload</label>
@@ -878,11 +846,7 @@ export default function Home() {
                 <p>
                   <label htmlFor="textarea">Message</label>
                   <br />
-                  <textarea
-                    id="textarea"
-                    rows={4}
-                    placeholder="Write something…"
-                  ></textarea>
+                  <textarea id="textarea" rows={4} placeholder="Write something…"></textarea>
                 </p>
               </div>
             </div>
@@ -899,32 +863,15 @@ export default function Home() {
                       value="golden"
                       defaultChecked
                     />
-                    <label htmlFor="radio-golden">
-                      Golden ratio — φ ≈ 1.618
-                    </label>
+                    <label htmlFor="radio-golden">Golden ratio — φ ≈ 1.618</label>
                   </p>
                   <p>
-                    <input
-                      type="radio"
-                      name="ratio"
-                      id="radio-silver"
-                      value="silver"
-                    />
-                    <label htmlFor="radio-silver">
-                      Silver ratio — δ ≈ 2.414
-                    </label>
+                    <input type="radio" name="ratio" id="radio-silver" value="silver" />
+                    <label htmlFor="radio-silver">Silver ratio — δ ≈ 2.414</label>
                   </p>
                   <p>
-                    <input
-                      type="radio"
-                      name="ratio"
-                      id="radio-disabled"
-                      value="plastic"
-                      disabled
-                    />
-                    <label htmlFor="radio-disabled">
-                      Plastic ratio — ρ ≈ 1.325 (disabled)
-                    </label>
+                    <input type="radio" name="ratio" id="radio-disabled" value="plastic" disabled />
+                    <label htmlFor="radio-disabled">Plastic ratio — ρ ≈ 1.325 (disabled)</label>
                   </p>
                 </fieldset>
               </div>
@@ -933,11 +880,7 @@ export default function Home() {
                 <fieldset>
                   <legend>Select properties</legend>
                   <p>
-                    <input
-                      type="checkbox"
-                      id="check-irrational"
-                      defaultChecked
-                    />
+                    <input type="checkbox" id="check-irrational" defaultChecked />
                     <label htmlFor="check-irrational">Irrational number</label>
                   </p>
                   <p>
@@ -946,9 +889,7 @@ export default function Home() {
                   </p>
                   <p>
                     <input type="checkbox" id="check-transcendental" disabled />
-                    <label htmlFor="check-transcendental">
-                      Transcendental number (disabled)
-                    </label>
+                    <label htmlFor="check-transcendental">Transcendental number (disabled)</label>
                   </p>
                 </fieldset>
               </div>
@@ -984,21 +925,9 @@ export default function Home() {
                       <button className="_button" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button"
-                        type="button"
-                        value="Input button"
-                      />
+                      <input className="_button" type="submit" value="Input submit" />
+                      <input className="_button" type="reset" value="Input reset" />
+                      <input className="_button" type="button" value="Input button" />
                       <button className="_button" type="button" disabled>
                         Disabled
                       </button>
@@ -1017,26 +946,10 @@ export default function Home() {
                       <button className="_button primary" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button primary"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button primary"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button primary"
-                        type="button"
-                        value="Input button"
-                      />
-                      <button
-                        className="_button primary"
-                        type="button"
-                        disabled
-                      >
+                      <input className="_button primary" type="submit" value="Input submit" />
+                      <input className="_button primary" type="reset" value="Input reset" />
+                      <input className="_button primary" type="button" value="Input button" />
+                      <button className="_button primary" type="button" disabled>
                         Disabled
                       </button>
                     </p>
@@ -1054,26 +967,10 @@ export default function Home() {
                       <button className="_button secondary" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button secondary"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button secondary"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button secondary"
-                        type="button"
-                        value="Input button"
-                      />
-                      <button
-                        className="_button secondary"
-                        type="button"
-                        disabled
-                      >
+                      <input className="_button secondary" type="submit" value="Input submit" />
+                      <input className="_button secondary" type="reset" value="Input reset" />
+                      <input className="_button secondary" type="button" value="Input button" />
+                      <button className="_button secondary" type="button" disabled>
                         Disabled
                       </button>
                     </p>
@@ -1091,21 +988,9 @@ export default function Home() {
                       <button className="_button accent" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button accent"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button accent"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button accent"
-                        type="button"
-                        value="Input button"
-                      />
+                      <input className="_button accent" type="submit" value="Input submit" />
+                      <input className="_button accent" type="reset" value="Input reset" />
+                      <input className="_button accent" type="button" value="Input button" />
                       <button className="_button accent" type="button" disabled>
                         Disabled
                       </button>
@@ -1124,26 +1009,10 @@ export default function Home() {
                       <button className="_button success" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button success"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button success"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button success"
-                        type="button"
-                        value="Input button"
-                      />
-                      <button
-                        className="_button success"
-                        type="button"
-                        disabled
-                      >
+                      <input className="_button success" type="submit" value="Input submit" />
+                      <input className="_button success" type="reset" value="Input reset" />
+                      <input className="_button success" type="button" value="Input button" />
+                      <button className="_button success" type="button" disabled>
                         Disabled
                       </button>
                     </p>
@@ -1161,26 +1030,10 @@ export default function Home() {
                       <button className="_button destructive" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button destructive"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button destructive"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button destructive"
-                        type="button"
-                        value="Input button"
-                      />
-                      <button
-                        className="_button destructive"
-                        type="button"
-                        disabled
-                      >
+                      <input className="_button destructive" type="submit" value="Input submit" />
+                      <input className="_button destructive" type="reset" value="Input reset" />
+                      <input className="_button destructive" type="button" value="Input button" />
+                      <button className="_button destructive" type="button" disabled>
                         Disabled
                       </button>
                     </p>
@@ -1198,26 +1051,10 @@ export default function Home() {
                       <button className="_button outline" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button outline"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button outline"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button outline"
-                        type="button"
-                        value="Input button"
-                      />
-                      <button
-                        className="_button outline"
-                        type="button"
-                        disabled
-                      >
+                      <input className="_button outline" type="submit" value="Input submit" />
+                      <input className="_button outline" type="reset" value="Input reset" />
+                      <input className="_button outline" type="button" value="Input button" />
+                      <button className="_button outline" type="button" disabled>
                         Disabled
                       </button>
                     </p>
@@ -1235,21 +1072,9 @@ export default function Home() {
                       <button className="_button ghost" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button ghost"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button ghost"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button ghost"
-                        type="button"
-                        value="Input button"
-                      />
+                      <input className="_button ghost" type="submit" value="Input submit" />
+                      <input className="_button ghost" type="reset" value="Input reset" />
+                      <input className="_button ghost" type="button" value="Input button" />
                       <button className="_button ghost" type="button" disabled>
                         Disabled
                       </button>
@@ -1268,21 +1093,9 @@ export default function Home() {
                       <button className="_button link" type="button">
                         Button
                       </button>
-                      <input
-                        className="_button link"
-                        type="submit"
-                        value="Input submit"
-                      />
-                      <input
-                        className="_button link"
-                        type="reset"
-                        value="Input reset"
-                      />
-                      <input
-                        className="_button link"
-                        type="button"
-                        value="Input button"
-                      />
+                      <input className="_button link" type="submit" value="Input submit" />
+                      <input className="_button link" type="reset" value="Input reset" />
+                      <input className="_button link" type="button" value="Input button" />
                       <button className="_button link" type="button" disabled>
                         Disabled
                       </button>
@@ -1294,20 +1107,9 @@ export default function Home() {
                 <h3>Output</h3>
                 <p>
                   <label htmlFor="output-a">Value A</label>
-                  <input
-                    type="number"
-                    id="output-a"
-                    name="a"
-                    defaultValue={1}
-                  />
-                  +<label htmlFor="output-b">Value B</label>
-                  <input
-                    type="number"
-                    id="output-b"
-                    name="b"
-                    defaultValue={0.618}
-                  />
-                  =
+                  <input type="number" id="output-a" name="a" defaultValue={1} />+
+                  <label htmlFor="output-b">Value B</label>
+                  <input type="number" id="output-b" name="b" defaultValue={0.618} />=
                   <output name="result" htmlFor="output-a output-b">
                     1.618
                   </output>
@@ -1330,15 +1132,14 @@ export default function Home() {
             </a>
           </h2>
           <p>
-            Tables are for tabular data — not layout. Proper use of{" "}
-            <code>thead</code>, <code>tbody</code>, <code>tfoot</code>,{" "}
-            <code>th</code> with <code>scope</code>, and <code>caption</code>{" "}
-            makes tables accessible to screen readers.
+            Tables are for tabular data — not layout. Proper use of <code>thead</code>,{" "}
+            <code>tbody</code>, <code>tfoot</code>, <code>th</code> with <code>scope</code>, and{" "}
+            <code>caption</code> makes tables accessible to screen readers.
           </p>
 
           <h3>Simple table</h3>
           <table>
-            <caption>Golden ratio scale at 21px base</caption>
+            <caption>Golden ratio scale at 21px core</caption>
             <thead>
               <tr>
                 <th scope="col">Token</th>
@@ -1347,48 +1148,21 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <code>--text-xs</code>
-                </td>
-                <td>base ÷ φ²</td>
-                <td>~8px</td>
-              </tr>
-              <tr>
-                <td>
-                  <code>--text-sm</code>
-                </td>
-                <td>base ÷ φ</td>
-                <td>~13px</td>
-              </tr>
-              <tr>
-                <td>
-                  <code>--text-base</code>
-                </td>
-                <td>1×</td>
-                <td>~21px</td>
-              </tr>
-              <tr>
-                <td>
-                  <code>--text-md</code>
-                </td>
-                <td>base × φ</td>
-                <td>~34px</td>
-              </tr>
-              <tr>
-                <td>
-                  <code>--text-lg</code>
-                </td>
-                <td>base × φ²</td>
-                <td>~55px</td>
-              </tr>
+              {goldenRatioScaleRows.map(([token, scale, value]) => (
+                <tr key={token}>
+                  <td>
+                    <code>{token}</code>
+                  </td>
+                  <td>{scale}</td>
+                  <td>{value}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
 
           <h3>Complex table</h3>
           <p id="characteristics-summary">
-            In this table, negative traits appear on the left and positive
-            traits on the right.
+            In this table, negative traits appear on the left and positive traits on the right.
           </p>
           <table aria-describedby="characteristics-summary">
             <caption>Characteristics with positive and negative sides</caption>
@@ -1433,18 +1207,9 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">Net sales</th>
-                <td>$32,479</td>
-                <td>$38,154</td>
-                <td>$45,598</td>
-              </tr>
-              <tr>
-                <th scope="row">Cost of sales</th>
-                <td>$21,334</td>
-                <td>$24,852</td>
-                <td>$28,717</td>
-              </tr>
+              {revenueRows.map((cells) => (
+                <LabeledTableRow key={cells[0]} cells={cells} />
+              ))}
             </tbody>
             <tbody>
               <tr>
@@ -1489,27 +1254,9 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">No</th>
-                <td>Nej</td>
-                <td>Nee</td>
-                <td>Non</td>
-                <td>No</td>
-              </tr>
-              <tr>
-                <th scope="row">Yes</th>
-                <td>Ja</td>
-                <td>Ja</td>
-                <td>Oui</td>
-                <td>Sí</td>
-              </tr>
-              <tr>
-                <th scope="row">Bear</th>
-                <td>Björn</td>
-                <td>Beer</td>
-                <td>Ours</td>
-                <td>Oso</td>
-              </tr>
+              {languageRows.map((cells) => (
+                <LabeledTableRow key={cells[0]} cells={cells} />
+              ))}
             </tbody>
           </table>
         </section>
@@ -1527,8 +1274,8 @@ export default function Home() {
             </a>
           </h2>
           <p>
-            Elements that embed external resources: images, audio, video,
-            iframes, SVG, MathML, and canvas.
+            Elements that embed external resources: images, audio, video, iframes, SVG, MathML, and
+            canvas.
           </p>
 
           <h3>Image</h3>
@@ -1691,19 +1438,17 @@ export default function Home() {
             <summary>What is the golden ratio?</summary>
             <p>
               The golden ratio (φ) is an irrational number equal to
-              <code>(1 + √5) / 2</code>, approximately 1.6180339887. It appears
-              in geometry, art, architecture, and nature. Two quantities are in
-              the golden ratio if their ratio equals the ratio of their sum to
-              the larger quantity.
+              <code>(1 + √5) / 2</code>, approximately 1.6180339887. It appears in geometry, art,
+              architecture, and nature. Two quantities are in the golden ratio if their ratio equals
+              the ratio of their sum to the larger quantity.
             </p>
           </details>
           <details>
             <summary>Why use it in CSS?</summary>
             <p>
-              Proportions derived from φ create visual harmony without arbitrary
-              magic numbers. A type scale, spacing system, and layout grid all
-              derived from the same irrational constant produce inherently
-              cohesive designs.
+              Proportions derived from φ create visual harmony without arbitrary magic numbers. A
+              type scale, spacing system, and layout grid all derived from the same irrational
+              constant produce inherently cohesive designs.
             </p>
           </details>
           <details open>

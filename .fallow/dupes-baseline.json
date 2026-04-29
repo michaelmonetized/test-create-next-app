@@ -1,0 +1,18 @@
+{
+  "clone_groups": [
+    "app/cart/page.tsx:102-112|app/order-history/page.tsx:102-112",
+    "app/cart/page.tsx:167-179|app/checkout/page.tsx:299-312",
+    "app/checkout/page.tsx:285-292|app/order-complete/page.tsx:80-87",
+    "app/components/examples/calendar.tsx:19-87|app/components/examples/datetime-input.tsx:15-40",
+    "app/components/examples/calendar.tsx:104-112|app/components/examples/datetime-input.tsx:416-428",
+    "app/components/examples/calendar.tsx:162-169|app/components/examples/datetime-input.tsx:469-476",
+    "app/components/examples/calendar.tsx:197-223|app/components/examples/date-input.tsx:233-264",
+    "app/components/examples/date-input.tsx:47-115|app/components/examples/datetime-input.tsx:16-40",
+    "app/components/examples/date-input.tsx:142-150|app/components/examples/datetime-input.tsx:433-442",
+    "app/components/examples/date-input.tsx:233-243|app/components/examples/datetime-input.tsx:50-60",
+    "app/components/examples/input-group.tsx:1-16|app/components/examples/input-otp.tsx:1-15|app/components/examples/inputs.tsx:1-10",
+    "app/elements/page.tsx:1113-1128|app/elements/page.tsx:1134-1149",
+    "app/elements/page.tsx:1191-1204|app/elements/page.tsx:1247-1260",
+    "app/elements/page.tsx:1200-1210|app/elements/page.tsx:1257-1267"
+  ]
+}

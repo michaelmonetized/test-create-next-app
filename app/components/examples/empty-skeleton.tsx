@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Empty Skeleton public module surface.
+ */
 import { Button } from "@/components/ui/button";
 import {
   Empty,

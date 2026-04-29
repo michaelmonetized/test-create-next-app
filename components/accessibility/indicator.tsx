@@ -1,3 +1,6 @@
+/**
+ * Components Accessibility Indicator public module surface.
+ */
 "use client";
 
 import { useEffect } from "react";
@@ -14,8 +17,8 @@ export default function Indicator() {
       const x = e.clientX;
       const y = e.clientY;
 
-      follower.style.left = x + "px";
-      follower.style.top = y + "px";
+      follower.style.left = `${x}px`;
+      follower.style.top = `${y}px`;
     }
 
     window.addEventListener("mousemove", updatePosition);

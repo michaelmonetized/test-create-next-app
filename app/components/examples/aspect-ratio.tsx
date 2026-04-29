@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Aspect Ratio public module surface.
+ */
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 export default function AspectRatioExample() {

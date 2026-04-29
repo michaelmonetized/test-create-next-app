@@ -1,12 +1,20 @@
+/**
+ * App Components Examples Select public module surface.
+ */
 "use client";
 
+import { Form } from "@base-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import {
-  Field,
-  FieldLabel,
-  FieldError,
-} from "@/components/ui/field";
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+} from "@/components/ui/native-select";
 import {
   Select,
   SelectContent,
@@ -17,15 +25,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  NativeSelect,
-  NativeSelectOptGroup,
-  NativeSelectOption,
-} from "@/components/ui/native-select";
-import { Form } from "@base-ui/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
 
 const formSchema = z.object({
   plan: z.enum(["starter", "growth", "scale", "custom"], {
@@ -79,9 +78,7 @@ export default function SelectExample() {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
           />
@@ -91,7 +88,10 @@ export default function SelectExample() {
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel>Color palette</FieldLabel>
-                <NativeSelect value={field.value ?? ""} onChange={(e) => field.onChange(e.target.value)}>
+                <NativeSelect
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value)}
+                >
                   <NativeSelectOption value="" disabled>
                     Select a palette
                   </NativeSelectOption>
@@ -101,9 +101,7 @@ export default function SelectExample() {
                     <NativeSelectOption value="zinc">Zinc</NativeSelectOption>
                   </NativeSelectOptGroup>
                 </NativeSelect>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
           />

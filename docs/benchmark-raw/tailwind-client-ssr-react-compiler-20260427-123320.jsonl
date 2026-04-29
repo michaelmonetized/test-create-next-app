@@ -1,0 +1,4 @@
+{"build_seconds": 18.174, "html_bytes": 216344, "react_compiler": true, "route": "tailwindcss", "script_bytes": 1360422, "script_count": 16, "ttfb_median_ms": 8.0, "url": "http://127.0.0.1:4310/tailwindcss"}
+{"build_seconds": 18.174, "html_bytes": 533068, "react_compiler": true, "route": "tailwindcss-ssr", "script_bytes": 1310660, "script_count": 15, "ttfb_median_ms": 14.0, "url": "http://127.0.0.1:4310/tailwindcss-ssr"}
+{"build_seconds": 16.843, "html_bytes": 216344, "react_compiler": false, "route": "tailwindcss", "script_bytes": 1350052, "script_count": 16, "ttfb_median_ms": 8.0, "url": "http://127.0.0.1:4311/tailwindcss"}
+{"build_seconds": 16.843, "html_bytes": 533068, "react_compiler": false, "route": "tailwindcss-ssr", "script_bytes": 1302733, "script_count": 15, "ttfb_median_ms": 14.0, "url": "http://127.0.0.1:4311/tailwindcss-ssr"}

@@ -1,18 +1,15 @@
+/**
+ * App Components Examples Time Input public module surface.
+ */
 "use client";
 
-import * as React from "react";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldLabel,
-  FieldError,
-  FieldDescription,
-} from "@/components/ui/field";
 import { Form } from "@base-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm, useWatch } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 
 const HOURS = Array.from({ length: 14 }, (_, i) => i + 7); // 7am–8pm
 
@@ -119,9 +116,7 @@ export default function TimeInputExample() {
                   ? `Selected: ${formatTime24to12(selectedTime)}`
                   : "Pick a 30-minute time slot."}
               </FieldDescription>
-              {fieldState.invalid && (
-                <FieldError errors={[fieldState.error]} />
-              )}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />

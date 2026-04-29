@@ -1,3 +1,6 @@
+/**
+ * Components Logo public module surface.
+ */
 import Image from "next/image";
 export default function Logo({
   width = 1347,

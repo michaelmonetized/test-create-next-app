@@ -1,3 +1,6 @@
+/**
+ * Components Ui Layout Nav public module surface.
+ */
 import Link from "@/components/link";
 import Logo from "@/components/logo";
 import { Menu, MenuMobile } from "@/components/ui/layout/menu";

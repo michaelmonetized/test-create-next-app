@@ -1,10 +1,14 @@
+/**
+ * App Components Examples Field public module surface.
+ */
 "use client";
 
+import { Form } from "@base-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Field,
   FieldContent,
@@ -16,10 +20,9 @@ import {
   FieldSeparator,
   FieldSet,
 } from "@/components/ui/field";
-import { Form } from "@base-ui/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const formSchema = z.object({
   projectName: z
@@ -48,9 +51,7 @@ export default function FieldExample() {
     <Form onSubmit={form.handleSubmit(onSubmit)}>
       <FieldSet>
         <FieldLegend>Project settings</FieldLegend>
-        <FieldDescription>
-          Configure the project name and target audience.
-        </FieldDescription>
+        <FieldDescription>Configure the project name and target audience.</FieldDescription>
         <FieldGroup>
           <Controller
             name="projectName"
@@ -67,12 +68,8 @@ export default function FieldExample() {
                     autoComplete="off"
                   />
                 </FieldContent>
-                <FieldDescription>
-                  Used in the browser title and the nav.
-                </FieldDescription>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                <FieldDescription>Used in the browser title and the nav.</FieldDescription>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
           />
@@ -84,10 +81,7 @@ export default function FieldExample() {
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel>Audience</FieldLabel>
                 <FieldContent>
-                  <RadioGroup
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  >
+                  <RadioGroup value={field.value} onValueChange={field.onChange}>
                     <div className="flex items-center gap-2">
                       <RadioGroupItem value="founders" id="aud-founders" />
                       <Label htmlFor="aud-founders">Founders</Label>
@@ -98,14 +92,14 @@ export default function FieldExample() {
                     </div>
                   </RadioGroup>
                 </FieldContent>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
           />
         </FieldGroup>
-        <Button type="submit" className="mt-4">Save settings</Button>
+        <Button type="submit" className="mt-4">
+          Save settings
+        </Button>
       </FieldSet>
     </Form>
   );

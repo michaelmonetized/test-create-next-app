@@ -1,9 +1,9 @@
+/**
+ * App Components Examples Context Menu public module surface.
+ */
 "use client";
 
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
@@ -25,9 +25,7 @@ export default function ContextMenuExample() {
     <ContextMenu>
       <ContextMenuTrigger asChild>
         <Card className="border-dashed">
-          <CardContent className="p-6  ">
-            Right-click this surface
-          </CardContent>
+          <CardContent className="p-6  ">Right-click this surface</CardContent>
         </Card>
       </ContextMenuTrigger>
       <ContextMenuContent>
@@ -52,16 +50,10 @@ export default function ContextMenuExample() {
           </ContextMenuSubContent>
         </ContextMenuSub>
         <ContextMenuSeparator />
-        <ContextMenuCheckboxItem checked>
-          Snap to grid
-        </ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem checked>Snap to grid</ContextMenuCheckboxItem>
         <ContextMenuRadioGroup value="desktop">
-          <ContextMenuRadioItem value="desktop">
-            Desktop
-          </ContextMenuRadioItem>
-          <ContextMenuRadioItem value="mobile">
-            Mobile
-          </ContextMenuRadioItem>
+          <ContextMenuRadioItem value="desktop">Desktop</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="mobile">Mobile</ContextMenuRadioItem>
         </ContextMenuRadioGroup>
       </ContextMenuContent>
     </ContextMenu>

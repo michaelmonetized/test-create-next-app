@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Command public module surface.
+ */
 "use client";
 
 import * as React from "react";
@@ -30,9 +33,7 @@ export default function CommandExample() {
   return (
     <>
       <div className="flex flex-wrap gap-2">
-        <Button onClick={() => setCommandOpen(true)}>
-          Open Command Dialog
-        </Button>
+        <Button onClick={() => setCommandOpen(true)}>Open Command Dialog</Button>
         <CommandDialog
           open={commandOpen}
           onOpenChange={setCommandOpen}

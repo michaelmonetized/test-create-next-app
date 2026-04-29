@@ -1,14 +1,16 @@
-"use client"
+/**
+ * Components Marketing Hero public module surface.
+ */
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface HeroProps {
-  variant?: "centered" | "split" | "minimal"
-  className?: string
+  variant?: "centered" | "split" | "minimal";
+  className?: string;
 }
 
 function HeroCentered() {
@@ -25,9 +27,9 @@ function HeroCentered() {
           <span className="text-primary">before the hype dies</span>
         </h1>
 
-        <p className="max-w-[36rem] text-base text-muted-foreground md:text-lg">
-          Hustle Launch gives founders the toolkit to validate, build, and ship products in weeks
-          — not months. Landing pages, waitlists, analytics, and payments out of the box.
+        <p className="max-w-[36rem] text-core text-muted-foreground md:text-lg">
+          Hustle Launch gives founders the toolkit to validate, build, and ship products in weeks —
+          not months. Landing pages, waitlists, analytics, and payments out of the box.
         </p>
       </div>
 
@@ -44,7 +46,7 @@ function HeroCentered() {
         No credit card required &middot; Free tier forever
       </p>
     </section>
-  )
+  );
 }
 
 function HeroSplit() {
@@ -59,9 +61,9 @@ function HeroSplit() {
           From zero to launched in record time
         </h1>
 
-        <p className="max-w-[28rem] text-sm text-muted-foreground md:text-base">
-          Stop duct-taping tools together. Hustle Launch is the single platform that takes you
-          from idea validation to revenue — with everything wired up from day one.
+        <p className="max-w-[28rem] text-sm text-muted-foreground md:text-core">
+          Stop duct-taping tools together. Hustle Launch is the single platform that takes you from
+          idea validation to revenue — with everything wired up from day one.
         </p>
 
         <div className="flex flex-wrap gap-3">
@@ -96,7 +98,9 @@ function HeroSplit() {
                 <span className="font-mono text-[11px] text-emerald-500">+8.1%</span>
               </div>
               <div className="flex flex-col gap-1 rounded-none border border-border/50 bg-background/50 p-4">
-                <span className="font-mono text-[11px] uppercase text-muted-foreground">Signups</span>
+                <span className="font-mono text-[11px] uppercase text-muted-foreground">
+                  Signups
+                </span>
                 <span className="font-heading text-2xl font-black text-foreground">342</span>
                 <span className="font-mono text-[11px] text-emerald-500">+24.7%</span>
               </div>
@@ -110,7 +114,7 @@ function HeroSplit() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function HeroMinimal() {
@@ -125,9 +129,10 @@ function HeroMinimal() {
         </Button>
       </div>
     </section>
-  )
+  );
 }
 
+/** Renders the primary marketing hero with configurable alignment variants. */
 export default function Hero({ variant = "centered", className }: HeroProps) {
   return (
     <div className={cn("mx-auto w-full max-w-6xl", className)}>
@@ -135,5 +140,5 @@ export default function Hero({ variant = "centered", className }: HeroProps) {
       {variant === "split" && <HeroSplit />}
       {variant === "minimal" && <HeroMinimal />}
     </div>
-  )
+  );
 }

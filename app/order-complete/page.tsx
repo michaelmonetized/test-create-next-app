@@ -1,14 +1,12 @@
+/**
+ * App Order Complete Page public module surface.
+ */
 import Link from "next/link";
+import { formatCurrency, OrderDetailsRows } from "@/components/commerce/order-summary";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/ui/layout";
 import { Container } from "@/components/ui/layout/containers";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
@@ -24,14 +22,6 @@ const orderItems = [
 ];
 
 const total = 136.08;
-
-/* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
-/* ------------------------------------------------------------------ */
-
-function formatCurrency(amount: number): string {
-  return `$${amount.toFixed(2)}`;
-}
 
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
@@ -65,17 +55,14 @@ export default function OrderCompletePage() {
 
           {/* Heading */}
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold tracking-tight">
-              Order confirmed!
-            </h1>
+            <h1 className="text-2xl font-bold tracking-tight">Order confirmed!</h1>
             <p className="text-sm text-muted-foreground">
               Thank you for your purchase. Your order{" "}
-              <span className="font-medium text-foreground">{orderNumber}</span>{" "}
-              has been placed successfully.
+              <span className="font-medium text-foreground">{orderNumber}</span> has been placed
+              successfully.
             </p>
             <p className="text-xs text-muted-foreground">
-              A confirmation email has been sent to your inbox with the full
-              order details.
+              A confirmation email has been sent to your inbox with the full order details.
             </p>
           </div>
 
@@ -85,22 +72,10 @@ export default function OrderCompletePage() {
               <CardTitle>Order details</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {orderItems.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex items-center justify-between text-xs"
-                >
-                  <span className="text-muted-foreground">{item.name}</span>
-                  <span className="tabular-nums">
-                    {formatCurrency(item.price)}
-                  </span>
-                </div>
-              ))}
-              <Separator />
-              <div className="flex items-center justify-between text-sm font-bold">
-                <span>Total</span>
-                <span className="tabular-nums">{formatCurrency(total)}</span>
-              </div>
+              <OrderDetailsRows
+                items={orderItems}
+                total={{ label: "Total", value: formatCurrency(total) }}
+              />
             </CardContent>
           </Card>
 

@@ -1,6 +1,8 @@
+/**
+ * App Components Examples Popover public module surface.
+ */
 "use client";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import {
   Popover,
   PopoverContent,
@@ -9,6 +11,7 @@ import {
   PopoverTitle,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Separator } from "@/components/ui/separator";
 export default function PopoverExample() {
   return (
     <Popover>
@@ -19,8 +22,7 @@ export default function PopoverExample() {
         <PopoverHeader>
           <PopoverTitle>Group defaults</PopoverTitle>
           <PopoverDescription>
-            Primary pages default to sitemap inclusion and indexable
-            metadata.
+            Primary pages default to sitemap inclusion and indexable metadata.
           </PopoverDescription>
         </PopoverHeader>
         <Separator />

@@ -1,7 +1,10 @@
-import { createOpenAI } from "@ai-sdk/openai";
+/**
+ * Lib Openrouter Resolve Model public module surface.
+ */
+import type { createOpenAI } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
-export type OpenRouterProvider = ReturnType<typeof createOpenAI>;
+type OpenRouterProvider = ReturnType<typeof createOpenAI>;
 
 /** First successful id is cached for the lifetime of the Node process (per serverless instance). */
 let cachedModelId: string | null = null;
@@ -10,10 +13,11 @@ let cachedModelId: string | null = null;
  * Build ordered model id candidates: comma-separated OPENROUTER_MODEL first, then known-good fallbacks.
  * OpenRouter’s “free router” is `openrouter/free` (not `openrouter/openrouter/free`).
  */
-export function buildOpenRouterModelCandidates(): string[] {
+function buildOpenRouterModelCandidates(): string[] {
   const fromEnv =
-    process.env.OPENROUTER_MODEL?.split(/[,\n]+/).map((s) => s.trim()).filter(Boolean) ??
-    [];
+    process.env.OPENROUTER_MODEL?.split(/[,\n]+/)
+      .map((s) => s.trim())
+      .filter(Boolean) ?? [];
   const fallbacks = [
     "openrouter/free",
     "xiaomi/mimo-v2-flash:free",
@@ -27,9 +31,7 @@ export function buildOpenRouterModelCandidates(): string[] {
  * Picks the first model id that completes a tiny generateText call.
  * Logs failures with `[openrouter]` and the chosen id on success.
  */
-export async function resolveOpenRouterModelId(
-  openrouter: OpenRouterProvider
-): Promise<string> {
+export async function resolveOpenRouterModelId(openrouter: OpenRouterProvider): Promise<string> {
   if (cachedModelId) {
     return cachedModelId;
   }
@@ -54,6 +56,6 @@ export async function resolveOpenRouterModelId(
   }
 
   throw new Error(
-    "No working OpenRouter model. Set OPENROUTER_MODEL to a valid id (see https://openrouter.ai/models). Hint: list free models with: curl -s https://openrouter.ai/api/v1/models | rg ':free'"
+    "No working OpenRouter model. Set OPENROUTER_MODEL to a valid id (see https://openrouter.ai/models). Hint: list free models with: curl -s https://openrouter.ai/api/v1/models | rg ':free'",
   );
 }

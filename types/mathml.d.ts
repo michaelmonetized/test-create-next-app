@@ -119,5 +119,3 @@ declare module "react/jsx-runtime" {
     interface IntrinsicElements extends MathMLIntrinsicElements {}
   }
 }
-
-export {};

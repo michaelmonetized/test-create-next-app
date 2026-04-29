@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Kbd public module surface.
+ */
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { Separator } from "@/components/ui/separator";
 export default function KbdExample() {

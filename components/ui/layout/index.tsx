@@ -1,8 +1,11 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import Nav from "@/components/ui/layout/nav";
+/**
+ * Components Ui Layout Index public module surface.
+ */
+import type * as React from "react";
 import Footer from "@/components/ui/layout/footer";
+import Nav from "@/components/ui/layout/nav";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 
 /**
  * Layout styles

@@ -1,6 +1,8 @@
-import * as React from "react"
-import Link from "next/link"
-import { cn } from "@/lib/utils"
+/**
+ * Components Marketing Service Grid public module surface.
+ */
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const services = [
   {
@@ -31,8 +33,9 @@ const services = [
       "Weekly 1-on-1 sessions with our team. Get advice on pricing, positioning, and product-market fit.",
     href: "/services/office-hours",
   },
-]
+];
 
+/** Renders service cards for the marketing overview. */
 export default function ServiceGrid({ className }: { className?: string }) {
   return (
     <section className={cn("mx-auto w-full max-w-5xl px-6 py-20 md:py-28", className)}>
@@ -57,12 +60,8 @@ export default function ServiceGrid({ className }: { className?: string }) {
             </span>
 
             <div className="flex flex-col gap-1.5">
-              <h3 className="font-heading text-sm font-bold text-foreground">
-                {service.name}
-              </h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                {service.description}
-              </p>
+              <h3 className="font-heading text-sm font-bold text-foreground">{service.name}</h3>
+              <p className="text-xs leading-relaxed text-muted-foreground">{service.description}</p>
             </div>
 
             <span className="mt-auto inline-flex items-center gap-1 font-mono text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100">
@@ -73,5 +72,5 @@ export default function ServiceGrid({ className }: { className?: string }) {
         ))}
       </div>
     </section>
-  )
+  );
 }

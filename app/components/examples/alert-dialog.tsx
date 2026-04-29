@@ -1,6 +1,8 @@
+/**
+ * App Components Examples Alert Dialog public module surface.
+ */
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,6 +15,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 export default function AlertDialogExample() {
   return (
     <AlertDialog>
@@ -24,15 +27,13 @@ export default function AlertDialogExample() {
           <AlertDialogMedia>!</AlertDialogMedia>
           <AlertDialogTitle>Archive this project?</AlertDialogTitle>
           <AlertDialogDescription>
-            The route registry and page metadata will remain in git,
-            but the workspace will move out of the active queue.
+            The route registry and page metadata will remain in git, but the workspace will move out
+            of the active queue.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive">
-            Archive
-          </AlertDialogAction>
+          <AlertDialogAction variant="destructive">Archive</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -1,36 +1,33 @@
+/**
+ * App Dashboard Page public module surface.
+ */
 "use client";
 
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/ui/layout";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
+  SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
 import {
   Table,
-  TableHeader,
   TableBody,
-  TableRow,
-  TableHead,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 
 import { cn } from "@/lib/utils";
 
@@ -96,9 +93,7 @@ export default function DashboardPage() {
     <Layout variant="sidebar">
       <Sidebar>
         <SidebarHeader className="p-4">
-          <span className="text-sm font-bold tracking-tight">
-            Hustle Launch
-          </span>
+          <span className="text-sm font-bold tracking-tight">Hustle Launch</span>
         </SidebarHeader>
 
         <SidebarContent>
@@ -152,9 +147,7 @@ export default function DashboardPage() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>
-              Your latest actions and campaign events.
-            </CardDescription>
+            <CardDescription>Your latest actions and campaign events.</CardDescription>
           </CardHeader>
           <CardContent>
             <Table>
@@ -168,14 +161,10 @@ export default function DashboardPage() {
               <TableBody>
                 {recentActivity.map((row, i) => (
                   <TableRow key={i}>
-                    <TableCell className="text-muted-foreground">
-                      {row.date}
-                    </TableCell>
+                    <TableCell className="text-muted-foreground">{row.date}</TableCell>
                     <TableCell>{row.action}</TableCell>
                     <TableCell className="text-right">
-                      <Badge variant={statusVariant(row.status)}>
-                        {row.status}
-                      </Badge>
+                      <Badge variant={statusVariant(row.status)}>{row.status}</Badge>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -188,20 +177,16 @@ export default function DashboardPage() {
         <Card>
           <CardHeader>
             <CardTitle>Visitor Trend</CardTitle>
-            <CardDescription>
-              Daily unique visitors over the past 30 days.
-            </CardDescription>
+            <CardDescription>Daily unique visitors over the past 30 days.</CardDescription>
           </CardHeader>
           <CardContent>
             <div
               className={cn(
                 "flex h-48 items-center justify-center rounded-none",
-                "bg-gradient-to-br from-primary/20 via-primary/10 to-transparent"
+                "bg-gradient-to-br from-primary/20 via-primary/10 to-transparent",
               )}
             >
-              <span className="text-sm font-medium text-muted-foreground">
-                Chart
-              </span>
+              <span className="text-sm font-medium text-muted-foreground">Chart</span>
             </div>
           </CardContent>
         </Card>

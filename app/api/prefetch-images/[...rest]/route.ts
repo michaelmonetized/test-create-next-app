@@ -1,5 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+/**
+ * App Api Prefetch Images [...rest] Route public module surface.
+ */
 import { parseHTML } from "linkedom";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-static";
 
@@ -13,10 +16,7 @@ function getHostname() {
   return process.env.VERCEL_BRANCH_URL;
 }
 
-export async function GET(
-  _: NextRequest,
-  { params }: { params: Promise<{ rest: string[] }> }
-) {
+export async function GET(_: NextRequest, { params }: { params: Promise<{ rest: string[] }> }) {
   const schema = process.env.NODE_ENV === "development" ? "http" : "https";
   const host = getHostname();
   if (!host) {
@@ -51,6 +51,6 @@ export async function GET(
       headers: {
         "Cache-Control": "public, max-age=3600",
       },
-    }
+    },
   );
 }

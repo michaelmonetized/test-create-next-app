@@ -1,14 +1,14 @@
+/**
+ * App Components Examples Combobox public module surface.
+ */
 "use client";
 
-import * as React from "react";
+import { Form } from "@base-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, useWatch } from "react-hook-form";
 import { toast } from "sonner";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldLabel,
-  FieldError,
-  FieldDescription,
-} from "@/components/ui/field";
 import {
   Combobox,
   ComboboxChip,
@@ -23,10 +23,7 @@ import {
   ComboboxList,
   useComboboxAnchor,
 } from "@/components/ui/combobox";
-import { Form } from "@base-ui/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useWatch } from "react-hook-form";
-import * as z from "zod";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 
 const allItems = [
   { value: "button", label: "Button" },
@@ -70,13 +67,9 @@ export default function ComboboxExample() {
             items={allItems}
             value={selected}
             onValueChange={(val) => {
-              form.setValue(
-                "components",
-                val as z.infer<typeof formSchema>["components"],
-                {
-                  shouldValidate: form.formState.isSubmitted,
-                },
-              );
+              form.setValue("components", val as z.infer<typeof formSchema>["components"], {
+                shouldValidate: form.formState.isSubmitted,
+              });
             }}
             itemToStringLabel={(item) => item.label}
             itemToStringValue={(item) => item.value}

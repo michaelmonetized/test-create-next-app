@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Menubar public module surface.
+ */
 "use client";
 import {
   Menubar,
@@ -47,17 +50,11 @@ export default function MenubarExample() {
         <MenubarContent>
           <MenubarLabel>Density</MenubarLabel>
           <MenubarRadioGroup value="comfortable">
-            <MenubarRadioItem value="comfortable">
-              Comfortable
-            </MenubarRadioItem>
-            <MenubarRadioItem value="compact">
-              Compact
-            </MenubarRadioItem>
+            <MenubarRadioItem value="comfortable">Comfortable</MenubarRadioItem>
+            <MenubarRadioItem value="compact">Compact</MenubarRadioItem>
           </MenubarRadioGroup>
           <MenubarSeparator />
-          <MenubarCheckboxItem checked>
-            Show rulers
-          </MenubarCheckboxItem>
+          <MenubarCheckboxItem checked>Show rulers</MenubarCheckboxItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

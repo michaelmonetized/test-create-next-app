@@ -1,13 +1,9 @@
-import * as React from "react"
-import Link from "next/link"
-import { cn } from "@/lib/utils"
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card"
+/**
+ * Components Marketing Product Grid public module surface.
+ */
+import Link from "next/link";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const features = [
   {
@@ -41,8 +37,7 @@ const features = [
   {
     icon: "🔗",
     title: "Integrations Hub",
-    description:
-      "Connect to Slack, Discord, Zapier, and 40+ tools. Webhooks for everything else.",
+    description: "Connect to Slack, Discord, Zapier, and 40+ tools. Webhooks for everything else.",
     href: "/features/integrations",
   },
   {
@@ -52,8 +47,9 @@ const features = [
       "Passwordless login, SSO, role-based access, and team invitations baked into every project.",
     href: "/features/auth",
   },
-]
+];
 
+/** Renders the marketing product card grid. */
 export default function ProductGrid({ className }: { className?: string }) {
   return (
     <section className={cn("mx-auto w-full max-w-6xl px-6 py-20 md:py-28", className)}>
@@ -62,8 +58,8 @@ export default function ProductGrid({ className }: { className?: string }) {
           Everything you need to launch
         </h2>
         <p className="max-w-[32rem] text-sm text-muted-foreground">
-          One platform, zero duct tape. Hustle Launch ships with every tool a founder needs
-          to go from idea to revenue.
+          One platform, zero duct tape. Hustle Launch ships with every tool a founder needs to go
+          from idea to revenue.
         </p>
       </div>
 
@@ -89,5 +85,5 @@ export default function ProductGrid({ className }: { className?: string }) {
         ))}
       </div>
     </section>
-  )
+  );
 }

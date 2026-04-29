@@ -1,3 +1,6 @@
+/**
+ * Project public module surface.
+ */
 import { z } from "zod";
 
 const project: z.infer<typeof projectSchema> = {
@@ -39,10 +42,7 @@ const projectSchema = z.object({
   address: z.object({
     street: z.string().min(1, "Street is required"),
     city: z.string().min(1, "City is required"),
-    state: z
-      .string()
-      .min(2, "State is required")
-      .max(2, "State must be 2 characters"),
+    state: z.string().min(2, "State is required").max(2, "State must be 2 characters"),
     zip: z.string().min(1, "Zip is required"),
     country: z.string().min(1, "Country is required"),
     coordinates: z.object({
@@ -66,10 +66,7 @@ const projectSchema = z.object({
     ),
   phone: z
     .string()
-    .regex(
-      /^\+?[1-9]\d{1,14}$/,
-      "Phone number must be a valid international phone number",
-    )
+    .regex(/^\+?[1-9]\d{1,14}$/, "Phone number must be a valid international phone number")
     .min(1, "Phone number is required")
     .max(15, "Phone number must be less than 15 characters")
     .describe("The phone number of the business eg +18285931935"),
@@ -103,10 +100,8 @@ const projectSchema = z.object({
       .url()
       .min(1, "Github is required")
       .max(255, "Github must be less than 255 characters")
-      .describe(
-        "The github of the author eg https://github.com/michaelmonetized",
-      ),
+      .describe("The github of the author eg https://github.com/michaelmonetized"),
   }),
 });
 
-export { project, projectSchema };
+export { project };

@@ -1,20 +1,19 @@
+/**
+ * App Components Examples Selection Controls public module surface.
+ */
 "use client";
 
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Switch } from "@/components/ui/switch";
-import {
-  Field,
-  FieldLabel,
-  FieldError,
-} from "@/components/ui/field";
 import { Form } from "@base-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Switch } from "@/components/ui/switch";
 
 const formSchema = z.object({
   acceptTerms: z.boolean().refine((v) => v === true, {
@@ -58,9 +57,7 @@ export default function SelectionControlsExample() {
                     />
                     <Label htmlFor="terms-check">Accept terms</Label>
                   </div>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                 </Field>
               )}
             />
@@ -69,11 +66,7 @@ export default function SelectionControlsExample() {
               control={form.control}
               render={({ field }) => (
                 <div className="flex items-center gap-2">
-                  <Switch
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    id="switch-demo"
-                  />
+                  <Switch checked={field.value} onCheckedChange={field.onChange} id="switch-demo" />
                   <Label htmlFor="switch-demo">Enable previews</Label>
                 </div>
               )}
@@ -95,9 +88,7 @@ export default function SelectionControlsExample() {
                     <Label htmlFor="mode-draft">Draft</Label>
                   </div>
                 </RadioGroup>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
           />

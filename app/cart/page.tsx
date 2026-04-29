@@ -1,26 +1,20 @@
+/**
+ * App Cart Page public module surface.
+ */
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
+import {
+  ActionTableHeader,
+  formatCurrency,
+  OrderSummaryRows,
+} from "@/components/commerce/order-summary";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/ui/layout";
 import { Container } from "@/components/ui/layout/containers";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 
 /* ------------------------------------------------------------------ */
 /*  Types & initial data                                               */
@@ -40,14 +34,6 @@ const initialItems: CartItem[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
-/* ------------------------------------------------------------------ */
-
-function formatCurrency(amount: number): string {
-  return `$${amount.toFixed(2)}`;
-}
-
-/* ------------------------------------------------------------------ */
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
@@ -57,9 +43,7 @@ export default function CartPage() {
   const updateQuantity = (id: string, delta: number) => {
     setItems((prev) =>
       prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item,
+        item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item,
       ),
     );
   };
@@ -107,15 +91,7 @@ export default function CartPage() {
               <CardContent className="p-0">
                 <Table>
                   <TableHeader>
-                    <TableRow>
-                      <TableHead>Product</TableHead>
-                      <TableHead>Price</TableHead>
-                      <TableHead>Quantity</TableHead>
-                      <TableHead>Total</TableHead>
-                      <TableHead className="text-right">
-                        <span className="sr-only">Actions</span>
-                      </TableHead>
-                    </TableRow>
+                    <ActionTableHeader columns={["Product", "Price", "Quantity", "Total"]} />
                   </TableHeader>
                   <TableBody>
                     {items.map((item) => (
@@ -170,19 +146,13 @@ export default function CartPage() {
                 <CardTitle>Order Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">Subtotal</span>
-                  <span className="tabular-nums">{formatCurrency(subtotal)}</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">Tax (8%)</span>
-                  <span className="tabular-nums">{formatCurrency(tax)}</span>
-                </div>
-                <Separator />
-                <div className="flex items-center justify-between text-sm font-bold">
-                  <span>Total</span>
-                  <span className="tabular-nums">{formatCurrency(total)}</span>
-                </div>
+                <OrderSummaryRows
+                  rows={[
+                    { label: "Subtotal", value: formatCurrency(subtotal) },
+                    { label: "Tax (8%)", value: formatCurrency(tax) },
+                  ]}
+                  total={{ label: "Total", value: formatCurrency(total) }}
+                />
               </CardContent>
               <CardFooter className="flex-col gap-2">
                 <Button className="w-full" asChild>

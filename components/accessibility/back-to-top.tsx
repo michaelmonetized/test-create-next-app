@@ -1,7 +1,10 @@
+/**
+ * Components Accessibility Back To Top public module surface.
+ */
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { CaretLineUpIcon } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button";
 
 export default function BackToTop() {
   return (

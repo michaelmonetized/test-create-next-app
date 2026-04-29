@@ -1,11 +1,10 @@
+/**
+ * Components Accessibility Index public module surface.
+ */
 import BackToTop from "@/components/accessibility/back-to-top";
 import Indicator from "@/components/accessibility/indicator";
 
-export default function Accessibility({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Accessibility({ children }: { children: React.ReactNode }) {
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only">

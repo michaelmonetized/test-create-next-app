@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { spawnSync, spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -32,11 +32,7 @@ function ensureCaddyImport(caddyfilePath) {
   }
 
   const suffix = existing.trimEnd().length > 0 ? "\n\n" : "";
-  writeFileSync(
-    caddyfilePath,
-    `${existing.trimEnd()}${suffix}${marker}\n${importLine}\n`,
-    "utf8"
-  );
+  writeFileSync(caddyfilePath, `${existing.trimEnd()}${suffix}${marker}\n${importLine}\n`, "utf8");
 }
 
 function writeProjectSnippet(snippetPath, host, port) {
@@ -83,7 +79,7 @@ const child = spawn(
       DEV_URL: url,
       PORT: String(port),
     },
-  }
+  },
 );
 
 child.on("exit", (code, signal) => {

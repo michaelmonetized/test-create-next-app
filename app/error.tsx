@@ -1,3 +1,6 @@
+/**
+ * App Error public module surface.
+ */
 "use client";
 import { Button } from "@/components/ui/button";
 

@@ -1,12 +1,16 @@
+/**
+ * Components Ui Layout Sidebar public module surface.
+ */
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-
+import Link from "@/components/link";
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
-  Sidebar as SidebarWrapper,
   SidebarContent,
   SidebarFooter,
-  SidebarSeparator,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -14,17 +18,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarSeparator,
+  Sidebar as SidebarWrapper,
 } from "@/components/ui/sidebar";
-
-import Image from "next/image";
-import Link from "@/components/link";
-import { Button } from "@/components/ui/button";
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 
 export type SectionsType = Array<[string, string, React.ReactNode?]>;
 
@@ -46,10 +42,7 @@ function SectionFilter({ sections }: { sections: SectionsType }) {
       <SidebarGroupLabel>On this page</SidebarGroupLabel>
       <SidebarGroupContent>
         <div className="flex items-center gap-2 p-2">
-          <SidebarInput
-            placeholder="Filter sections"
-            onChange={handleSectionFilter}
-          />
+          <SidebarInput placeholder="Filter sections" onChange={handleSectionFilter} />
         </div>
         <nav>
           <SidebarMenu>
@@ -111,7 +104,7 @@ function SidebarUser() {
   );
 }
 
-export function Sidebar({ sections }: { sections?: SectionsType }) {
+export function AppSidebar({ sections }: { sections?: SectionsType }) {
   return (
     <SidebarWrapper
       side="left"

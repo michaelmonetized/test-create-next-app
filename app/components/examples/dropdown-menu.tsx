@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Dropdown Menu public module surface.
+ */
 "use client";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,16 +46,10 @@ export default function DropdownMenuExample() {
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem checked>
-          Pin to sidebar
-        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem checked>Pin to sidebar</DropdownMenuCheckboxItem>
         <DropdownMenuRadioGroup value="team">
-          <DropdownMenuRadioItem value="team">
-            Team
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="private">
-            Private
-          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="team">Team</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="private">Private</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

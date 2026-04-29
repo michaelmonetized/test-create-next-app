@@ -1,3 +1,6 @@
+/**
+ * Components Date Year Inline public module surface.
+ */
 "use client";
 
 export default function DateYearInline() {

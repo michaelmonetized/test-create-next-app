@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
+  "entry": ["src/index.{ts,tsx,js,jsx}", "src/main.{ts,tsx,js,jsx}"],
+  "ignoreDependencies": ["@tailwindcss/forms", "@tailwindcss/typography", "shadcn"],
+  "duplicates": {
+    "threshold": 3.0,
+    "ignoreImports": true,
+    "ignore": ["app/privacy/page.tsx", "app/terms/page.tsx"]
+  },
+  "health": {
+    "maxCrap": 100.0,
+    "ignore": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"]
+  },
+  "audit": {
+    "dupesBaseline": ".fallow/dupes-baseline.json"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"],
+      "rules": {
+        "unused-files": "off"
+      }
+    }
+  ],
+  "rules": {}
+}
