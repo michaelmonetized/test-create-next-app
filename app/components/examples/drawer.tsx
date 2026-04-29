@@ -1,7 +1,8 @@
+/**
+ * App Components Examples Drawer public module surface.
+ */
 "use client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Drawer,
   DrawerClose,
@@ -12,6 +13,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 export default function DrawerExample() {
   return (
     <Drawer>
@@ -21,9 +24,7 @@ export default function DrawerExample() {
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Quick edit</DrawerTitle>
-          <DrawerDescription>
-            Use drawers for low-friction task flows.
-          </DrawerDescription>
+          <DrawerDescription>Use drawers for low-friction task flows.</DrawerDescription>
         </DrawerHeader>
         <div className="space-y-3 p-4">
           <Input placeholder="Project title" />

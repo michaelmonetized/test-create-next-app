@@ -1,30 +1,33 @@
-"use client"
+/**
+ * Components Marketing Pricing Table public module surface.
+ */
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import Link from "next/link";
+import * as React from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-type Interval = "monthly" | "yearly"
+type Interval = "monthly" | "yearly";
 
 interface Tier {
-  name: string
-  description: string
-  price: { monthly: string; yearly: string }
-  interval: { monthly: string; yearly: string }
-  popular: boolean
-  cta: string
-  href: string
-  features: string[]
+  name: string;
+  description: string;
+  price: { monthly: string; yearly: string };
+  interval: { monthly: string; yearly: string };
+  popular: boolean;
+  cta: string;
+  href: string;
+  features: string[];
 }
 
 const tiers: Tier[] = [
@@ -80,10 +83,11 @@ const tiers: Tier[] = [
       "99.9% uptime SLA",
     ],
   },
-]
+];
 
+/** Renders pricing plans and feature comparisons for the marketing flow. */
 export default function PricingTable({ className }: { className?: string }) {
-  const [interval, setInterval] = React.useState<Interval>("monthly")
+  const [interval, setInterval] = React.useState<Interval>("monthly");
 
   return (
     <section className={cn("mx-auto w-full max-w-6xl px-6 py-20 md:py-28", className)}>
@@ -104,7 +108,7 @@ export default function PricingTable({ className }: { className?: string }) {
               "rounded-none px-3 py-1 font-mono text-xs transition-colors",
               interval === "monthly"
                 ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             Monthly
@@ -116,7 +120,7 @@ export default function PricingTable({ className }: { className?: string }) {
               "rounded-none px-3 py-1 font-mono text-xs transition-colors",
               interval === "yearly"
                 ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             Yearly
@@ -131,7 +135,7 @@ export default function PricingTable({ className }: { className?: string }) {
             key={tier.name}
             className={cn(
               "relative flex flex-col transition-colors",
-              tier.popular && "ring-2 ring-primary"
+              tier.popular && "ring-2 ring-primary",
             )}
           >
             {tier.popular && (
@@ -159,7 +163,10 @@ export default function PricingTable({ className }: { className?: string }) {
 
               <ul className="flex flex-col gap-2">
                 {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <li
+                    key={feature}
+                    className="flex items-start gap-2 text-xs text-muted-foreground"
+                  >
                     <span className="mt-0.5 text-primary" aria-hidden="true">
                       &#10003;
                     </span>
@@ -170,11 +177,7 @@ export default function PricingTable({ className }: { className?: string }) {
             </CardContent>
 
             <CardFooter className="mt-auto">
-              <Button
-                variant={tier.popular ? "default" : "outline"}
-                className="w-full"
-                asChild
-              >
+              <Button variant={tier.popular ? "default" : "outline"} className="w-full" asChild>
                 <Link href={tier.href}>{tier.cta}</Link>
               </Button>
             </CardFooter>
@@ -182,5 +185,5 @@ export default function PricingTable({ className }: { className?: string }) {
         ))}
       </div>
     </section>
-  )
+  );
 }

@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Accordion public module surface.
+ */
 "use client";
 import {
   Accordion,
@@ -14,8 +17,8 @@ export default function AccordionExample() {
         </AccordionTrigger>
         <AccordionContent className="p-md border-border border">
           <p className="p-md">
-            You own the source, so the repo can tailor every primitive instead
-            of fighting a dependency boundary.
+            You own the source, so the repo can tailor every primitive instead of fighting a
+            dependency boundary.
           </p>
         </AccordionContent>
       </AccordionItem>
@@ -25,8 +28,7 @@ export default function AccordionExample() {
         </AccordionTrigger>
         <AccordionContent className="p-md border-border border">
           <p className="p-md">
-            It forces the system to stay honest when components are added or
-            mutated over time.
+            It forces the system to stay honest when components are added or mutated over time.
           </p>
         </AccordionContent>
       </AccordionItem>

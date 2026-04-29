@@ -1,3 +1,6 @@
+/**
+ * App Robots public module surface.
+ */
 import type { MetadataRoute } from "next";
 import { project } from "@/project";
 

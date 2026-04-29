@@ -1,10 +1,8 @@
+/**
+ * App Components Examples Tabs public module surface.
+ */
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -22,10 +20,7 @@ export default function TabsExample() {
             <Badge variant="secondary">Active</Badge>
             <span className="text-muted-foreground">Last deployed 2h ago</span>
           </div>
-          <p>
-            Project is running on 3 regions with 99.98% uptime over the last 30
-            days.
-          </p>
+          <p>Project is running on 3 regions with 99.98% uptime over the last 30 days.</p>
         </TabsContent>
         <TabsContent value="metrics" className="space-y-3 pt-2">
           <div className="grid grid-cols-3 gap-3">
@@ -66,8 +61,7 @@ export default function TabsExample() {
         </TabsList>
         <TabsContent value="code" className="pt-2">
           <p className="text-muted-foreground">
-            Line variant tabs for content-heavy layouts like documentation or
-            repo navigation.
+            Line variant tabs for content-heavy layouts like documentation or repo navigation.
           </p>
         </TabsContent>
         <TabsContent value="issues" className="pt-2">

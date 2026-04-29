@@ -1,4 +1,7 @@
-import { cn } from "@/lib/utils"
+/**
+ * Components Ui Skeleton public module surface.
+ */
+import { cn } from "@/lib/utils";
 
 function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -7,7 +10,7 @@ function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
       className={cn("animate-pulse rounded-none bg-muted", className)}
       {...props}
     />
-  )
+  );
 }
 
-export { Skeleton }
+export { Skeleton };

@@ -1,3 +1,6 @@
+/**
+ * Components Sink Demos public module surface.
+ */
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -24,8 +27,7 @@ export function SinkDemosDialog() {
           <h4>Dialog title</h4>
           <p>
             This is a native <code>&lt;dialog&gt;</code> element opened with{" "}
-            <code>showModal()</code>. It traps focus and provides a built-in
-            backdrop.
+            <code>showModal()</code>. It traps focus and provides a built-in backdrop.
           </p>
           <form method="dialog" className="top-md right-md absolute z-9090">
             <button

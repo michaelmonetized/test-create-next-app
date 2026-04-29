@@ -1,18 +1,16 @@
+/**
+ * App Components Examples Slider public module surface.
+ */
 "use client";
 
-import * as React from "react";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldLabel,
-  FieldDescription,
-} from "@/components/ui/field";
-import { Slider } from "@/components/ui/slider";
 import { Form } from "@base-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm, useWatch } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Slider } from "@/components/ui/slider";
 
 const formSchema = z.object({
   range: z
@@ -44,12 +42,7 @@ export default function SliderExample() {
           render={({ field }) => (
             <Field>
               <FieldLabel>Budget allocation</FieldLabel>
-              <Slider
-                value={field.value}
-                onValueChange={field.onChange}
-                max={100}
-                step={5}
-              />
+              <Slider value={field.value} onValueChange={field.onChange} max={100} step={5} />
               <FieldDescription>
                 Range: {range[0]}% to {range[1]}%
               </FieldDescription>

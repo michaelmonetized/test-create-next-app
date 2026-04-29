@@ -1,3 +1,6 @@
+/**
+ * App Manifest public module surface.
+ */
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {

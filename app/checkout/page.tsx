@@ -1,27 +1,25 @@
+/**
+ * App Checkout Page public module surface.
+ */
 "use client";
 
-import { useCallback } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import * as z from "zod";
+import {
+  formatCurrency,
+  OrderLineItems,
+  OrderSummaryRows,
+} from "@/components/commerce/order-summary";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import Layout from "@/components/ui/layout";
 import { Container } from "@/components/ui/layout/containers";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import {
-  Field,
-  FieldLabel,
-  FieldError,
-} from "@/components/ui/field";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
-import { toast } from "sonner";
 
 /* ------------------------------------------------------------------ */
 /*  Schema                                                             */
@@ -33,12 +31,8 @@ const checkoutSchema = z.object({
   address: z.string().min(5, "Address must be at least 5 characters"),
   city: z.string().min(2, "City must be at least 2 characters"),
   zip: z.string().length(5, "ZIP code must be exactly 5 characters"),
-  cardNumber: z
-    .string()
-    .regex(/^\d{16}$/, "Card number must be exactly 16 digits"),
-  expiry: z
-    .string()
-    .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Expiry must be in MM/YY format"),
+  cardNumber: z.string().regex(/^\d{16}$/, "Card number must be exactly 16 digits"),
+  expiry: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Expiry must be in MM/YY format"),
   cvc: z.string().regex(/^\d{3}$/, "CVC must be exactly 3 digits"),
 });
 
@@ -58,14 +52,6 @@ const subtotal = 126;
 const shipping = 0;
 const tax = 10.08;
 const total = 136.08;
-
-/* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
-/* ------------------------------------------------------------------ */
-
-function formatCurrency(amount: number): string {
-  return `$${amount.toFixed(2)}`;
-}
 
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
@@ -115,10 +101,7 @@ export default function CheckoutPage() {
 
         <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
           {/* ---- Form ---- */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="space-y-6"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Contact */}
             <Card>
               <CardHeader>
@@ -138,9 +121,7 @@ export default function CheckoutPage() {
                         aria-invalid={!!errors.email}
                         {...field}
                       />
-                      {errors.email && (
-                        <FieldError>{errors.email.message}</FieldError>
-                      )}
+                      {errors.email && <FieldError>{errors.email.message}</FieldError>}
                     </Field>
                   )}
                 />
@@ -165,9 +146,7 @@ export default function CheckoutPage() {
                         aria-invalid={!!errors.name}
                         {...field}
                       />
-                      {errors.name && (
-                        <FieldError>{errors.name.message}</FieldError>
-                      )}
+                      {errors.name && <FieldError>{errors.name.message}</FieldError>}
                     </Field>
                   )}
                 />
@@ -184,9 +163,7 @@ export default function CheckoutPage() {
                         aria-invalid={!!errors.address}
                         {...field}
                       />
-                      {errors.address && (
-                        <FieldError>{errors.address.message}</FieldError>
-                      )}
+                      {errors.address && <FieldError>{errors.address.message}</FieldError>}
                     </Field>
                   )}
                 />
@@ -204,9 +181,7 @@ export default function CheckoutPage() {
                           aria-invalid={!!errors.city}
                           {...field}
                         />
-                        {errors.city && (
-                          <FieldError>{errors.city.message}</FieldError>
-                        )}
+                        {errors.city && <FieldError>{errors.city.message}</FieldError>}
                       </Field>
                     )}
                   />
@@ -223,9 +198,7 @@ export default function CheckoutPage() {
                           aria-invalid={!!errors.zip}
                           {...field}
                         />
-                        {errors.zip && (
-                          <FieldError>{errors.zip.message}</FieldError>
-                        )}
+                        {errors.zip && <FieldError>{errors.zip.message}</FieldError>}
                       </Field>
                     )}
                   />
@@ -252,9 +225,7 @@ export default function CheckoutPage() {
                         aria-invalid={!!errors.cardNumber}
                         {...field}
                       />
-                      {errors.cardNumber && (
-                        <FieldError>{errors.cardNumber.message}</FieldError>
-                      )}
+                      {errors.cardNumber && <FieldError>{errors.cardNumber.message}</FieldError>}
                     </Field>
                   )}
                 />
@@ -273,9 +244,7 @@ export default function CheckoutPage() {
                           aria-invalid={!!errors.expiry}
                           {...field}
                         />
-                        {errors.expiry && (
-                          <FieldError>{errors.expiry.message}</FieldError>
-                        )}
+                        {errors.expiry && <FieldError>{errors.expiry.message}</FieldError>}
                       </Field>
                     )}
                   />
@@ -293,9 +262,7 @@ export default function CheckoutPage() {
                           aria-invalid={!!errors.cvc}
                           {...field}
                         />
-                        {errors.cvc && (
-                          <FieldError>{errors.cvc.message}</FieldError>
-                        )}
+                        {errors.cvc && <FieldError>{errors.cvc.message}</FieldError>}
                       </Field>
                     )}
                   />
@@ -314,39 +281,15 @@ export default function CheckoutPage() {
               <CardTitle>Order Summary</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {lineItems.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex items-center justify-between text-xs"
-                >
-                  <span className="text-muted-foreground">{item.name}</span>
-                  <span className="tabular-nums">
-                    {formatCurrency(item.price)}
-                  </span>
-                </div>
-              ))}
-              <Separator />
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">Subtotal</span>
-                <span className="tabular-nums">
-                  {formatCurrency(subtotal)}
-                </span>
-              </div>
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">Shipping</span>
-                <span className="tabular-nums">
-                  {shipping === 0 ? "Free" : formatCurrency(shipping)}
-                </span>
-              </div>
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">Tax (8%)</span>
-                <span className="tabular-nums">{formatCurrency(tax)}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-between text-sm font-bold">
-                <span>Total</span>
-                <span className="tabular-nums">{formatCurrency(total)}</span>
-              </div>
+              <OrderLineItems items={lineItems} />
+              <OrderSummaryRows
+                rows={[
+                  { label: "Subtotal", value: formatCurrency(subtotal) },
+                  { label: "Shipping", value: shipping === 0 ? "Free" : formatCurrency(shipping) },
+                  { label: "Tax (8%)", value: formatCurrency(tax) },
+                ]}
+                total={{ label: "Total", value: formatCurrency(total) }}
+              />
             </CardContent>
           </Card>
         </div>

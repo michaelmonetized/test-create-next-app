@@ -1,4 +1,7 @@
-import { Url } from "next/dist/shared/lib/router/router";
+/**
+ * Components Ui Layout Menu Item public module surface.
+ */
+import type { Url } from "next/dist/shared/lib/router/router";
 import Link from "@/components/link";
 import {
   NavigationMenuContent,
@@ -22,20 +25,13 @@ export default function MenuItem({
   return (
     <NavigationMenuItem>
       {href ? (
-        <NavigationMenuLink
-          asChild
-          className={navigationMenuTriggerStyle() + " " + className}
-        >
-          <Link href={href}>
-            {anchor}
-          </Link>
+        <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} ${className}`}>
+          <Link href={href}>{anchor}</Link>
         </NavigationMenuLink>
       ) : (
         children && (
           <>
-            <NavigationMenuTrigger className={className}>
-              {anchor}
-            </NavigationMenuTrigger>
+            <NavigationMenuTrigger className={className}>{anchor}</NavigationMenuTrigger>
             <NavigationMenuContent>{children}</NavigationMenuContent>
           </>
         )

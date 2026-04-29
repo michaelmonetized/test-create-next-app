@@ -1,8 +1,11 @@
+/**
+ * App Global Error public module surface.
+ */
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function GlobalError({
   error,

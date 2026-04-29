@@ -1,19 +1,17 @@
+/**
+ * App Components Examples Inputs public module surface.
+ */
 "use client";
 
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Field,
-  FieldLabel,
-  FieldError,
-  FieldDescription,
-} from "@/components/ui/field";
 import { Form } from "@base-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   email: z.string().email("Enter a valid email address."),
@@ -52,9 +50,7 @@ export default function InputsExample() {
                 placeholder="name@company.com"
                 autoComplete="off"
               />
-              {fieldState.invalid && (
-                <FieldError errors={[fieldState.error]} />
-              )}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
@@ -71,12 +67,8 @@ export default function InputsExample() {
                 placeholder="Add meeting notes, follow-up items, or context..."
                 autoComplete="off"
               />
-              <FieldDescription>
-                Brief notes about this contact.
-              </FieldDescription>
-              {fieldState.invalid && (
-                <FieldError errors={[fieldState.error]} />
-              )}
+              <FieldDescription>Brief notes about this contact.</FieldDescription>
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />

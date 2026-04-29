@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Navigation Menu public module surface.
+ */
 "use client";
 import {
   NavigationMenu,
@@ -27,9 +30,7 @@ export default function NavigationMenuExample() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#advanced">
-            Advanced patterns
-          </NavigationMenuLink>
+          <NavigationMenuLink href="#advanced">Advanced patterns</NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
       <NavigationMenuIndicator />

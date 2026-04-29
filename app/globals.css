@@ -4,7 +4,7 @@
 @plugin "@tailwindcss/forms";
 
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import "../node_modules/shadcn/dist/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 @custom-variant light (&:is(.light *));
@@ -16,8 +16,8 @@
   --snx: calc(1 + var(--gnx));
   --swx: var(--phi);
 
-  --text-xs: calc(var(--text-md) * .98);
-  --text-sm: calc(var(--text-md) * .99);
+  --text-xs: calc(var(--text-md) * 0.98);
+  --text-sm: calc(var(--text-md) * 0.99);
   --text-md: clamp(21px, calc(1dvw * var(--phi)), 28px);
   --text-core: var(--text-md);
   --text-lg: clamp(28px, calc(var(--text-md) * pow(var(--snx), 2)), 35px);
@@ -38,61 +38,17 @@
   --spacing-base: clamp(4px, calc(1rem * var(--gnx) / var(--swx)), 6px);
   --spacing-sm: clamp(2px, calc(var(--spacing-base) / var(--swx)), 4px);
   --spacing-xs: clamp(1px, calc(var(--spacing-sm) / var(--swx)), 3px);
-  --spacing-md: clamp(
-    var(--spacing-base),
-    calc(var(--spacing-base) * var(--swx)),
-    28px
-  );
-  --spacing-lg: clamp(
-    var(--spacing-md),
-    calc(var(--spacing-md) * var(--swx)),
-    35px
-  );
-  --spacing-xl: clamp(
-    var(--spacing-lg),
-    calc(var(--spacing-lg) * var(--swx)),
-    42px
-  );
-  --spacing-2x: clamp(
-    var(--spacing-xl),
-    calc(var(--spacing-xl) * var(--swx)),
-    49px
-  );
-  --spacing-3x: clamp(
-    var(--spacing-2x),
-    calc(var(--spacing-2x) * var(--swx)),
-    56px
-  );
-  --spacing-4x: clamp(
-    var(--spacing-3x),
-    calc(var(--spacing-3x) * var(--swx)),
-    63px
-  );
-  --spacing-5x: clamp(
-    var(--spacing-4x),
-    calc(var(--spacing-4x) * var(--swx)),
-    70px
-  );
-  --spacing-6x: clamp(
-    var(--spacing-5x),
-    calc(var(--spacing-5x) * var(--swx)),
-    77px
-  );
-  --spacing-7x: clamp(
-    var(--spacing-6x),
-    calc(var(--spacing-6x) * var(--swx)),
-    84px
-  );
-  --spacing-8x: clamp(
-    var(--spacing-7x),
-    calc(var(--spacing-7x) * var(--swx)),
-    91px
-  );
-  --spacing-9x: clamp(
-    var(--spacing-8x),
-    calc(var(--spacing-8x) * var(--swx)),
-    98px
-  );
+  --spacing-md: clamp(var(--spacing-base), calc(var(--spacing-base) * var(--swx)), 28px);
+  --spacing-lg: clamp(var(--spacing-md), calc(var(--spacing-md) * var(--swx)), 35px);
+  --spacing-xl: clamp(var(--spacing-lg), calc(var(--spacing-lg) * var(--swx)), 42px);
+  --spacing-2x: clamp(var(--spacing-xl), calc(var(--spacing-xl) * var(--swx)), 49px);
+  --spacing-3x: clamp(var(--spacing-2x), calc(var(--spacing-2x) * var(--swx)), 56px);
+  --spacing-4x: clamp(var(--spacing-3x), calc(var(--spacing-3x) * var(--swx)), 63px);
+  --spacing-5x: clamp(var(--spacing-4x), calc(var(--spacing-4x) * var(--swx)), 70px);
+  --spacing-6x: clamp(var(--spacing-5x), calc(var(--spacing-5x) * var(--swx)), 77px);
+  --spacing-7x: clamp(var(--spacing-6x), calc(var(--spacing-6x) * var(--swx)), 84px);
+  --spacing-8x: clamp(var(--spacing-7x), calc(var(--spacing-7x) * var(--swx)), 91px);
+  --spacing-9x: clamp(var(--spacing-8x), calc(var(--spacing-8x) * var(--swx)), 98px);
 
   --spacing-gw: var(--container-gw);
   --spacing-gn: var(--container-gn);
@@ -285,7 +241,7 @@
   --color-peach-800: var(--catpuccin-peach-800);
   --color-peach-900: var(--catpuccin-peach-900);
   --color-peach-950: var(--catpuccin-peach-950);
-  
+
   --color-yellow-100: var(--catpuccin-yellow-100);
   --color-yellow-200: var(--catpuccin-yellow-200);
   --color-yellow-300: var(--catpuccin-yellow-300);
@@ -296,7 +252,7 @@
   --color-yellow-800: var(--catpuccin-yellow-800);
   --color-yellow-900: var(--catpuccin-yellow-900);
   --color-yellow-950: var(--catpuccin-yellow-950);
-  
+
   --color-green-100: var(--catpuccin-green-100);
   --color-green-200: var(--catpuccin-green-200);
   --color-green-300: var(--catpuccin-green-300);
@@ -307,7 +263,7 @@
   --color-green-800: var(--catpuccin-green-800);
   --color-green-900: var(--catpuccin-green-900);
   --color-green-950: var(--catpuccin-green-950);
-  
+
   --color-teal-100: var(--catpuccin-teal-100);
   --color-teal-200: var(--catpuccin-teal-200);
   --color-teal-300: var(--catpuccin-teal-300);
@@ -318,7 +274,7 @@
   --color-teal-800: var(--catpuccin-teal-800);
   --color-teal-900: var(--catpuccin-teal-900);
   --color-teal-950: var(--catpuccin-teal-950);
-  
+
   --color-sky-100: var(--catpuccin-sky-100);
   --color-sky-200: var(--catpuccin-sky-200);
   --color-sky-300: var(--catpuccin-sky-300);
@@ -329,7 +285,7 @@
   --color-sky-800: var(--catpuccin-sky-800);
   --color-sky-900: var(--catpuccin-sky-900);
   --color-sky-950: var(--catpuccin-sky-950);
-  
+
   --color-sapphire-100: var(--catpuccin-sapphire-100);
   --color-sapphire-200: var(--catpuccin-sapphire-200);
   --color-sapphire-300: var(--catpuccin-sapphire-300);
@@ -340,7 +296,7 @@
   --color-sapphire-800: var(--catpuccin-sapphire-800);
   --color-sapphire-900: var(--catpuccin-sapphire-900);
   --color-sapphire-950: var(--catpuccin-sapphire-950);
-  
+
   --color-blue-100: var(--catpuccin-blue-100);
   --color-blue-200: var(--catpuccin-blue-200);
   --color-blue-300: var(--catpuccin-blue-300);
@@ -351,7 +307,7 @@
   --color-blue-800: var(--catpuccin-blue-800);
   --color-blue-900: var(--catpuccin-blue-900);
   --color-blue-950: var(--catpuccin-blue-950);
-  
+
   --color-lavender-100: var(--catpuccin-lavender-100);
   --color-lavender-200: var(--catpuccin-lavender-200);
   --color-lavender-300: var(--catpuccin-lavender-300);
@@ -558,7 +514,7 @@
   --latte-yellow-800: color-mix(in oklch, var(--latte-yellow), black 30%);
   --latte-yellow-900: color-mix(in oklch, var(--latte-yellow), black 40%);
   --latte-yellow-950: color-mix(in oklch, var(--latte-yellow), black 50%);
-  
+
   --latte-green: #40a02b;
   --latte-green-100: color-mix(in oklch, var(--latte-green), white 10%);
   --latte-green-200: color-mix(in oklch, var(--latte-green), white 20%);
@@ -570,7 +526,7 @@
   --latte-green-800: color-mix(in oklch, var(--latte-green), black 30%);
   --latte-green-900: color-mix(in oklch, var(--latte-green), black 40%);
   --latte-green-950: color-mix(in oklch, var(--latte-green), black 50%);
-  
+
   --latte-teal: #179299;
   --latte-teal-100: color-mix(in oklch, var(--latte-teal), white 10%);
   --latte-teal-200: color-mix(in oklch, var(--latte-teal), white 20%);
@@ -582,7 +538,7 @@
   --latte-teal-800: color-mix(in oklch, var(--latte-teal), black 30%);
   --latte-teal-900: color-mix(in oklch, var(--latte-teal), black 40%);
   --latte-teal-950: color-mix(in oklch, var(--latte-teal), black 50%);
-  
+
   --latte-sky: #04a5e5;
   --latte-sky-100: color-mix(in oklch, var(--latte-sky), white 10%);
   --latte-sky-200: color-mix(in oklch, var(--latte-sky), white 20%);
@@ -594,7 +550,7 @@
   --latte-sky-800: color-mix(in oklch, var(--latte-sky), black 30%);
   --latte-sky-900: color-mix(in oklch, var(--latte-sky), black 40%);
   --latte-sky-950: color-mix(in oklch, var(--latte-sky), black 50%);
-  
+
   --latte-sapphire: #209fb5;
   --latte-sapphire-100: color-mix(in oklch, var(--latte-sapphire), white 10%);
   --latte-sapphire-200: color-mix(in oklch, var(--latte-sapphire), white 20%);
@@ -606,7 +562,7 @@
   --latte-sapphire-800: color-mix(in oklch, var(--latte-sapphire), black 30%);
   --latte-sapphire-900: color-mix(in oklch, var(--latte-sapphire), black 40%);
   --latte-sapphire-950: color-mix(in oklch, var(--latte-sapphire), black 50%);
-  
+
   --latte-blue: #1e66f5;
   --latte-blue-100: color-mix(in oklch, var(--latte-blue), white 10%);
   --latte-blue-200: color-mix(in oklch, var(--latte-blue), white 20%);
@@ -618,7 +574,7 @@
   --latte-blue-800: color-mix(in oklch, var(--latte-blue), black 30%);
   --latte-blue-900: color-mix(in oklch, var(--latte-blue), black 40%);
   --latte-blue-950: color-mix(in oklch, var(--latte-blue), black 50%);
-  
+
   --latte-lavender: #7287fd;
   --latte-lavender-100: color-mix(in oklch, var(--latte-lavender), white 10%);
   --latte-lavender-200: color-mix(in oklch, var(--latte-lavender), white 20%);
@@ -630,7 +586,7 @@
   --latte-lavender-800: color-mix(in oklch, var(--latte-lavender), black 30%);
   --latte-lavender-900: color-mix(in oklch, var(--latte-lavender), black 40%);
   --latte-lavender-950: color-mix(in oklch, var(--latte-lavender), black 50%);
-  
+
   --latte-text: #4c4f69;
   --latte-subtext-1: #5c5f77;
   --latte-subtext-0: #6c6f85;
@@ -906,7 +862,7 @@
   --catpuccin-red-800: light-dark(var(--latte-red-800), var(--mocha-red-800));
   --catpuccin-red-900: light-dark(var(--latte-red-900), var(--mocha-red-900));
   --catpuccin-red-950: light-dark(var(--latte-red-950), var(--mocha-red-950));
-  
+
   --catpuccin-maroon-100: light-dark(var(--latte-maroon-100), var(--mocha-maroon-100));
   --catpuccin-maroon-200: light-dark(var(--latte-maroon-200), var(--mocha-maroon-200));
   --catpuccin-maroon-300: light-dark(var(--latte-maroon-300), var(--mocha-maroon-300));
@@ -1176,7 +1132,20 @@
     color: color-mix(in srgb, var(--foreground) 90%, transparent);
   }
 
-  a[href], button, [type="button"], [type="reset"], [type="submit"], [type="checkbox"], [type="radio"], [type="file"], select, summary, legend, label, [role="button"], [role="link"] {
+  a[href],
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"],
+  [type="checkbox"],
+  [type="radio"],
+  [type="file"],
+  select,
+  summary,
+  legend,
+  label,
+  [role="button"],
+  [role="link"] {
     @apply cursor-pointer;
   }
 
@@ -1190,12 +1159,18 @@
   }
 
   p,
-  h1, .h1,
-  h2, .h2,
-  h3, .h3,
-  h4, .h4,
-  h5, .h5,
-  h6, .h6,
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6,
   blockquote,
   pre,
   address,
@@ -1244,12 +1219,18 @@
   pre,
   address,
   p,
-  h1, .h1,
-  h2, .h2,
-  h3, .h3,
-  h4, .h4,
-  h5, .h5,
-  h6, .h6 {
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6 {
     &:not(:first-child) {
       margin-top: var(--spacing-lg);
     }
@@ -1297,7 +1278,9 @@
     font-weight: 900;
   }
 
-  select, textarea, input:not([type="button"], [type="reset"], [type="submit"]) {
+  select,
+  textarea,
+  input:not([type="button"], [type="reset"], [type="submit"]) {
     @apply placeholder:text-muted-foreground placeholder:opacity-50 focus:border-ring focus:ring-1 focus:ring-ring/50;
 
     &:user-invalid {
@@ -1310,7 +1293,7 @@
   }
 
   ._field {
-@apply block w-full rounded-none border border-border bg-input bg-clip-padding font-normal text-input-foreground placeholder:text-input-placeholder placeholder:opacity-50 focus:border-ring focus:ring-1 focus:ring-ring/50;
+    @apply block w-full rounded-none border border-border bg-input bg-clip-padding font-normal text-input-foreground placeholder:text-input-placeholder placeholder:opacity-50 focus:border-ring focus:ring-1 focus:ring-ring/50;
   }
 
   ._button {
@@ -1370,7 +1353,10 @@
   }
 
   nav {
-    ul, ol, menu, li {
+    ul,
+    ol,
+    menu,
+    li {
       @apply m-0 p-0 indent-0 list-none;
     }
   }

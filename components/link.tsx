@@ -1,7 +1,10 @@
+/**
+ * Components Link public module surface.
+ */
 "use client";
-import * as React from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/navigation";
+import * as React from "react";
 
 type PrefetchImage = {
   srcset: string;
@@ -36,11 +39,7 @@ function isExternalUrl(href: string): boolean {
     const baseUrl = process.env.NEXT_PUBLIC_HOST;
     if (!baseUrl) {
       // If no environment variable is set, assume relative URLs are internal
-      return (
-        href.startsWith("http://") ||
-        href.startsWith("https://") ||
-        href.startsWith("//")
-      );
+      return href.startsWith("http://") || href.startsWith("https://") || href.startsWith("//");
     }
     const url = new URL(href, baseUrl);
     const baseOrigin = new URL(baseUrl).origin;
@@ -61,113 +60,113 @@ function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
   }
 }
 
-const Link = React.forwardRef<
-  HTMLAnchorElement,
-  React.ComponentProps<typeof NextLink>
->(({ children, ...props }, forwardedRef) => {
-  const linkRef = React.useRef<HTMLAnchorElement>(null);
-  const router = useRouter();
-  let prefetchTimeout: NodeJS.Timeout | null = null;
+function shouldInterceptNavigation(
+  event: React.MouseEvent<HTMLAnchorElement>,
+  href: string,
+  isExternal: boolean,
+) {
+  if (event.defaultPrevented || isExternal) return false;
+  if (event.button !== 0) return false;
+  if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return false;
 
-  // Determine if this is an external link
-  const href = String(props.href);
-  const isExternal = isExternalUrl(href);
+  const url = new URL(href, window.location.href);
+  return url.origin === window.location.origin;
+}
 
-  // Prepare props with security attributes for external links
-  const linkProps = {
-    ...props,
-    ...(isExternal &&
-      props.target === "_blank" && {
-        rel: "noopener noreferrer",
-      }),
-  };
+const Link = React.forwardRef<HTMLAnchorElement, React.ComponentProps<typeof NextLink>>(
+  ({ children, ...props }, forwardedRef) => {
+    const linkRef = React.useRef<HTMLAnchorElement>(null);
+    const router = useRouter();
+    let prefetchTimeout: NodeJS.Timeout | null = null;
 
-  const handleRef = React.useCallback(
-    (node: HTMLAnchorElement | null) => {
-      linkRef.current = node;
-      assignRef(forwardedRef, node);
-    },
-    [forwardedRef],
-  );
+    // Determine if this is an external link
+    const href = String(props.href);
+    const isExternal = isExternalUrl(href);
 
-  React.useEffect(() => {
-    if (props.prefetch === false) return;
+    // Prepare props with security attributes for external links
+    const linkProps = {
+      ...props,
+      ...(isExternal &&
+        props.target === "_blank" && {
+          rel: "noopener noreferrer",
+        }),
+    };
 
-    const linkElement = linkRef.current;
-    if (!linkElement) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          prefetchTimeout = setTimeout(async () => {
-            router.prefetch(String(props.href));
-            await sleep(0);
-
-            if (!imageCache.has(String(props.href))) {
-              void prefetchImages(String(props.href)).then((images) => {
-                imageCache.set(String(props.href), images);
-              });
-            }
-
-            observer.unobserve(entry.target);
-          }, 300);
-        } else if (prefetchTimeout) {
-          clearTimeout(prefetchTimeout);
-          prefetchTimeout = null;
-        }
+    const handleRef = React.useCallback(
+      (node: HTMLAnchorElement | null) => {
+        linkRef.current = node;
+        assignRef(forwardedRef, node);
       },
-      { rootMargin: "0px", threshold: 0.1 },
+      [forwardedRef],
     );
 
-    observer.observe(linkElement);
+    React.useEffect(() => {
+      if (props.prefetch === false) return;
 
-    return () => {
-      observer.disconnect();
-      if (prefetchTimeout) {
-        clearTimeout(prefetchTimeout);
-      }
-    };
-  }, [props.href, props.prefetch]);
+      const linkElement = linkRef.current;
+      if (!linkElement) return;
 
-  return (
-    <NextLink
-      ref={handleRef}
-      prefetch={false}
-      onMouseEnter={(e) => {
-        props.onMouseEnter?.(e);
-        router.prefetch(href);
-        const images = imageCache.get(href) || [];
-        for (const image of images) {
-          prefetchImage(image);
-        }
-      }}
-      onMouseDown={(e) => {
-        props.onMouseDown?.(e);
-        if (e.defaultPrevented || isExternal) {
-          return;
-        }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (entry.isIntersecting) {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            prefetchTimeout = setTimeout(async () => {
+              router.prefetch(String(props.href));
+              await sleep(0);
 
-        const url = new URL(href, window.location.href);
-        if (
-          url.origin === window.location.origin &&
-          e.button === 0 &&
-          !e.altKey &&
-          !e.ctrlKey &&
-          !e.metaKey &&
-          !e.shiftKey
-        ) {
-          e.preventDefault();
-          router.push(href);
+              if (!imageCache.has(String(props.href))) {
+                void prefetchImages(String(props.href)).then((images) => {
+                  imageCache.set(String(props.href), images);
+                });
+              }
+
+              observer.unobserve(entry.target);
+            }, 300);
+          } else if (prefetchTimeout) {
+            clearTimeout(prefetchTimeout);
+            prefetchTimeout = null;
+          }
+        },
+        { rootMargin: "0px", threshold: 0.1 },
+      );
+
+      observer.observe(linkElement);
+
+      return () => {
+        observer.disconnect();
+        if (prefetchTimeout) {
+          clearTimeout(prefetchTimeout);
         }
-      }}
-      {...linkProps}
-    >
-      {children}
-    </NextLink>
-  );
-});
+      };
+    }, [props.href, props.prefetch, router.prefetch, prefetchTimeout]);
+
+    return (
+      <NextLink
+        ref={handleRef}
+        prefetch={false}
+        onMouseEnter={(e) => {
+          props.onMouseEnter?.(e);
+          router.prefetch(href);
+          const images = imageCache.get(href) || [];
+          for (const image of images) {
+            prefetchImage(image);
+          }
+        }}
+        onMouseDown={(e) => {
+          props.onMouseDown?.(e);
+          if (shouldInterceptNavigation(e, href, isExternal)) {
+            e.preventDefault();
+            router.push(href);
+          }
+        }}
+        {...linkProps}
+      >
+        {children}
+      </NextLink>
+    );
+  },
+);
 
 Link.displayName = "Link";
 

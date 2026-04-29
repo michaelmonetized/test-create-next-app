@@ -1,13 +1,15 @@
+/**
+ * App Components Examples Input Group public module surface.
+ */
 "use client";
 
+import { Form } from "@base-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldLabel,
-  FieldError,
-  FieldDescription,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
@@ -15,10 +17,6 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
-import { Form } from "@base-ui/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
 
 const formSchema = z.object({
   hostname: z
@@ -64,12 +62,8 @@ export default function InputGroupExample() {
                   autoComplete="off"
                 />
               </InputGroup>
-              <FieldDescription>
-                Your custom domain for the project.
-              </FieldDescription>
-              {fieldState.invalid && (
-                <FieldError errors={[fieldState.error]} />
-              )}
+              <FieldDescription>Your custom domain for the project.</FieldDescription>
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
@@ -88,9 +82,7 @@ export default function InputGroupExample() {
                   autoComplete="off"
                 />
               </InputGroup>
-              {fieldState.invalid && (
-                <FieldError errors={[fieldState.error]} />
-              )}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />

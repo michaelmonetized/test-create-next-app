@@ -1,33 +1,38 @@
+/**
+ * Lib Accessibility Chat Storage public module surface.
+ */
 import type { UIMessage } from "ai";
 
-export const ACCESSIBILITY_CHAT_STORAGE_KEY =
-  "accessibility-chat:layout-accessibility-chat";
+const ACCESSIBILITY_CHAT_STORAGE_KEY = "accessibility-chat:layout-accessibility-chat";
 
 function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null;
 }
 
-function parseTextParts(
-  parts: unknown
-): UIMessage["parts"] | null {
+function parseTextParts(parts: unknown): UIMessage["parts"] | null {
   if (!Array.isArray(parts)) return null;
-  const out: UIMessage["parts"] = [];
-  for (const p of parts) {
-    if (!isRecord(p) || p.type !== "text" || typeof p.text !== "string") {
-      continue;
-    }
-    const textPart: { type: "text"; text: string; state?: "streaming" | "done" } =
-      { type: "text", text: p.text };
-    if (p.state === "streaming" || p.state === "done") {
-      textPart.state = p.state;
-    }
-    out.push(textPart);
-  }
+  const out = parts.flatMap(parseTextPart);
   return out.length ? out : null;
 }
 
+function isStoredTextPart(part: unknown): part is { text: string; state?: unknown; type: "text" } {
+  return isRecord(part) && part.type === "text" && typeof part.text === "string";
+}
+
+function parseTextPart(part: unknown): UIMessage["parts"] {
+  if (!isStoredTextPart(part)) return [];
+  const textPart: { type: "text"; text: string; state?: "streaming" | "done" } = {
+    type: "text",
+    text: part.text,
+  };
+  if (part.state === "streaming" || part.state === "done") {
+    textPart.state = part.state;
+  }
+  return [textPart];
+}
+
 /** Normalize messages for persistence (no in-flight streaming state). */
-export function stripStreamingForStorage(messages: UIMessage[]): UIMessage[] {
+function stripStreamingForStorage(messages: UIMessage[]): UIMessage[] {
   return messages.map((m) => ({
     ...m,
     parts: m.parts.map((p) => {
@@ -39,26 +44,40 @@ export function stripStreamingForStorage(messages: UIMessage[]): UIMessage[] {
   }));
 }
 
-export function parseStoredMessages(raw: string | null): UIMessage[] | null {
+function parseStoredMessages(raw: string | null): UIMessage[] | null {
   if (!raw) return null;
+  const data = parseJson(raw);
+  if (!Array.isArray(data)) return null;
+  const out = data.flatMap(parseStoredMessage);
+  return out.length ? out : null;
+}
+
+function parseJson(raw: string): unknown {
   try {
-    const data = JSON.parse(raw) as unknown;
-    if (!Array.isArray(data)) return null;
-    const out: UIMessage[] = [];
-    for (const item of data) {
-      if (!isRecord(item)) continue;
-      if (item.role !== "user" && item.role !== "assistant") continue;
-      if (typeof item.id !== "string") continue;
-      const parts = parseTextParts(item.parts);
-      if (!parts) continue;
-      out.push({ id: item.id, role: item.role, parts });
-    }
-    return out.length ? out : null;
+    return JSON.parse(raw) as unknown;
   } catch {
     return null;
   }
 }
 
+function isStoredRole(role: unknown): role is "user" | "assistant" {
+  return role === "user" || role === "assistant";
+}
+
+function getStoredMessageId(item: Record<string, unknown>): string | null {
+  return typeof item.id === "string" ? item.id : null;
+}
+
+function parseStoredMessage(item: unknown): UIMessage[] {
+  if (!isRecord(item)) return [];
+  if (!isStoredRole(item.role)) return [];
+  const id = getStoredMessageId(item);
+  if (!id) return [];
+  const parts = parseTextParts(item.parts);
+  return parts ? [{ id, role: item.role, parts }] : [];
+}
+
+/** Loads the persisted accessibility chat transcript from browser storage. */
 export function loadAccessibilityChatFromStorage(): UIMessage[] | null {
   if (typeof window === "undefined") return null;
   try {
@@ -68,6 +87,7 @@ export function loadAccessibilityChatFromStorage(): UIMessage[] | null {
   }
 }
 
+/** Persists accessibility chat messages after normalizing transient streaming state. */
 export function saveAccessibilityChatToStorage(messages: UIMessage[]): void {
   if (typeof window === "undefined") return;
   try {
@@ -75,14 +95,5 @@ export function saveAccessibilityChatToStorage(messages: UIMessage[]): void {
     localStorage.setItem(ACCESSIBILITY_CHAT_STORAGE_KEY, JSON.stringify(payload));
   } catch {
     // QuotaExceededError or private mode — ignore
-  }
-}
-
-export function clearAccessibilityChatStorage(): void {
-  if (typeof window === "undefined") return;
-  try {
-    localStorage.removeItem(ACCESSIBILITY_CHAT_STORAGE_KEY);
-  } catch {
-    /* ignore */
   }
 }

@@ -1,6 +1,9 @@
-import { Button } from "@/components/ui/button";
+/**
+ * App Not Found public module surface.
+ */
 import { headers } from "next/headers";
 import Link from "@/components/link";
+import { Button } from "@/components/ui/button";
 
 export default async function NotFound() {
   const headersList = await headers();

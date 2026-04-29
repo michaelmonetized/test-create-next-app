@@ -1,9 +1,12 @@
+/**
+ * Components Marketing Hero Slider public module surface.
+ */
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import * as React from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const slides = [
   {
@@ -26,6 +29,7 @@ const slides = [
   },
 ];
 
+/** Renders a rotating hero media strip for marketing pages. */
 export default function HeroSlider({ className }: { className?: string }) {
   const [activeIndex, setActiveIndex] = React.useState(0);
 

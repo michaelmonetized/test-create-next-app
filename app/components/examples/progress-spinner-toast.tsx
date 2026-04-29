@@ -1,3 +1,6 @@
+/**
+ * App Components Examples Progress Spinner Toast public module surface.
+ */
 "use client";
 
 import { toast } from "sonner";
@@ -15,8 +18,7 @@ export default function ProgressSpinnerToastExample() {
       <Button
         onClick={() =>
           toast.success("Toast sent", {
-            description:
-              "The local Toaster component styles sonner to match the system.",
+            description: "The local Toaster component styles sonner to match the system.",
           })
         }
       >

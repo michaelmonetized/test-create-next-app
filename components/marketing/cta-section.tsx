@@ -1,10 +1,14 @@
+/**
+ * Components Marketing Cta Section public module surface.
+ */
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
+/** Renders a compact marketing call-to-action section. */
 export default function CTASection({ className }: { className?: string }) {
   const [email, setEmail] = React.useState("");
 
@@ -19,8 +23,8 @@ export default function CTASection({ className }: { className?: string }) {
             </h2>
 
             <p className="max-w-128 text-muted-foreground">
-              Join 2,000+ founders who launched their products with Hustle
-              Launch. Get early access — no credit card required.
+              Join 2,000+ founders who launched their products with Hustle Launch. Get early access
+              — no credit card required.
             </p>
 
             <form

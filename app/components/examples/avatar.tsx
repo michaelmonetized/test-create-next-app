@@ -1,10 +1,13 @@
+/**
+ * App Components Examples Avatar public module surface.
+ */
 import {
   Avatar,
   AvatarBadge,
   AvatarFallback,
-  AvatarImage,
   AvatarGroup,
   AvatarGroupCount,
+  AvatarImage,
 } from "@/components/ui/avatar";
 export default function AvatarExample() {
   return (

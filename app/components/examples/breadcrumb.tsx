@@ -1,13 +1,16 @@
+/**
+ * App Components Examples Breadcrumb public module surface.
+ */
 "use client";
 
 import {
   Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbEllipsis,
+  BreadcrumbList,
   BreadcrumbPage,
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 export default function BreadcrumbExample() {
   return (

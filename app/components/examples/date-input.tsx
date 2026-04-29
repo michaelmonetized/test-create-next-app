@@ -1,21 +1,20 @@
+/**
+ * App Components Examples Date Input public module surface.
+ */
 "use client";
 
-import * as React from "react";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldLabel,
-  FieldError,
-  FieldDescription,
-} from "@/components/ui/field";
-import { Calendar } from "@/components/ui/calendar";
-import { Separator } from "@/components/ui/separator";
 import { Form } from "@base-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm, useWatch } from "react-hook-form";
-import * as z from "zod";
 import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
+import * as React from "react";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import { Separator } from "@/components/ui/separator";
+import { DAYS, getWeekDates, WeekDateButtons } from "./date-picker-shared";
 
 type View = "week" | "month" | "year" | "monthList";
 
@@ -49,26 +48,6 @@ const MONTH_NAMES_SHORT = [
   "Dec",
 ];
 
-const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-function getWeekDates(date: Date): Date[] {
-  const start = new Date(date);
-  start.setDate(start.getDate() - start.getDay());
-  return Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(start);
-    d.setDate(d.getDate() + i);
-    return d;
-  });
-}
-
-function isSameDay(a: Date, b: Date) {
-  return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
-  );
-}
-
 // ── Header ──
 
 function DatePickerHeader({
@@ -93,12 +72,7 @@ function DatePickerHeader({
         {view === "year" ? (
           <span>{navDate.getFullYear()}</span>
         ) : view === "monthList" ? (
-          <Button
-            type="button"
-            variant="ghost"
-            size="xs"
-            onClick={() => onViewChange("year")}
-          >
+          <Button type="button" variant="ghost" size="xs" onClick={() => onViewChange("year")}>
             {navDate.getFullYear()}
           </Button>
         ) : (
@@ -111,12 +85,7 @@ function DatePickerHeader({
             >
               {MONTH_NAMES[navDate.getMonth()]}
             </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              size="xs"
-              onClick={() => onViewChange("year")}
-            >
+            <Button type="button" variant="ghost" size="xs" onClick={() => onViewChange("year")}>
               {navDate.getFullYear()}
             </Button>
           </>
@@ -141,7 +110,6 @@ function WeekView({
   onSelect: (d: Date) => void;
 }) {
   const week = getWeekDates(navDate);
-  const today = new Date();
 
   return (
     <div className="space-y-1">
@@ -154,22 +122,14 @@ function WeekView({
             {day}
           </div>
         ))}
-        {week.map((d, i) => {
-          const isToday = isSameDay(d, today);
-          const isSelected = selectedDate ? isSameDay(d, selectedDate) : false;
-          return (
-            <Button
-              key={i}
-              type="button"
-              variant={isSelected ? "default" : isToday ? "secondary" : "ghost"}
-              size="icon"
-              className="aspect-square"
-              onClick={() => onSelect(d)}
-            >
-              {d.getDate()}
-            </Button>
-          );
-        })}
+        <WeekDateButtons
+          week={week}
+          selectedDate={selectedDate}
+          size="icon"
+          className="aspect-square"
+          renderLabel={(date) => date.getDate()}
+          onSelect={onSelect}
+        />
       </div>
     </div>
   );
@@ -190,8 +150,7 @@ function MonthListView({
   return (
     <div className="grid grid-cols-3 gap-2">
       {MONTH_NAMES_SHORT.map((month, i) => {
-        const isCurrentMonth =
-          i === today.getMonth() && year === today.getFullYear();
+        const isCurrentMonth = i === today.getMonth() && year === today.getFullYear();
         return (
           <Button
             key={month}
@@ -211,13 +170,7 @@ function MonthListView({
 
 // ── Year grid view ──
 
-function YearGridView({
-  navDate,
-  onSelect,
-}: {
-  navDate: Date;
-  onSelect: (year: number) => void;
-}) {
+function YearGridView({ navDate, onSelect }: { navDate: Date; onSelect: (year: number) => void }) {
   const currentYear = navDate.getFullYear();
   const startYear = currentYear - 5;
   const years = Array.from({ length: 12 }, (_, i) => startYear + i);
@@ -232,9 +185,7 @@ function YearGridView({
           <Button
             key={year}
             type="button"
-            variant={
-              isSelected ? "default" : isCurrentYear ? "secondary" : "outline"
-            }
+            variant={isSelected ? "default" : isCurrentYear ? "secondary" : "outline"}
             size="sm"
             className="w-full"
             onClick={() => onSelect(year)}
@@ -262,7 +213,7 @@ export default function DateInputExample() {
     defaultValues: { date: undefined },
   });
 
-  const selectedDate = useWatch({ control: form.control, name: "date" });
+  const selectedDate = form.watch("date");
 
   function handleDateSelect(date: Date | undefined) {
     if (date) {
@@ -386,27 +337,17 @@ export default function DateInputExample() {
               )}
 
               {view === "monthList" && (
-                <MonthListView
-                  navDate={navDate}
-                  onSelect={handleMonthSelect}
-                />
+                <MonthListView navDate={navDate} onSelect={handleMonthSelect} />
               )}
 
-              {view === "year" && (
-                <YearGridView
-                  navDate={navDate}
-                  onSelect={handleYearSelect}
-                />
-              )}
+              {view === "year" && <YearGridView navDate={navDate} onSelect={handleYearSelect} />}
 
               <FieldDescription>
                 {selectedDate
                   ? `Selected: ${selectedDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`
                   : "Pick a date from the calendar."}
               </FieldDescription>
-              {fieldState.invalid && (
-                <FieldError errors={[fieldState.error]} />
-              )}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />

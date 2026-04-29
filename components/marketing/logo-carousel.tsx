@@ -1,16 +1,11 @@
+/**
+ * Components Marketing Logo Carousel public module surface.
+ */
 "use client";
 
 import { cn } from "@/lib/utils";
 
-const logos = [
-  "Stripe",
-  "Vercel",
-  "Clerk",
-  "Convex",
-  "PostHog",
-  "Sentry",
-  "Resend",
-];
+const logos = ["Stripe", "Vercel", "Clerk", "Convex", "PostHog", "Sentry", "Resend"];
 
 function LogoItem({ name }: { name: string }) {
   return (
@@ -20,6 +15,7 @@ function LogoItem({ name }: { name: string }) {
   );
 }
 
+/** Renders partner or customer logos in a horizontal carousel layout. */
 export default function LogoCarousel({ className }: { className?: string }) {
   return (
     <section className={cn("w-full py-12", className)}>

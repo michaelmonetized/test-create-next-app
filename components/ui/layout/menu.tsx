@@ -1,10 +1,14 @@
+/**
+ * Components Ui Layout Menu public module surface.
+ */
 "use client";
 
-import {
-  NavigationMenu,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+import { ListIcon } from "@phosphor-icons/react";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import Link from "@/components/link";
+import Logo from "@/components/logo";
 import MenuItem from "@/components/ui/layout/menu-item";
+import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
@@ -13,12 +17,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import Link from "@/components/link";
-import { ListIcon } from "@phosphor-icons/react";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import Logo from "@/components/logo";
 
-export const pages = [
+const pages = [
   {
     anchor: "Elements",
     href: "/elements/",

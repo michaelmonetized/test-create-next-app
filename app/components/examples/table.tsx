@@ -1,8 +1,11 @@
+/**
+ * App Components Examples Table public module surface.
+ */
 "use client";
 
 import * as React from "react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
   Table,
@@ -28,10 +31,24 @@ type Deployment = {
 
 const initialRows: Deployment[] = [
   { id: "dpl_1", branch: "main", status: "ready", region: "iad1", duration: 14, date: "Mar 31" },
-  { id: "dpl_2", branch: "feat/auth", status: "building", region: "sfo1", duration: 28, date: "Mar 31" },
+  {
+    id: "dpl_2",
+    branch: "feat/auth",
+    status: "building",
+    region: "sfo1",
+    duration: 28,
+    date: "Mar 31",
+  },
   { id: "dpl_3", branch: "fix/nav", status: "ready", region: "cdg1", duration: 9, date: "Mar 30" },
   { id: "dpl_4", branch: "main", status: "error", region: "hnd1", duration: 42, date: "Mar 30" },
-  { id: "dpl_5", branch: "feat/api", status: "ready", region: "iad1", duration: 17, date: "Mar 29" },
+  {
+    id: "dpl_5",
+    branch: "feat/api",
+    status: "ready",
+    region: "iad1",
+    duration: 17,
+    date: "Mar 29",
+  },
   { id: "dpl_6", branch: "feat/ui", status: "ready", region: "sfo1", duration: 11, date: "Mar 29" },
   { id: "dpl_7", branch: "main", status: "ready", region: "cdg1", duration: 22, date: "Mar 28" },
   { id: "dpl_8", branch: "fix/perf", status: "ready", region: "iad1", duration: 8, date: "Mar 28" },
@@ -68,8 +85,7 @@ function SortableTable() {
     return sortDir === "asc" ? cmp : -cmp;
   });
 
-  const arrow = (key: SortKey) =>
-    sortKey === key ? (sortDir === "asc" ? " ↑" : " ↓") : "";
+  const arrow = (key: SortKey) => (sortKey === key ? (sortDir === "asc" ? " ↑" : " ↓") : "");
 
   return (
     <Table>
@@ -190,9 +206,7 @@ function StickyTable() {
         <tbody>
           {[...initialRows, ...initialRows].map((row, i) => (
             <tr key={`${row.id}-${i}`} className="border-b hover:bg-muted/50">
-              <td className="sticky left-0 z-10 bg-background px-3 py-2 font-mono">
-                {row.branch}
-              </td>
+              <td className="sticky left-0 z-10 bg-background px-3 py-2 font-mono">{row.branch}</td>
               <td className="px-3 py-2">
                 <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
               </td>
@@ -207,9 +221,7 @@ function StickyTable() {
         </tbody>
         <tfoot className="sticky bottom-0 z-20 border-t bg-muted/50">
           <tr>
-            <td className="sticky left-0 z-30 bg-muted/50 px-3 py-2 font-medium">
-              Total
-            </td>
+            <td className="sticky left-0 z-30 bg-muted/50 px-3 py-2 font-medium">Total</td>
             <td className="px-3 py-2" colSpan={2}>
               {initialRows.length * 2} deployments
             </td>
@@ -281,7 +293,9 @@ function CaptionSummaryTable() {
 // ── Composed export ──
 
 export default function TableExample() {
-  const [active, setActive] = React.useState<"sortable" | "drag" | "sticky" | "summary">("sortable");
+  const [active, setActive] = React.useState<"sortable" | "drag" | "sticky" | "summary">(
+    "sortable",
+  );
 
   const tables = {
     sortable: <SortableTable />,
