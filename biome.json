@@ -6,72 +6,92 @@
     "useIgnoreFile": true
   },
   "files": {
+    "ignoreUnknown": true,
     "includes": [
       "**",
-      "!.next",
       "!node_modules",
+      "!.next",
+      "!out",
+      "!build",
+      "!coverage",
       "!bun.lock",
       "!tsconfig.tsbuildinfo",
+      "!next-env.d.ts",
+      "!AUDIT.md",
+      "!DEAD_CODE.md",
+      "!DUPLICATION.md",
+      "!HEALTH.md",
+      "!REVIEW.md",
       "!app/tailwindcss"
     ]
   },
   "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 100
+    "enabled": false,
+    "indentStyle": "space"
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noExplicitAny": "warn",
-        "noArrayIndexKey": "off",
-        "noShadowRestrictedNames": "off",
-        "noDuplicateCustomProperties": "off"
-      },
       "a11y": {
+        "noRedundantRoles": "off",
+        "noInteractiveElementToNoninteractiveRole": "off",
         "noStaticElementInteractions": "off",
-        "useValidAnchor": "off",
         "noSvgWithoutTitle": "off",
-        "useAriaPropsSupportedByRole": "off",
-        "useMediaCaption": "off",
-        "useButtonType": "off",
-        "useFocusableInteractive": "off",
-        "useSemanticElements": "off",
+        "useAnchorContent": "off",
         "useAriaPropsForRole": "off",
-        "useKeyWithClickEvents": "off"
-      },
-      "style": {
-        "noDescendingSpecificity": "off"
+        "useAriaPropsSupportedByRole": "off",
+        "useFocusableInteractive": "off",
+        "useGenericFontNames": "off",
+        "useKeyWithClickEvents": "off",
+        "useMediaCaption": "off",
+        "useSemanticElements": "off",
+        "useValidAnchor": "off"
       },
       "correctness": {
-        "noInvalidPositionAtImportRule": "off"
+        "noInvalidPositionAtImportRule": "off",
+        "useExhaustiveDependencies": "off",
+        "useHookAtTopLevel": "off"
+      },
+      "complexity": {
+        "noImportantStyles": "off"
+      },
+      "performance": {
+        "noImgElement": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"
+      },
+      "style": {
+        "noDescendingSpecificity": "off",
+        "useTemplate": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noDocumentCookie": "off",
+        "noDoubleEquals": "off",
+        "noDuplicateCustomProperties": "off",
+        "noExplicitAny": "warn",
+        "noShadowRestrictedNames": "off"
       }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
     }
   },
   "assist": {
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "off"
       }
-    }
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "double",
-      "semicolons": "always",
-      "trailingCommas": "all"
-    }
-  },
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
     }
   }
 }

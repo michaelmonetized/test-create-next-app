@@ -91,7 +91,7 @@ This app is structured as a component-driven App Router monolith with a strong d
 - Before committing, run:
 
 ```bash
-bun tsc && bun lint --fix --max-warnings 9999
+bun tsc && bun lint --fix && bun lint:docs && bun test
 ```
 
 - Do not use `bun run build` as the local verification step for this repo.

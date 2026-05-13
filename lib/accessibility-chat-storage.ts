@@ -2,34 +2,25 @@
  * Lib Accessibility Chat Storage public module surface.
  */
 import type { UIMessage } from "ai";
+import { z } from "zod";
 
 const ACCESSIBILITY_CHAT_STORAGE_KEY = "accessibility-chat:layout-accessibility-chat";
 
-function isRecord(v: unknown): v is Record<string, unknown> {
-  return typeof v === "object" && v !== null;
-}
+const storedTextPartSchema = z
+  .object({
+    type: z.literal("text"),
+    text: z.string(),
+    state: z.enum(["streaming", "done"]).optional(),
+  })
+  .passthrough();
 
-function parseTextParts(parts: unknown): UIMessage["parts"] | null {
-  if (!Array.isArray(parts)) return null;
-  const out = parts.flatMap(parseTextPart);
-  return out.length ? out : null;
-}
-
-function isStoredTextPart(part: unknown): part is { text: string; state?: unknown; type: "text" } {
-  return isRecord(part) && part.type === "text" && typeof part.text === "string";
-}
-
-function parseTextPart(part: unknown): UIMessage["parts"] {
-  if (!isStoredTextPart(part)) return [];
-  const textPart: { type: "text"; text: string; state?: "streaming" | "done" } = {
-    type: "text",
-    text: part.text,
-  };
-  if (part.state === "streaming" || part.state === "done") {
-    textPart.state = part.state;
-  }
-  return [textPart];
-}
+const storedMessageSchema = z
+  .object({
+    id: z.string(),
+    role: z.enum(["user", "assistant"]),
+    parts: z.array(z.unknown()),
+  })
+  .passthrough();
 
 /** Normalize messages for persistence (no in-flight streaming state). */
 function stripStreamingForStorage(messages: UIMessage[]): UIMessage[] {
@@ -60,21 +51,17 @@ function parseJson(raw: string): unknown {
   }
 }
 
-function isStoredRole(role: unknown): role is "user" | "assistant" {
-  return role === "user" || role === "assistant";
-}
-
-function getStoredMessageId(item: Record<string, unknown>): string | null {
-  return typeof item.id === "string" ? item.id : null;
-}
-
 function parseStoredMessage(item: unknown): UIMessage[] {
-  if (!isRecord(item)) return [];
-  if (!isStoredRole(item.role)) return [];
-  const id = getStoredMessageId(item);
-  if (!id) return [];
-  const parts = parseTextParts(item.parts);
-  return parts ? [{ id, role: item.role, parts }] : [];
+  const result = storedMessageSchema.safeParse(item);
+  if (!result.success) return [];
+
+  const parts = result.data.parts.flatMap(parseStoredTextPart);
+  return parts.length ? [{ id: result.data.id, role: result.data.role, parts }] : [];
+}
+
+function parseStoredTextPart(part: unknown): UIMessage["parts"] {
+  const result = storedTextPartSchema.safeParse(part);
+  return result.success ? [result.data] : [];
 }
 
 /** Loads the persisted accessibility chat transcript from browser storage. */

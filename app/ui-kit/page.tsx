@@ -414,10 +414,16 @@ export default function UIKitPage() {
                           above. I really like the way the interface feels!
                         </ItemDescription>
                         <div className="flex gap-4 mt-2">
-                          <button className="text-[10px] text-muted-foreground hover:text-primary">
+                          <button
+                            type="button"
+                            className="text-[10px] text-muted-foreground hover:text-primary"
+                          >
                             Like
                           </button>
-                          <button className="text-[10px] text-muted-foreground hover:text-primary">
+                          <button
+                            type="button"
+                            className="text-[10px] text-muted-foreground hover:text-primary"
+                          >
                             Reply
                           </button>
                         </div>
@@ -435,7 +441,10 @@ export default function UIKitPage() {
                       placeholder="Write a comment..."
                       className="w-full text-xs p-2 pr-10 border border-border bg-transparent outline-none focus:border-primary"
                     />
-                    <button className="absolute right-2 top-2 text-primary hover:text-primary-hover">
+                    <button
+                      type="button"
+                      className="absolute right-2 top-2 text-primary hover:text-primary-hover"
+                    >
                       <ArrowUpRightIcon size={14} />
                     </button>
                   </div>

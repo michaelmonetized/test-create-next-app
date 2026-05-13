@@ -17,6 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { DAYS, getWeekDates, WeekDateButtons } from "./date-picker-shared";
 
 type View = "week" | "month" | "year" | "monthList";
+type DateDirection = -1 | 1;
 
 const MONTH_NAMES = [
   "January",
@@ -47,6 +48,22 @@ const MONTH_NAMES_SHORT = [
   "Nov",
   "Dec",
 ];
+
+function shiftDateForView(date: Date, view: View, direction: DateDirection) {
+  const nextDate = new Date(date);
+
+  if (view === "week") {
+    nextDate.setDate(nextDate.getDate() + direction * 7);
+  } else if (view === "month") {
+    nextDate.setMonth(nextDate.getMonth() + direction);
+  } else if (view === "monthList") {
+    nextDate.setFullYear(nextDate.getFullYear() + direction);
+  } else {
+    nextDate.setFullYear(nextDate.getFullYear() + direction * 12);
+  }
+
+  return nextDate;
+}
 
 // ── Header ──
 
@@ -225,31 +242,11 @@ export default function DateInputExample() {
   }
 
   function handlePrev() {
-    const d = new Date(navDate);
-    if (view === "week") {
-      d.setDate(d.getDate() - 7);
-    } else if (view === "month") {
-      d.setMonth(d.getMonth() - 1);
-    } else if (view === "monthList") {
-      d.setFullYear(d.getFullYear() - 1);
-    } else if (view === "year") {
-      d.setFullYear(d.getFullYear() - 12);
-    }
-    setNavDate(d);
+    setNavDate(shiftDateForView(navDate, view, -1));
   }
 
   function handleNext() {
-    const d = new Date(navDate);
-    if (view === "week") {
-      d.setDate(d.getDate() + 7);
-    } else if (view === "month") {
-      d.setMonth(d.getMonth() + 1);
-    } else if (view === "monthList") {
-      d.setFullYear(d.getFullYear() + 1);
-    } else if (view === "year") {
-      d.setFullYear(d.getFullYear() + 12);
-    }
-    setNavDate(d);
+    setNavDate(shiftDateForView(navDate, view, 1));
   }
 
   function handleMonthSelect(month: number) {

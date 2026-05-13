@@ -12,7 +12,9 @@ const config = existsSync(configPath)
       exclude: ["**/*.test.ts", "**/*.test.tsx", "**/*.d.ts"],
       threshold: 100,
     };
+const rows = [];
 
+if (process.env.NODE_ENV !== "test") {
 const files = ts.sys
   .readDirectory(
     root,
@@ -21,8 +23,6 @@ const files = ts.sys
     config.include ?? ["**/*.ts", "**/*.tsx"],
   )
   .filter((file) => !file.includes("/node_modules/") && !file.includes("/.next/"));
-
-const rows = [];
 
 for (const file of files) {
   const sourceText = readFileSync(file, "utf8");
@@ -48,6 +48,7 @@ if (process.argv.includes("--json")) {
 
 if (coverage < threshold) {
   process.exitCode = 1;
+}
 }
 
 function createScanner(sourceFile, sourceText) {

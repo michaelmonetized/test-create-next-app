@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
+import type { Control, FieldErrors, FieldPath } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import {
@@ -37,6 +38,14 @@ const checkoutSchema = z.object({
 });
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
+type CheckoutFieldName = FieldPath<CheckoutFormValues>;
+type CheckoutFieldConfig = {
+  name: CheckoutFieldName;
+  label: string;
+  placeholder: string;
+  type?: string;
+  maxLength?: number;
+};
 
 /* ------------------------------------------------------------------ */
 /*  Static order data                                                  */
@@ -53,9 +62,95 @@ const shipping = 0;
 const tax = 10.08;
 const total = 136.08;
 
+const contactFields: CheckoutFieldConfig[] = [
+  { name: "email", label: "Email", placeholder: "you@example.com", type: "email" },
+];
+
+const shippingFields: CheckoutFieldConfig[] = [
+  { name: "name", label: "Full name", placeholder: "Jane Doe" },
+  { name: "address", label: "Address", placeholder: "123 Main St" },
+];
+
+const shippingGridFields: CheckoutFieldConfig[] = [
+  { name: "city", label: "City", placeholder: "San Francisco" },
+  { name: "zip", label: "ZIP code", placeholder: "94102" },
+];
+
+const paymentFields: CheckoutFieldConfig[] = [
+  { name: "cardNumber", label: "Card number", placeholder: "4242424242424242", maxLength: 16 },
+];
+
+const paymentGridFields: CheckoutFieldConfig[] = [
+  { name: "expiry", label: "Expiry date", placeholder: "MM/YY", maxLength: 5 },
+  { name: "cvc", label: "CVC", placeholder: "123", maxLength: 3 },
+];
+
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
+
+function CheckoutInputField({
+  config,
+  control,
+  errors,
+}: {
+  config: CheckoutFieldConfig;
+  control: Control<CheckoutFormValues>;
+  errors: FieldErrors<CheckoutFormValues>;
+}) {
+  const error = errors[config.name];
+
+  return (
+    <Controller
+      name={config.name}
+      control={control}
+      render={({ field }) => (
+        <Field data-invalid={!!error || undefined}>
+          <FieldLabel htmlFor={config.name}>{config.label}</FieldLabel>
+          <Input
+            id={config.name}
+            type={config.type}
+            placeholder={config.placeholder}
+            maxLength={config.maxLength}
+            aria-invalid={!!error}
+            {...field}
+          />
+          {error && <FieldError>{error.message}</FieldError>}
+        </Field>
+      )}
+    />
+  );
+}
+
+function CheckoutFieldList({
+  fields,
+  control,
+  errors,
+}: {
+  fields: CheckoutFieldConfig[];
+  control: Control<CheckoutFormValues>;
+  errors: FieldErrors<CheckoutFormValues>;
+}) {
+  return fields.map((field) => (
+    <CheckoutInputField key={field.name} config={field} control={control} errors={errors} />
+  ));
+}
+
+function CheckoutFieldGrid({
+  fields,
+  control,
+  errors,
+}: {
+  fields: CheckoutFieldConfig[];
+  control: Control<CheckoutFormValues>;
+  errors: FieldErrors<CheckoutFormValues>;
+}) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
+      <CheckoutFieldList fields={fields} control={control} errors={errors} />
+    </div>
+  );
+}
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -108,23 +203,7 @@ export default function CheckoutPage() {
                 <CardTitle>Contact information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Controller
-                  name="email"
-                  control={control}
-                  render={({ field }) => (
-                    <Field data-invalid={!!errors.email || undefined}>
-                      <FieldLabel htmlFor="email">Email</FieldLabel>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="you@example.com"
-                        aria-invalid={!!errors.email}
-                        {...field}
-                      />
-                      {errors.email && <FieldError>{errors.email.message}</FieldError>}
-                    </Field>
-                  )}
-                />
+                <CheckoutFieldList fields={contactFields} control={control} errors={errors} />
               </CardContent>
             </Card>
 
@@ -134,75 +213,8 @@ export default function CheckoutPage() {
                 <CardTitle>Shipping address</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Controller
-                  name="name"
-                  control={control}
-                  render={({ field }) => (
-                    <Field data-invalid={!!errors.name || undefined}>
-                      <FieldLabel htmlFor="name">Full name</FieldLabel>
-                      <Input
-                        id="name"
-                        placeholder="Jane Doe"
-                        aria-invalid={!!errors.name}
-                        {...field}
-                      />
-                      {errors.name && <FieldError>{errors.name.message}</FieldError>}
-                    </Field>
-                  )}
-                />
-
-                <Controller
-                  name="address"
-                  control={control}
-                  render={({ field }) => (
-                    <Field data-invalid={!!errors.address || undefined}>
-                      <FieldLabel htmlFor="address">Address</FieldLabel>
-                      <Input
-                        id="address"
-                        placeholder="123 Main St"
-                        aria-invalid={!!errors.address}
-                        {...field}
-                      />
-                      {errors.address && <FieldError>{errors.address.message}</FieldError>}
-                    </Field>
-                  )}
-                />
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Controller
-                    name="city"
-                    control={control}
-                    render={({ field }) => (
-                      <Field data-invalid={!!errors.city || undefined}>
-                        <FieldLabel htmlFor="city">City</FieldLabel>
-                        <Input
-                          id="city"
-                          placeholder="San Francisco"
-                          aria-invalid={!!errors.city}
-                          {...field}
-                        />
-                        {errors.city && <FieldError>{errors.city.message}</FieldError>}
-                      </Field>
-                    )}
-                  />
-
-                  <Controller
-                    name="zip"
-                    control={control}
-                    render={({ field }) => (
-                      <Field data-invalid={!!errors.zip || undefined}>
-                        <FieldLabel htmlFor="zip">ZIP code</FieldLabel>
-                        <Input
-                          id="zip"
-                          placeholder="94102"
-                          aria-invalid={!!errors.zip}
-                          {...field}
-                        />
-                        {errors.zip && <FieldError>{errors.zip.message}</FieldError>}
-                      </Field>
-                    )}
-                  />
-                </div>
+                <CheckoutFieldList fields={shippingFields} control={control} errors={errors} />
+                <CheckoutFieldGrid fields={shippingGridFields} control={control} errors={errors} />
               </CardContent>
             </Card>
 
@@ -212,61 +224,8 @@ export default function CheckoutPage() {
                 <CardTitle>Payment details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Controller
-                  name="cardNumber"
-                  control={control}
-                  render={({ field }) => (
-                    <Field data-invalid={!!errors.cardNumber || undefined}>
-                      <FieldLabel htmlFor="cardNumber">Card number</FieldLabel>
-                      <Input
-                        id="cardNumber"
-                        placeholder="4242424242424242"
-                        maxLength={16}
-                        aria-invalid={!!errors.cardNumber}
-                        {...field}
-                      />
-                      {errors.cardNumber && <FieldError>{errors.cardNumber.message}</FieldError>}
-                    </Field>
-                  )}
-                />
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Controller
-                    name="expiry"
-                    control={control}
-                    render={({ field }) => (
-                      <Field data-invalid={!!errors.expiry || undefined}>
-                        <FieldLabel htmlFor="expiry">Expiry date</FieldLabel>
-                        <Input
-                          id="expiry"
-                          placeholder="MM/YY"
-                          maxLength={5}
-                          aria-invalid={!!errors.expiry}
-                          {...field}
-                        />
-                        {errors.expiry && <FieldError>{errors.expiry.message}</FieldError>}
-                      </Field>
-                    )}
-                  />
-
-                  <Controller
-                    name="cvc"
-                    control={control}
-                    render={({ field }) => (
-                      <Field data-invalid={!!errors.cvc || undefined}>
-                        <FieldLabel htmlFor="cvc">CVC</FieldLabel>
-                        <Input
-                          id="cvc"
-                          placeholder="123"
-                          maxLength={3}
-                          aria-invalid={!!errors.cvc}
-                          {...field}
-                        />
-                        {errors.cvc && <FieldError>{errors.cvc.message}</FieldError>}
-                      </Field>
-                    )}
-                  />
-                </div>
+                <CheckoutFieldList fields={paymentFields} control={control} errors={errors} />
+                <CheckoutFieldGrid fields={paymentGridFields} control={control} errors={errors} />
               </CardContent>
             </Card>
 

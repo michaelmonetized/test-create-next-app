@@ -1,6 +1,23 @@
 {
   "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
-  "entry": ["src/index.{ts,tsx,js,jsx}", "src/main.{ts,tsx,js,jsx}"],
+  "entry": [
+    "src/index.ts",
+    "src/index.tsx",
+    "src/index.js",
+    "src/index.jsx",
+    "src/main.ts",
+    "src/main.tsx",
+    "src/main.js",
+    "src/main.jsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.test.js",
+    "**/*.test.jsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.spec.js",
+    "**/*.spec.jsx"
+  ],
   "ignoreDependencies": ["@tailwindcss/forms", "@tailwindcss/typography", "shadcn"],
   "duplicates": {
     "threshold": 3.0,

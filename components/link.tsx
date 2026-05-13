@@ -110,7 +110,6 @@ const Link = React.forwardRef<HTMLAnchorElement, React.ComponentProps<typeof Nex
         (entries) => {
           const entry = entries[0];
           if (entry.isIntersecting) {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
             prefetchTimeout = setTimeout(async () => {
               router.prefetch(String(props.href));
               await sleep(0);
