@@ -15,7 +15,13 @@ import {
   WeekRangeLabel,
 } from "./date-picker-shared";
 
-export function DayView({ date, onDateChange }: { date: Date; onDateChange: (d: Date) => void }) {
+export function DayView({
+  date,
+  onDateChange,
+}: {
+  date: Date;
+  onDateChange: (d: Date) => void;
+}) {
   const today = new Date();
 
   function shift(days: number) {
@@ -48,7 +54,10 @@ export function DayView({ date, onDateChange }: { date: Date; onDateChange: (d: 
       </div>
       <div className="max-h-64 space-y-px overflow-y-auto border">
         {HOURS.map((hour) => (
-          <div key={hour} className="flex items-center border-b last:border-b-0 hover:bg-muted/50">
+          <div
+            key={hour}
+            className="flex items-center border-b last:border-b-0 hover:bg-muted/50"
+          >
             <div className="w-14 shrink-0 px-2 py-2 text-right text-xs text-muted-foreground">
               {hour > 12 ? hour - 12 : hour}
               {hour >= 12 ? "pm" : "am"}
@@ -61,7 +70,13 @@ export function DayView({ date, onDateChange }: { date: Date; onDateChange: (d: 
   );
 }
 
-export function WeekView({ date, onDateChange }: { date: Date; onDateChange: (d: Date) => void }) {
+export function WeekView({
+  date,
+  onDateChange,
+}: {
+  date: Date;
+  onDateChange: (d: Date) => void;
+}) {
   const week = getWeekDates(date);
   const today = new Date();
 
@@ -89,7 +104,9 @@ export function WeekView({ date, onDateChange }: { date: Date; onDateChange: (d:
             <div
               key={date.toISOString()}
               className={`border-b border-l px-1 py-1.5 text-center text-xs font-medium ${
-                isSameDay(date, today) ? "bg-primary text-primary-foreground" : ""
+                isSameDay(date, today)
+                  ? "bg-primary text-primary-foreground"
+                  : ""
               }`}
             >
               <div>{DAYS[index]}</div>
@@ -116,7 +133,13 @@ export function WeekView({ date, onDateChange }: { date: Date; onDateChange: (d:
   );
 }
 
-export function YearView({ date, onDateChange }: { date: Date; onDateChange: (d: Date) => void }) {
+export function YearView({
+  date,
+  onDateChange,
+}: {
+  date: Date;
+  onDateChange: (d: Date) => void;
+}) {
   const [year, setYear] = React.useState(date.getFullYear());
 
   return (

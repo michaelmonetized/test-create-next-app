@@ -33,7 +33,9 @@ export default function ItemExample() {
             <ItemTitle>Case study card</ItemTitle>
             <Badge variant="outline">Featured</Badge>
           </ItemHeader>
-          <ItemDescription>Local list-item primitive for dense, multi-zone rows.</ItemDescription>
+          <ItemDescription>
+            Local list-item primitive for dense, multi-zone rows.
+          </ItemDescription>
           <ItemFooter>
             <span>Updated today</span>
             <ItemActions>
@@ -49,7 +51,9 @@ export default function ItemExample() {
         <ItemMedia variant="icon">•</ItemMedia>
         <ItemContent>
           <ItemTitle>Compact item</ItemTitle>
-          <ItemDescription>Uses the `xs` sizing mode for tighter surfaces.</ItemDescription>
+          <ItemDescription>
+            Uses the `xs` sizing mode for tighter surfaces.
+          </ItemDescription>
         </ItemContent>
       </Item>
     </ItemGroup>

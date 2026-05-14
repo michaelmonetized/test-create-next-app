@@ -23,7 +23,9 @@ export default function SheetExample() {
       <SheetContent side="right" className="sm:max-w-[28rem]">
         <SheetHeader>
           <SheetTitle>Inspector</SheetTitle>
-          <SheetDescription>A side panel for contextual editing.</SheetDescription>
+          <SheetDescription>
+            A side panel for contextual editing.
+          </SheetDescription>
         </SheetHeader>
         <div className="space-y-3 p-4">
           <Input placeholder="Tag name" />

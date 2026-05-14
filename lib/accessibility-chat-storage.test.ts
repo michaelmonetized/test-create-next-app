@@ -118,8 +118,16 @@ describe("accessibility chat storage", () => {
             { type: "tool-call", text: "ignored" },
           ],
         },
-        { id: "system-1", role: "system", parts: [{ type: "text", text: "ignored" }] },
-        { id: "assistant-1", role: "assistant", parts: [{ type: "text", text: "Looks good" }] },
+        {
+          id: "system-1",
+          role: "system",
+          parts: [{ type: "text", text: "ignored" }],
+        },
+        {
+          id: "assistant-1",
+          role: "assistant",
+          parts: [{ type: "text", text: "Looks good" }],
+        },
         { id: 42, role: "user", parts: [{ type: "text", text: "ignored" }] },
       ]),
     );
@@ -147,7 +155,10 @@ describe("accessibility chat storage", () => {
     storage.setItem(STORAGE_KEY, JSON.stringify({ id: "not-an-array" }));
     expect(loadAccessibilityChatFromStorage()).toBeNull();
 
-    storage.setItem(STORAGE_KEY, JSON.stringify([{ id: "empty", role: "user", parts: [] }]));
+    storage.setItem(
+      STORAGE_KEY,
+      JSON.stringify([{ id: "empty", role: "user", parts: [] }]),
+    );
     expect(loadAccessibilityChatFromStorage()).toBeNull();
   });
 
@@ -162,6 +173,8 @@ describe("accessibility chat storage", () => {
     });
 
     expect(loadAccessibilityChatFromStorage()).toBeNull();
-    expect(() => saveAccessibilityChatToStorage([textMessage("1", "user", "Hello")])).not.toThrow();
+    expect(() =>
+      saveAccessibilityChatToStorage([textMessage("1", "user", "Hello")]),
+    ).not.toThrow();
   });
 });

@@ -40,7 +40,10 @@ function TokenSection({
           <p className="font-mono text-sm text-muted-foreground uppercase tracking-wide">
             {eyebrow}
           </p>
-          <h2 className="font-serif text-2x text-card-foreground" id={`${id}-title`}>
+          <h2
+            className="font-serif text-2x text-card-foreground"
+            id={`${id}-title`}
+          >
             {title}
           </h2>
         </div>
@@ -69,13 +72,23 @@ function ColorMatrix() {
               className={`h-xl w-xl rounded-lg border border-border ring-2 ${token.bg} ${token.ring}`}
             />
             <div className="min-w-0">
-              <h3 className="truncate font-mono text-xs text-foreground">{token.name}</h3>
-              <p className={`truncate text-xs ${token.text}`}>text-{token.name}</p>
+              <h3 className="truncate font-mono text-xs text-foreground">
+                {token.name}
+              </h3>
+              <p className={`truncate text-xs ${token.text}`}>
+                text-{token.name}
+              </p>
             </div>
           </div>
           <div className="grid grid-cols-3 gap-xs text-[0.65rem]">
-            <span className={`rounded-md border px-xs py-xs ${token.border}`}>border</span>
-            <span className={`rounded-md px-xs py-xs shadow-md ${token.shadow}`}>shadow</span>
+            <span className={`rounded-md border px-xs py-xs ${token.border}`}>
+              border
+            </span>
+            <span
+              className={`rounded-md px-xs py-xs shadow-md ${token.shadow}`}
+            >
+              shadow
+            </span>
             <span className={`rounded-md px-xs py-xs ${token.bg}`}>bg</span>
           </div>
         </article>
@@ -93,15 +106,22 @@ function TypeMatrix() {
             className={`rounded-2xl border border-border bg-muted p-md ${className}`}
             key={className}
           >
-            <p className="font-mono text-xs text-muted-foreground">{className}</p>
+            <p className="font-mono text-xs text-muted-foreground">
+              {className}
+            </p>
             <p>The quick brown fox ships production code.</p>
           </article>
         ))}
       </div>
       <div className="grid gap-md md:grid-cols-2 xl:grid-cols-4">
         {textSizeClasses.map((className) => (
-          <article className="rounded-2xl border border-border p-md" key={className}>
-            <p className="font-mono text-xs text-muted-foreground">{className}</p>
+          <article
+            className="rounded-2xl border border-border p-md"
+            key={className}
+          >
+            <p className="font-mono text-xs text-muted-foreground">
+              {className}
+            </p>
             <p className={`font-sans ${className}`}>Aa</p>
           </article>
         ))}
@@ -114,12 +134,21 @@ function SpacingMatrix() {
   return (
     <div className="space-y-lg">
       {spacingClasses.map((token) => (
-        <article className="rounded-2xl border border-border bg-muted p-md" key={token.name}>
-          <h3 className="mb-sm font-mono text-sm text-foreground">spacing {token.name}</h3>
+        <article
+          className="rounded-2xl border border-border bg-muted p-md"
+          key={token.name}
+        >
+          <h3 className="mb-sm font-mono text-sm text-foreground">
+            spacing {token.name}
+          </h3>
           <div className="grid gap-md lg:grid-cols-2">
             <div className="rounded-xl bg-background p-sm">
-              <p className="mb-xs text-xs text-muted-foreground">padding + margin</p>
-              <div className={`border border-primary bg-primary/10 ${token.padding.join(" ")}`}>
+              <p className="mb-xs text-xs text-muted-foreground">
+                padding + margin
+              </p>
+              <div
+                className={`border border-primary bg-primary/10 ${token.padding.join(" ")}`}
+              >
                 <div
                   className={`border border-secondary bg-secondary/20 text-xs ${token.margin.join(" ")}`}
                 >
@@ -128,7 +157,9 @@ function SpacingMatrix() {
               </div>
             </div>
             <div className="rounded-xl bg-background p-sm">
-              <p className="mb-xs text-xs text-muted-foreground">gap + space + inset</p>
+              <p className="mb-xs text-xs text-muted-foreground">
+                gap + space + inset
+              </p>
               <div className={`mb-sm grid grid-cols-3 ${token.gap.join(" ")}`}>
                 <span className="rounded bg-accent p-xs text-xs">A</span>
                 <span className="rounded bg-accent p-xs text-xs">B</span>
@@ -157,17 +188,23 @@ function SizeMatrix() {
   return (
     <div className="grid gap-lg lg:grid-cols-2">
       <div className="space-y-sm">
-        <h3 className="font-mono text-sm text-muted-foreground">Inline sizing</h3>
+        <h3 className="font-mono text-sm text-muted-foreground">
+          Inline sizing
+        </h3>
         {inlineSizeClasses.map((className) => (
           <div className="rounded-lg border border-border p-xs" key={className}>
-            <div className={`truncate rounded bg-primary/15 px-sm py-xs text-xs ${className}`}>
+            <div
+              className={`truncate rounded bg-primary/15 px-sm py-xs text-xs ${className}`}
+            >
               {className}
             </div>
           </div>
         ))}
       </div>
       <div className="space-y-sm">
-        <h3 className="font-mono text-sm text-muted-foreground">Block sizing</h3>
+        <h3 className="font-mono text-sm text-muted-foreground">
+          Block sizing
+        </h3>
         {blockSizeClasses.map((className) => (
           <div
             className="inline-block rounded-lg border border-border p-xs align-top"
@@ -189,7 +226,9 @@ function ShapeMatrix() {
   return (
     <div className="grid gap-lg lg:grid-cols-3">
       <div>
-        <h3 className="mb-sm font-mono text-sm text-muted-foreground">Containers</h3>
+        <h3 className="mb-sm font-mono text-sm text-muted-foreground">
+          Containers
+        </h3>
         <div className="space-y-xs">
           {containerClasses.map((className) => (
             <div
@@ -202,7 +241,9 @@ function ShapeMatrix() {
         </div>
       </div>
       <div>
-        <h3 className="mb-sm font-mono text-sm text-muted-foreground">Radius</h3>
+        <h3 className="mb-sm font-mono text-sm text-muted-foreground">
+          Radius
+        </h3>
         <div className="grid grid-cols-2 gap-sm">
           {radiusClasses.map((className) => (
             <div
@@ -215,7 +256,9 @@ function ShapeMatrix() {
         </div>
       </div>
       <div>
-        <h3 className="mb-sm font-mono text-sm text-muted-foreground">Aspect + animation</h3>
+        <h3 className="mb-sm font-mono text-sm text-muted-foreground">
+          Aspect + animation
+        </h3>
         <div className="grid gap-sm">
           {aspectClasses.map((className) => (
             <div className="w-full" key={className}>
@@ -266,14 +309,21 @@ export function TailwindTokenMatrix({ mode }: TailwindTokenMatrixProps) {
               globals.css variable coverage
             </span>
           </div>
-          <h1 className="font-serif text-5x text-foreground">Tailwind token matrix</h1>
+          <h1 className="font-serif text-5x text-foreground">
+            Tailwind token matrix
+          </h1>
           <p className="mt-md max-w-4xl text-lg text-muted-foreground">
-            A handwritten benchmark page that deliberately renders the variable-backed Tailwind
-            surface from globals.css: fonts, text sizes, block and inline sizing, containers,
-            padding, margin, gap, spacing, insets, radius, animation, aspect ratios, semantic
-            colors, input states, sidebar tokens, chart colors, and the full Catppuccin palette.
+            A handwritten benchmark page that deliberately renders the
+            variable-backed Tailwind surface from globals.css: fonts, text
+            sizes, block and inline sizing, containers, padding, margin, gap,
+            spacing, insets, radius, animation, aspect ratios, semantic colors,
+            input states, sidebar tokens, chart colors, and the full Catppuccin
+            palette.
           </p>
-          <nav className="mt-lg flex flex-wrap gap-sm" aria-label="Tailwind token sections">
+          <nav
+            className="mt-lg flex flex-wrap gap-sm"
+            aria-label="Tailwind token sections"
+          >
             {navItems.map(([id, label]) => (
               <a
                 className="rounded-full border border-border px-md py-sm text-sm hover:bg-accent hover:text-accent-foreground"
@@ -286,7 +336,11 @@ export function TailwindTokenMatrix({ mode }: TailwindTokenMatrixProps) {
           </nav>
         </header>
 
-        <TokenSection eyebrow="Font variables" id="type" title="Font families and text scale">
+        <TokenSection
+          eyebrow="Font variables"
+          id="type"
+          title="Font families and text scale"
+        >
           <TypeMatrix />
         </TokenSection>
         <TokenSection

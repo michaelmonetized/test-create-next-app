@@ -11,10 +11,22 @@ import {
   OrderSummaryRows,
 } from "@/components/commerce/order-summary";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Layout from "@/components/ui/layout";
 import { Container } from "@/components/ui/layout/containers";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 /* ------------------------------------------------------------------ */
 /*  Types & initial data                                               */
@@ -28,8 +40,18 @@ interface CartItem {
 }
 
 const initialItems: CartItem[] = [
-  { id: "launch-toolkit-pro", name: "Launch Toolkit Pro", price: 49, quantity: 1 },
-  { id: "campaign-templates", name: "Campaign Templates", price: 29, quantity: 2 },
+  {
+    id: "launch-toolkit-pro",
+    name: "Launch Toolkit Pro",
+    price: 49,
+    quantity: 1,
+  },
+  {
+    id: "campaign-templates",
+    name: "Campaign Templates",
+    price: 29,
+    quantity: 2,
+  },
   { id: "analytics-addon", name: "Analytics Add-on", price: 19, quantity: 1 },
 ];
 
@@ -43,7 +65,9 @@ export default function CartPage() {
   const updateQuantity = (id: string, delta: number) => {
     setItems((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item,
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+          : item,
       ),
     );
   };
@@ -52,7 +76,10 @@ export default function CartPage() {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
   const tax = Math.round(subtotal * 0.08 * 100) / 100;
   const total = subtotal + tax;
 
@@ -91,12 +118,16 @@ export default function CartPage() {
               <CardContent className="p-0">
                 <Table>
                   <TableHeader>
-                    <ActionTableHeader columns={["Product", "Price", "Quantity", "Total"]} />
+                    <ActionTableHeader
+                      columns={["Product", "Price", "Quantity", "Total"]}
+                    />
                   </TableHeader>
                   <TableBody>
                     {items.map((item) => (
                       <TableRow key={item.id}>
-                        <TableCell className="font-medium">{item.name}</TableCell>
+                        <TableCell className="font-medium">
+                          {item.name}
+                        </TableCell>
                         <TableCell>{formatCurrency(item.price)}</TableCell>
                         <TableCell>
                           <div className="flex items-center gap-1.5">

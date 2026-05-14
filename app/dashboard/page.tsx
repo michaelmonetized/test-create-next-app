@@ -5,7 +5,13 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Layout from "@/components/ui/layout";
 import {
   Sidebar,
@@ -39,7 +45,11 @@ const navItems = [
 ];
 
 const stats = [
-  { title: "Total Visitors", value: "24,831", change: "+12.5% from last month" },
+  {
+    title: "Total Visitors",
+    value: "24,831",
+    change: "+12.5% from last month",
+  },
   { title: "Conversions", value: "1,429", change: "+8.2% from last month" },
   { title: "Revenue", value: "$48,290", change: "+22.1% from last month" },
   { title: "Active Campaigns", value: "7", change: "3 launching this week" },
@@ -93,7 +103,9 @@ export default function DashboardPage() {
     <Layout variant="sidebar">
       <Sidebar>
         <SidebarHeader className="p-4">
-          <span className="text-sm font-bold tracking-tight">Hustle Launch</span>
+          <span className="text-sm font-bold tracking-tight">
+            Hustle Launch
+          </span>
         </SidebarHeader>
 
         <SidebarContent>
@@ -147,7 +159,9 @@ export default function DashboardPage() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Your latest actions and campaign events.</CardDescription>
+            <CardDescription>
+              Your latest actions and campaign events.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <Table>
@@ -161,10 +175,14 @@ export default function DashboardPage() {
               <TableBody>
                 {recentActivity.map((row, i) => (
                   <TableRow key={i}>
-                    <TableCell className="text-muted-foreground">{row.date}</TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {row.date}
+                    </TableCell>
                     <TableCell>{row.action}</TableCell>
                     <TableCell className="text-right">
-                      <Badge variant={statusVariant(row.status)}>{row.status}</Badge>
+                      <Badge variant={statusVariant(row.status)}>
+                        {row.status}
+                      </Badge>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -177,7 +195,9 @@ export default function DashboardPage() {
         <Card>
           <CardHeader>
             <CardTitle>Visitor Trend</CardTitle>
-            <CardDescription>Daily unique visitors over the past 30 days.</CardDescription>
+            <CardDescription>
+              Daily unique visitors over the past 30 days.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div
@@ -186,7 +206,9 @@ export default function DashboardPage() {
                 "bg-gradient-to-br from-primary/20 via-primary/10 to-transparent",
               )}
             >
-              <span className="text-sm font-medium text-muted-foreground">Chart</span>
+              <span className="text-sm font-medium text-muted-foreground">
+                Chart
+              </span>
             </div>
           </CardContent>
         </Card>

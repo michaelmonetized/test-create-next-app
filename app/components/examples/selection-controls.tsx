@@ -57,7 +57,9 @@ export default function SelectionControlsExample() {
                     />
                     <Label htmlFor="terms-check">Accept terms</Label>
                   </div>
-                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
                 </Field>
               )}
             />
@@ -66,7 +68,11 @@ export default function SelectionControlsExample() {
               control={form.control}
               render={({ field }) => (
                 <div className="flex items-center gap-2">
-                  <Switch checked={field.value} onCheckedChange={field.onChange} id="switch-demo" />
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    id="switch-demo"
+                  />
                   <Label htmlFor="switch-demo">Enable previews</Label>
                 </div>
               )}
@@ -88,7 +94,9 @@ export default function SelectionControlsExample() {
                     <Label htmlFor="mode-draft">Draft</Label>
                   </div>
                 </RadioGroup>
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
               </Field>
             )}
           />

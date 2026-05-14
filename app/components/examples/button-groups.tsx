@@ -2,7 +2,11 @@
  * App Components Examples Button Groups public module surface.
  */
 import { Button } from "@/components/ui/button";
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@/components/ui/button-group";
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@/components/ui/button-group";
 export default function ButtonGroupsExample() {
   return (
     <>

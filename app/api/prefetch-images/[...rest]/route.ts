@@ -16,7 +16,10 @@ function getHostname() {
   return process.env.VERCEL_BRANCH_URL;
 }
 
-export async function GET(_: NextRequest, { params }: { params: Promise<{ rest: string[] }> }) {
+export async function GET(
+  _: NextRequest,
+  { params }: { params: Promise<{ rest: string[] }> },
+) {
   const schema = process.env.NODE_ENV === "development" ? "http" : "https";
   const host = getHostname();
   if (!host) {
@@ -27,7 +30,9 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ rest: 
     return new Response("Missing url parameter", { status: 400 });
   }
   const url = `${schema}://${host}/${href}`;
-  const response = await fetch(url, { signal: AbortSignal.timeout(10_000) }).catch(() => null);
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(10_000),
+  }).catch(() => null);
   if (!response) {
     return new Response("Fetch timed out or failed", { status: 504 });
   }

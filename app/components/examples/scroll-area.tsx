@@ -11,7 +11,8 @@ export default function ScrollAreaExample() {
         <div className="space-y-2 p-3 ">
           {Array.from({ length: 12 }, (_, index) => (
             <div key={index}>
-              Message {index + 1}: dense content should still feel navigable in constrained panels.
+              Message {index + 1}: dense content should still feel navigable in
+              constrained panels.
             </div>
           ))}
         </div>

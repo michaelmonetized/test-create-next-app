@@ -17,7 +17,10 @@ export function NavigationSection() {
       description="Menus, breadcrumbs, command surfaces, and route affordances."
     >
       <div className="grid gap-4 xl:grid-cols-2 xl:[&>*:last-child:nth-child(odd)]:col-span-full">
-        <DemoCard title="Breadcrumb" description="Linear pathing with an overflow affordance.">
+        <DemoCard
+          title="Breadcrumb"
+          description="Linear pathing with an overflow affordance."
+        >
           <BreadcrumbExample />
         </DemoCard>
 
@@ -33,15 +36,24 @@ export function NavigationSection() {
           <MenubarExample />
         </DemoCard>
 
-        <DemoCard title="Dropdown menu" description="Contextual actions from a trigger button.">
+        <DemoCard
+          title="Dropdown menu"
+          description="Contextual actions from a trigger button."
+        >
           <DropdownMenuExample />
         </DemoCard>
 
-        <DemoCard title="Context menu" description="Right-click or long-press the trigger area.">
+        <DemoCard
+          title="Context menu"
+          description="Right-click or long-press the trigger area."
+        >
           <ContextMenuExample />
         </DemoCard>
 
-        <DemoCard title="Command" description="Inline command palette plus the dialog variant.">
+        <DemoCard
+          title="Command"
+          description="Inline command palette plus the dialog variant."
+        >
           <CommandExample />
         </DemoCard>
       </div>

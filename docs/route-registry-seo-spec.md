@@ -76,12 +76,7 @@ Notes:
 The current [`project.ts`](/Users/michael/Projects/test-create-next-app/project.ts) should expand to include app identity plus a typed page registry.
 
 ```ts
-type PageGroup =
-  | "primary"
-  | "secondary"
-  | "utility"
-  | "conversion"
-  | "private";
+type PageGroup = "primary" | "secondary" | "utility" | "conversion" | "private";
 
 type PageEntry = {
   path: `/${string}`;
@@ -163,7 +158,8 @@ const pages = [
     path: "/",
     group: "primary",
     title: "Home",
-    description: "Modern web design and strategic marketing for emerging brands.",
+    description:
+      "Modern web design and strategic marketing for emerging brands.",
   },
   {
     path: "/privacy",

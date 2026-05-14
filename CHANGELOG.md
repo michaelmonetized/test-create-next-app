@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Changed
+
 - Migrated linting/formatting to Biome with project-specific adoption rules.
 - Added tsgo/native TypeScript typecheck script.
 - Enabled React Compiler in Next.js config with `REACT_COMPILER=false` support for benchmarking.

@@ -5,7 +5,15 @@
 
 import { cn } from "@/lib/utils";
 
-const logos = ["Stripe", "Vercel", "Clerk", "Convex", "PostHog", "Sentry", "Resend"];
+const logos = [
+  "Stripe",
+  "Vercel",
+  "Clerk",
+  "Convex",
+  "PostHog",
+  "Sentry",
+  "Resend",
+];
 
 function LogoItem({ name }: { name: string }) {
   return (

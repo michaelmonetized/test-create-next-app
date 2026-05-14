@@ -24,7 +24,9 @@ export default function DrawerExample() {
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Quick edit</DrawerTitle>
-          <DrawerDescription>Use drawers for low-friction task flows.</DrawerDescription>
+          <DrawerDescription>
+            Use drawers for low-friction task flows.
+          </DrawerDescription>
         </DrawerHeader>
         <div className="space-y-3 p-4">
           <Input placeholder="Project title" />

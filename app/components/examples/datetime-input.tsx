@@ -6,12 +6,21 @@
 import { Form } from "@base-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as React from "react";
-import { Controller, type ControllerFieldState, useForm } from "react-hook-form";
+import {
+  Controller,
+  type ControllerFieldState,
+  useForm,
+} from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 import {
   DAYS,
@@ -168,7 +177,9 @@ function DateTimeField({
           onTimeSelect={onTimeSelect}
         />
       ) : null}
-      <FieldDescription>{formatSelectedDateTime(selectedDate)}</FieldDescription>
+      <FieldDescription>
+        {formatSelectedDateTime(selectedDate)}
+      </FieldDescription>
       {fieldState.invalid ? <FieldError errors={[fieldState.error]} /> : null}
     </Field>
   );
@@ -262,10 +273,20 @@ function MonthDatePicker({
   return (
     <div>
       <div className="mb-2 flex items-center justify-center gap-1">
-        <Button type="button" variant="ghost" size="xs" onClick={() => onDateViewChange("year")}>
+        <Button
+          type="button"
+          variant="ghost"
+          size="xs"
+          onClick={() => onDateViewChange("year")}
+        >
           {navDate.toLocaleDateString("en-US", { month: "long" })}
         </Button>
-        <Button type="button" variant="ghost" size="xs" onClick={() => onDateViewChange("year")}>
+        <Button
+          type="button"
+          variant="ghost"
+          size="xs"
+          onClick={() => onDateViewChange("year")}
+        >
           {navDate.getFullYear()}
         </Button>
       </div>
@@ -335,7 +356,8 @@ function TimeOption({
   selectedDate: Date;
   onSelect: (hour: number, minute: number) => void;
 }) {
-  const highlighted = hasSelectedTime(selectedDate) && isSelectedTime(selectedDate, hour, minute);
+  const highlighted =
+    hasSelectedTime(selectedDate) && isSelectedTime(selectedDate, hour, minute);
   return (
     <Button
       type="button"
@@ -395,11 +417,21 @@ function WeekDatePicker({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <Button variant="ghost" size="xs" type="button" onClick={() => shift(-1)}>
+        <Button
+          variant="ghost"
+          size="xs"
+          type="button"
+          onClick={() => shift(-1)}
+        >
           &larr;
         </Button>
         <WeekRangeLabel week={week} />
-        <Button variant="ghost" size="xs" type="button" onClick={() => shift(1)}>
+        <Button
+          variant="ghost"
+          size="xs"
+          type="button"
+          onClick={() => shift(1)}
+        >
           &rarr;
         </Button>
       </div>
@@ -423,17 +455,33 @@ function WeekDatePicker({
 
 // ── Year date picker (12 month grid) ──
 
-function YearDatePicker({ navDate, onSelect }: { navDate: Date; onSelect: (d: Date) => void }) {
+function YearDatePicker({
+  navDate,
+  onSelect,
+}: {
+  navDate: Date;
+  onSelect: (d: Date) => void;
+}) {
   const [year, setYear] = React.useState(navDate.getFullYear());
 
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <Button variant="ghost" size="xs" type="button" onClick={() => setYear((y) => y - 1)}>
+        <Button
+          variant="ghost"
+          size="xs"
+          type="button"
+          onClick={() => setYear((y) => y - 1)}
+        >
           &larr;
         </Button>
         <span className="text-sm font-medium">{year}</span>
-        <Button variant="ghost" size="xs" type="button" onClick={() => setYear((y) => y + 1)}>
+        <Button
+          variant="ghost"
+          size="xs"
+          type="button"
+          onClick={() => setYear((y) => y + 1)}
+        >
           &rarr;
         </Button>
       </div>

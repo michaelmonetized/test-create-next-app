@@ -18,7 +18,8 @@ export default function ProgressSpinnerToastExample() {
       <Button
         onClick={() =>
           toast.success("Toast sent", {
-            description: "The local Toaster component styles sonner to match the system.",
+            description:
+              "The local Toaster component styles sonner to match the system.",
           })
         }
       >

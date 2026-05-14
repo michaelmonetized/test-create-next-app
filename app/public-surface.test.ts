@@ -11,10 +11,22 @@ import "@/scripts/docstring-coverage.mjs";
 
 mock.module("next/font/google", () => ({
   Geist: () => ({ className: "font-geist", variable: "--font-geist" }),
-  Geist_Mono: () => ({ className: "font-geist-mono", variable: "--font-geist-mono" }),
-  Source_Code_Pro: () => ({ className: "font-source-code", variable: "--font-source-code" }),
-  Source_Sans_3: () => ({ className: "font-source-sans", variable: "--font-source-sans" }),
-  Source_Serif_4: () => ({ className: "font-source-serif", variable: "--font-source-serif" }),
+  Geist_Mono: () => ({
+    className: "font-geist-mono",
+    variable: "--font-geist-mono",
+  }),
+  Source_Code_Pro: () => ({
+    className: "font-source-code",
+    variable: "--font-source-code",
+  }),
+  Source_Sans_3: () => ({
+    className: "font-source-sans",
+    variable: "--font-source-sans",
+  }),
+  Source_Serif_4: () => ({
+    className: "font-source-serif",
+    variable: "--font-source-serif",
+  }),
 }));
 
 mock.module("next/image", () => ({
@@ -143,10 +155,16 @@ describe("public app surface", () => {
     expect(prompt.ACCESSIBILITY_CHAT_SYSTEM_PROMPT).toContain("accessibility");
     expect(typeof resolveModel.resolveOpenRouterModelId).toBe("function");
     expect(projectModule.project).toMatchObject({ title: expect.any(String) });
-    expect(biomeLint.buildBiomeArgs(["--fix"])).toEqual(["check", ".", "--write"]);
+    expect(biomeLint.buildBiomeArgs(["--fix"])).toEqual([
+      "check",
+      ".",
+      "--write",
+    ]);
     expect(typeof biomeLint.runBiomeLint).toBe("function");
     expect(typeof devLocalhost.main).toBe("function");
-    expect(devLocalhostInfo.getDevLocalhostInfo("/tmp/example-app")).toMatchObject({
+    expect(
+      devLocalhostInfo.getDevLocalhostInfo("/tmp/example-app"),
+    ).toMatchObject({
       host: "example-app.localhost",
     });
   });

@@ -2,7 +2,13 @@
  * Components Marketing Product Grid public module surface.
  */
 import Link from "next/link";
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 const features = [
@@ -37,7 +43,8 @@ const features = [
   {
     icon: "🔗",
     title: "Integrations Hub",
-    description: "Connect to Slack, Discord, Zapier, and 40+ tools. Webhooks for everything else.",
+    description:
+      "Connect to Slack, Discord, Zapier, and 40+ tools. Webhooks for everything else.",
     href: "/features/integrations",
   },
   {
@@ -52,22 +59,31 @@ const features = [
 /** Renders the marketing product card grid. */
 export default function ProductGrid({ className }: { className?: string }) {
   return (
-    <section className={cn("mx-auto w-full max-w-6xl px-6 py-20 md:py-28", className)}>
+    <section
+      className={cn("mx-auto w-full max-w-6xl px-6 py-20 md:py-28", className)}
+    >
       <div className="mb-12 flex flex-col items-center gap-3 text-center">
         <h2 className="font-heading text-2xl font-black tracking-tight text-foreground md:text-3xl">
           Everything you need to launch
         </h2>
         <p className="max-w-[32rem] text-sm text-muted-foreground">
-          One platform, zero duct tape. Hustle Launch ships with every tool a founder needs to go
-          from idea to revenue.
+          One platform, zero duct tape. Hustle Launch ships with every tool a
+          founder needs to go from idea to revenue.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {features.map((feature) => (
-          <Card key={feature.title} className="group transition-colors hover:bg-muted/30">
+          <Card
+            key={feature.title}
+            className="group transition-colors hover:bg-muted/30"
+          >
             <CardHeader>
-              <span className="mb-1 text-2xl" role="img" aria-label={feature.title}>
+              <span
+                className="mb-1 text-2xl"
+                role="img"
+                aria-label={feature.title}
+              >
                 {feature.icon}
               </span>
               <CardTitle>{feature.title}</CardTitle>

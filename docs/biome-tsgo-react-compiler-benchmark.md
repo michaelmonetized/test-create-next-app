@@ -3,18 +3,19 @@
 Benchmark date: 2026-04-27
 
 Comparison:
+
 - Before: `65626ee5344fb2bd478ade023ab130485d140f1a`
 - After: `chore/biome-tsgo-react-compiler`
 - Machine: local M1 Pro host, Bun 1.3.1, Node 25.1.0
 
 ## Summary
 
-| Area | Before | After | Delta |
-| --- | ---: | ---: | ---: |
-| Lint median | 4.37s | 0.112s | 39x faster |
-| Typecheck median | 1.42s (`tsc --noEmit`) | 0.339s (`tsgo --noEmit`) | 4.2x faster |
-| Clean production build median | 13.97s | 16.18s | 15.8% slower |
-| Lighthouse perf score median | 74 | 67 | -7 points |
+| Area                          |                 Before |                    After |        Delta |
+| ----------------------------- | ---------------------: | -----------------------: | -----------: |
+| Lint median                   |                  4.37s |                   0.112s |   39x faster |
+| Typecheck median              | 1.42s (`tsc --noEmit`) | 0.339s (`tsgo --noEmit`) |  4.2x faster |
+| Clean production build median |                 13.97s |                   16.18s | 15.8% slower |
+| Lighthouse perf score median  |                     74 |                       67 |    -7 points |
 
 ## Command benchmarks
 
@@ -60,14 +61,14 @@ Next build internal timings from representative run:
 
 Ran Lighthouse performance category against production `next start`, 3 runs each.
 
-| Metric | Before median | After median | Delta |
-| --- | ---: | ---: | ---: |
-| Score | 74 | 67 | -7 |
-| FCP | 1363ms | 1395ms | +32ms |
-| LCP | 3931ms | 4417ms | +486ms |
-| TBT | 547ms | 714ms | +167ms |
-| TTI | 4659ms | 5364ms | +705ms |
-| CLS | 0 | 0 | same |
+| Metric | Before median | After median |  Delta |
+| ------ | ------------: | -----------: | -----: |
+| Score  |            74 |           67 |     -7 |
+| FCP    |        1363ms |       1395ms |  +32ms |
+| LCP    |        3931ms |       4417ms | +486ms |
+| TBT    |         547ms |        714ms | +167ms |
+| TTI    |        4659ms |       5364ms | +705ms |
+| CLS    |             0 |            0 |   same |
 
 Result: no user-facing performance win from React Compiler in this snapshot. It regresses Lighthouse on the homepage.
 
@@ -75,12 +76,12 @@ Result: no user-facing performance win from React Compiler in this snapshot. It 
 
 Measured 10 warmed `curl` requests per route against production `next start`.
 
-| Route | Before median | After median | Delta |
-| --- | ---: | ---: | ---: |
-| `/` | 8.69ms | 6.45ms | faster |
-| `/components` | 22.32ms | 21.99ms | same |
-| `/ui-kit` | 5.09ms | 4.92ms | same |
-| `/tailwindcss` | 13.02ms | 12.76ms | same |
+| Route          | Before median | After median |  Delta |
+| -------------- | ------------: | -----------: | -----: |
+| `/`            |        8.69ms |       6.45ms | faster |
+| `/components`  |       22.32ms |      21.99ms |   same |
+| `/ui-kit`      |        5.09ms |       4.92ms |   same |
+| `/tailwindcss` |       13.02ms |      12.76ms |   same |
 
 Result: server response feel is effectively unchanged. The Lighthouse regression is more likely client-side JS execution/hydration cost than server latency.
 

@@ -9,7 +9,12 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -67,7 +72,9 @@ export default function InputsExample() {
                 placeholder="Add meeting notes, follow-up items, or context..."
                 autoComplete="off"
               />
-              <FieldDescription>Brief notes about this contact.</FieldDescription>
+              <FieldDescription>
+                Brief notes about this contact.
+              </FieldDescription>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}

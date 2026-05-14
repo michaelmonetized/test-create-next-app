@@ -2,7 +2,10 @@
  * App Elements Page public module surface.
  */
 import { FormsSection } from "@/app/elements/forms-section";
-import { EmbeddedContentSection, InteractiveElementsSection } from "@/app/elements/media-sections";
+import {
+  EmbeddedContentSection,
+  InteractiveElementsSection,
+} from "@/app/elements/media-sections";
 import {
   ColorPaletteSection,
   ElementsHeader,
@@ -47,7 +50,10 @@ export default function Home() {
               back to previous section: {`"Grouping Content"`}.
             </a>
           </h2>
-          <p>Inline elements that mark up runs of text within block-level containers.</p>
+          <p>
+            Inline elements that mark up runs of text within block-level
+            containers.
+          </p>
 
           <h3>Emphasis and importance</h3>
           <p>
@@ -84,7 +90,8 @@ export default function Home() {
           </p>
           <p>
             <code>mark</code>
-            is the HTML equivalent of a<mark>yellow highlighter</mark>.<code>u</code>
+            is the HTML equivalent of a<mark>yellow highlighter</mark>.
+            <code>u</code>
             underlines without semantic meaning:
             <u>underlined text</u>.
           </p>
@@ -108,15 +115,15 @@ export default function Home() {
             <code>cite</code>: In the words of
             <cite>Charles Bukowski</cite>—
             <q>
-              An intellectual says a simple thing in a hard way. An artist says a hard thing in a
-              simple way.
+              An intellectual says a simple thing in a hard way. An artist says
+              a hard thing in a simple way.
             </q>
           </p>
           <p>
             <code>q</code>: The {"W3C's"} mission is
             <q cite="https://www.w3.org/Consortium/">
-              to lead the World Wide Web to its full potential by developing protocols and
-              guidelines that ensure long-term growth for the Web
+              to lead the World Wide Web to its full potential by developing
+              protocols and guidelines that ensure long-term growth for the Web
             </q>
             .
           </p>
@@ -172,7 +179,8 @@ export default function Home() {
             <bdi lang="ar">مرحبا</bdi>.
           </p>
           <p>
-            <code>bdo</code>:<bdo dir="rtl">This sentence has been reversed.</bdo>
+            <code>bdo</code>:
+            <bdo dir="rtl">This sentence has been reversed.</bdo>
           </p>
           <p>
             <code>wbr</code>: A very long word like super

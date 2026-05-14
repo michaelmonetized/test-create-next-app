@@ -18,9 +18,20 @@ interface ContainerProps {
  * - Tablet (md): max 48rem
  * - Desktop (lg): max 72rem
  */
-export function Container({ children, className, as: Component = "div" }: ContainerProps) {
+export function Container({
+  children,
+  className,
+  as: Component = "div",
+}: ContainerProps) {
   return (
-    <Component className={cn("w-full p-md mx-auto", "md:max-w-[48rem]", "lg:max-w-6xl", className)}>
+    <Component
+      className={cn(
+        "w-full p-md mx-auto",
+        "md:max-w-[48rem]",
+        "lg:max-w-6xl",
+        className,
+      )}
+    >
       {children}
     </Component>
   );
@@ -31,9 +42,15 @@ export function Container({ children, className, as: Component = "div" }: Contai
  * - Mobile: full width with padding
  * - Tablet+: max 48rem
  */
-export function NarrowContainer({ children, className, as: Component = "div" }: ContainerProps) {
+export function NarrowContainer({
+  children,
+  className,
+  as: Component = "div",
+}: ContainerProps) {
   return (
-    <Component className={cn("w-full p-md mx-auto", "md:max-w-[48rem]", className)}>
+    <Component
+      className={cn("w-full p-md mx-auto", "md:max-w-[48rem]", className)}
+    >
       {children}
     </Component>
   );
@@ -44,7 +61,11 @@ export function NarrowContainer({ children, className, as: Component = "div" }: 
  * - Mobile: full width with padding
  * - Desktop: max 90rem
  */
-function _WideContainer({ children, className, as: Component = "div" }: ContainerProps) {
+function _WideContainer({
+  children,
+  className,
+  as: Component = "div",
+}: ContainerProps) {
   return (
     <Component className={cn("w-full p-md mx-auto", "lg:max-w-360", className)}>
       {children}
@@ -189,5 +210,7 @@ function _GridContainer({
  * Section wrapper with consistent vertical spacing
  */
 function _Section({ children, className }: ContainerProps) {
-  return <section className={cn("w-full py-lg", className)}>{children}</section>;
+  return (
+    <section className={cn("w-full py-lg", className)}>{children}</section>
+  );
 }

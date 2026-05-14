@@ -16,15 +16,15 @@ The matrix renders variable-backed utilities from `app/globals.css` across fonts
 
 Coverage manifest count:
 
-| Area | Count |
-| --- | ---: |
-| Color tokens | 213 |
-| Text size utilities | 16 |
-| Font utilities | 3 |
-| Spacing tokens | 19 |
-| Block size utilities | 54 |
-| Inline size utilities | 54 |
-| Container utilities | 18 |
+| Area                           | Count |
+| ------------------------------ | ----: |
+| Color tokens                   |   213 |
+| Text size utilities            |    16 |
+| Font utilities                 |     3 |
+| Spacing tokens                 |    19 |
+| Block size utilities           |    54 |
+| Inline size utilities          |    54 |
+| Container utilities            |    18 |
 | Total utility touches rendered | 1,844 |
 
 ## Benchmark method
@@ -41,12 +41,12 @@ Raw JSONL: `docs/benchmark-raw/tailwind-client-ssr-react-compiler-20260427-12332
 
 ## Results
 
-| React Compiler | Route | Build | HTML | Initial JS | Scripts | Median TTFB |
-| --- | --- | ---: | ---: | ---: | ---: | ---: |
-| on | `/tailwindcss` client | 18.174s | 216,344 B | 1,360,422 B | 16 | 8.0ms |
-| on | `/tailwindcss-ssr` | 18.174s | 533,068 B | 1,310,660 B | 15 | 14.0ms |
-| off | `/tailwindcss` client | 16.843s | 216,344 B | 1,350,052 B | 16 | 8.0ms |
-| off | `/tailwindcss-ssr` | 16.843s | 533,068 B | 1,302,733 B | 15 | 14.0ms |
+| React Compiler | Route                 |   Build |      HTML |  Initial JS | Scripts | Median TTFB |
+| -------------- | --------------------- | ------: | --------: | ----------: | ------: | ----------: |
+| on             | `/tailwindcss` client | 18.174s | 216,344 B | 1,360,422 B |      16 |       8.0ms |
+| on             | `/tailwindcss-ssr`    | 18.174s | 533,068 B | 1,310,660 B |      15 |      14.0ms |
+| off            | `/tailwindcss` client | 16.843s | 216,344 B | 1,350,052 B |      16 |       8.0ms |
+| off            | `/tailwindcss-ssr`    | 16.843s | 533,068 B | 1,302,733 B |      15 |      14.0ms |
 
 ## Read
 

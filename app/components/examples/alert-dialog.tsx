@@ -27,8 +27,8 @@ export default function AlertDialogExample() {
           <AlertDialogMedia>!</AlertDialogMedia>
           <AlertDialogTitle>Archive this project?</AlertDialogTitle>
           <AlertDialogDescription>
-            The route registry and page metadata will remain in git, but the workspace will move out
-            of the active queue.
+            The route registry and page metadata will remain in git, but the
+            workspace will move out of the active queue.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

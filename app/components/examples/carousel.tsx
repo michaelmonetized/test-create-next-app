@@ -2,7 +2,12 @@
  * App Components Examples Carousel public module surface.
  */
 "use client";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -14,15 +19,18 @@ import {
 const carouselSlides = [
   {
     title: "Card-based patterns",
-    description: "Reusable shadcn compositions for lists, stats, and empty states.",
+    description:
+      "Reusable shadcn compositions for lists, stats, and empty states.",
   },
   {
     title: "Input-heavy workflows",
-    description: "Grouped controls, validation wrappers, and selection affordances.",
+    description:
+      "Grouped controls, validation wrappers, and selection affordances.",
   },
   {
     title: "Overlay patterns",
-    description: "Dialog, drawer, sheet, popover, hover card, and tooltip surfaces.",
+    description:
+      "Dialog, drawer, sheet, popover, hover card, and tooltip surfaces.",
   },
 ];
 

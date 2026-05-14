@@ -50,16 +50,21 @@ export function LiveChatHeader({ apiConfigured }: { apiConfigured: boolean }) {
   return (
     <SheetHeader className="border-b">
       <SheetTitle className="flex items-center gap-2">
-        <span className="inline-block size-2 rounded-full bg-emerald-500" aria-hidden />
+        <span
+          className="inline-block size-2 rounded-full bg-emerald-500"
+          aria-hidden
+        />
         Accessibility assistant
       </SheetTitle>
       <SheetDescription>
-        Powered by OpenRouter. Ask about WCAG, ADA-minded engineering, and this app&apos;s
-        accessibility-oriented patterns. History is saved on this device.
+        Powered by OpenRouter. Ask about WCAG, ADA-minded engineering, and this
+        app&apos;s accessibility-oriented patterns. History is saved on this
+        device.
       </SheetDescription>
       {!apiConfigured ? (
         <p className="text-xs text-destructive" role="status">
-          Chat is offline: set <span className="font-mono">OPENROUTER_API_KEY</span> (and optionally{" "}
+          Chat is offline: set{" "}
+          <span className="font-mono">OPENROUTER_API_KEY</span> (and optionally{" "}
           <span className="font-mono">OPENROUTER_MODEL</span>) in{" "}
           <span className="font-mono">.env.local</span>, then restart dev.
         </p>
@@ -147,7 +152,12 @@ export function LiveChatComposer({
               aria-label="Message to accessibility assistant"
             />
             {busy ? (
-              <Button type="button" variant="outline" onClick={onStop} aria-label="Stop generating">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onStop}
+                aria-label="Stop generating"
+              >
                 Stop
               </Button>
             ) : null}
@@ -164,7 +174,11 @@ export function LiveChatComposer({
 /** Wraps chat panel content in the shared right-side sheet layout. */
 export function LiveChatContent({ children }: { children: React.ReactNode }) {
   return (
-    <SheetContent side="right" showCloseButton className="flex flex-col sm:max-w-[24rem]">
+    <SheetContent
+      side="right"
+      showCloseButton
+      className="flex flex-col sm:max-w-[24rem]"
+    >
       {children}
     </SheetContent>
   );

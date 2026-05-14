@@ -4,19 +4,16 @@
 
 ## Vital Signs
 
-| Metric | Value |
-|:-------|------:|
-| Total LOC | 22593 |
-| Avg Cyclomatic | 1.5 |
-| P90 Cyclomatic | 3 |
-| Dead Files | 0.0% |
-| Dead Exports | 0.0% |
-| Maintainability (avg) | 94.1 |
-| Circular Deps | 0 |
-| Unused Deps | 0 |
-
-
-
+| Metric                | Value |
+| :-------------------- | ----: |
+| Total LOC             | 22593 |
+| Avg Cyclomatic        |   1.5 |
+| P90 Cyclomatic        |     3 |
+| Dead Files            |  0.0% |
+| Dead Exports          |  0.0% |
+| Maintainability (avg) |  94.1 |
+| Circular Deps         |     0 |
+| Unused Deps           |     0 |
 
 ## AUDIT
 
@@ -26,20 +23,14 @@ Warning: duplication baseline has 14 entries but matched 0 current clone groups.
 Audit scope: 23 changed files vs main (5f29c28..HEAD)
 ✓ No issues in 23 changed files (0.47s)
 
-
 ## DEAD
 
 ## Fallow: no issues found
-
-
 
 ## DUPLICATION
 
 ## Fallow: no code duplication found
 
-
-
 ## DOCSTRINGS
 
 ✔︎ 100% docstring coverage
-

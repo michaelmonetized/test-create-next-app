@@ -2,7 +2,13 @@
  * App Components Components Shell public module surface.
  */
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 export const sections: [string, string][] = [
@@ -25,8 +31,9 @@ export function ComponentsHeader() {
       <div className="space-y-2">
         <h1>Completely WCAG Compliant shadcn Kitchen Sink</h1>
         <p>
-          A dense reference page for every installed `components/ui/*.tsx` primitive in this repo,
-          grouped by how you actually reach for them in product work.
+          A dense reference page for every installed `components/ui/*.tsx`
+          primitive in this repo, grouped by how you actually reach for them in
+          product work.
         </p>
       </div>
       <Card>

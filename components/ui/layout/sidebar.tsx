@@ -7,7 +7,11 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "@/components/link";
 import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import {
   SidebarContent,
   SidebarFooter,
@@ -42,7 +46,10 @@ function SectionFilter({ sections }: { sections: SectionsType }) {
       <SidebarGroupLabel>On this page</SidebarGroupLabel>
       <SidebarGroupContent>
         <div className="flex items-center gap-2 p-2">
-          <SidebarInput placeholder="Filter sections" onChange={handleSectionFilter} />
+          <SidebarInput
+            placeholder="Filter sections"
+            onChange={handleSectionFilter}
+          />
         </div>
         <nav>
           <SidebarMenu>

@@ -51,7 +51,9 @@ export default function FieldExample() {
     <Form onSubmit={form.handleSubmit(onSubmit)}>
       <FieldSet>
         <FieldLegend>Project settings</FieldLegend>
-        <FieldDescription>Configure the project name and target audience.</FieldDescription>
+        <FieldDescription>
+          Configure the project name and target audience.
+        </FieldDescription>
         <FieldGroup>
           <Controller
             name="projectName"
@@ -68,8 +70,12 @@ export default function FieldExample() {
                     autoComplete="off"
                   />
                 </FieldContent>
-                <FieldDescription>Used in the browser title and the nav.</FieldDescription>
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                <FieldDescription>
+                  Used in the browser title and the nav.
+                </FieldDescription>
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
               </Field>
             )}
           />
@@ -81,7 +87,10 @@ export default function FieldExample() {
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel>Audience</FieldLabel>
                 <FieldContent>
-                  <RadioGroup value={field.value} onValueChange={field.onChange}>
+                  <RadioGroup
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  >
                     <div className="flex items-center gap-2">
                       <RadioGroupItem value="founders" id="aud-founders" />
                       <Label htmlFor="aud-founders">Founders</Label>
@@ -92,7 +101,9 @@ export default function FieldExample() {
                     </div>
                   </RadioGroup>
                 </FieldContent>
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
               </Field>
             )}
           />

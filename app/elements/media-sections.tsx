@@ -17,7 +17,10 @@ export function EmbeddedContentSection() {
           back to previous section: {`"Tables"`}.
         </a>
       </h2>
-      <p>Elements that embed external resources: images, audio, video, iframes, SVG, MathML, and canvas.</p>
+      <p>
+        Elements that embed external resources: images, audio, video, iframes,
+        SVG, MathML, and canvas.
+      </p>
 
       <h3>Image</h3>
       <p>
@@ -113,16 +116,33 @@ export function EmbeddedContentSection() {
           strokeWidth={0.5}
           strokeDasharray="4 2"
         />
-        <text x={50} y={65} fontSize={11} fill="currentColor" textAnchor="middle" fontFamily="system-ui">
+        <text
+          x={50}
+          y={65}
+          fontSize={11}
+          fill="currentColor"
+          textAnchor="middle"
+          fontFamily="system-ui"
+        >
           φ
         </text>
-        <text x={155} y={25} fontSize={9} fill="currentColor" textAnchor="middle" fontFamily="system-ui">
+        <text
+          x={155}
+          y={25}
+          fontSize={9}
+          fill="currentColor"
+          textAnchor="middle"
+          fontFamily="system-ui"
+        >
           1−1/φ
         </text>
       </svg>
 
       <h3>MathML</h3>
-      <math display="block" aria-label="phi equals one plus square root of five, all divided by two">
+      <math
+        display="block"
+        aria-label="phi equals one plus square root of five, all divided by two"
+      >
         <mrow>
           <mi>φ</mi>
           <mo>=</mo>
@@ -165,17 +185,19 @@ export function InteractiveElementsSection() {
         <summary>What is the golden ratio?</summary>
         <p>
           The golden ratio (φ) is an irrational number equal to
-          <code>(1 + √5) / 2</code>, approximately 1.6180339887. It appears in geometry, art,
-          architecture, and nature. Two quantities are in the golden ratio if their ratio equals the
-          ratio of their sum to the larger quantity.
+          <code>(1 + √5) / 2</code>, approximately 1.6180339887. It appears in
+          geometry, art, architecture, and nature. Two quantities are in the
+          golden ratio if their ratio equals the ratio of their sum to the
+          larger quantity.
         </p>
       </details>
       <details>
         <summary>Why use it in CSS?</summary>
         <p>
-          Proportions derived from φ create visual harmony without arbitrary magic numbers. A type
-          scale, spacing system, and layout grid all derived from the same irrational constant
-          produce inherently cohesive designs.
+          Proportions derived from φ create visual harmony without arbitrary
+          magic numbers. A type scale, spacing system, and layout grid all
+          derived from the same irrational constant produce inherently cohesive
+          designs.
         </p>
       </details>
       <details open>

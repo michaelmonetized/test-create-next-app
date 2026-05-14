@@ -42,7 +42,12 @@ export default function SliderExample() {
           render={({ field }) => (
             <Field>
               <FieldLabel>Budget allocation</FieldLabel>
-              <Slider value={field.value} onValueChange={field.onChange} max={100} step={5} />
+              <Slider
+                value={field.value}
+                onValueChange={field.onChange}
+                max={100}
+                step={5}
+              />
               <FieldDescription>
                 Range: {range[0]}% to {range[1]}%
               </FieldDescription>
