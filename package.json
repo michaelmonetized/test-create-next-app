@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "tsc": "tsgo --noEmit",
-    "lint": "bun scripts/biome-lint.mjs",
+    "lint": "bunx --bun @biomejs/biome lint . --only=correctness --diagnostic-level=error --max-diagnostics=200",
     "lint:docs": "scribe",
     "format": "biome format --write .",
     "typecheck": "tsgo --noEmit",
