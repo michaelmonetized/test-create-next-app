@@ -10,7 +10,7 @@ import {
   writeProjectSnippet,
 } from "./dev-localhost-caddy.mjs";
 import { getDevLocalhostInfo } from "./dev-localhost-info.mjs";
-<<<<<<< Updated upstream
+
 export function startDevLocalhost(cwd = process.cwd()) {
   const { host, port, url, slug } = getDevLocalhostInfo(cwd);
   const caddyfilePath = path.join(os.homedir(), ".local", "etc", "Caddyfile");
@@ -41,12 +41,9 @@ export function startDevLocalhost(cwd = process.cwd()) {
   );
   return child;
 }
-if (import.meta.url === `file://${process.argv[1]}`) startDevLocalhost();
-||||||| Stash base
-export function startDevLocalhost(cwd = process.cwd()) { const { host, port, url, slug } = getDevLocalhostInfo(cwd); const caddyfilePath = path.join(os.homedir(), ".local", "etc", "Caddyfile"); const snippetsDir = path.join(os.homedir(), ".local", "etc", "caddy", "dev-sites"); const snippetPath = path.join(snippetsDir, `${slug}.caddy`); mkdirSync(path.dirname(caddyfilePath), { recursive: true }); mkdirSync(snippetsDir, { recursive: true }); ensureCaddyImport(caddyfilePath, snippetsDir); writeProjectSnippet(snippetPath, host, port); ensureCaddyLoaded(caddyfilePath); console.log(`[dev-localhost] ${url} -> 127.0.0.1:${port}`); const child = spawn(path.join(cwd, "node_modules", ".bin", "next"), ["dev", "--hostname", "127.0.0.1", "--port", String(port)], { stdio: "inherit", env: { ...process.env, DEV_HOST: host, DEV_URL: url, PORT: String(port) } }); child.on("exit", (code, signal) => signal ? process.kill(process.pid, signal) : process.exit(code ?? 0)); return child; }
-if (import.meta.url === `file://${process.argv[1]}`) startDevLocalhost();
-=======
-export function startDevLocalhost(cwd = process.cwd()) { const { host, port, url, slug } = getDevLocalhostInfo(cwd); const caddyfilePath = path.join(os.homedir(), ".local", "etc", "Caddyfile"); const snippetsDir = path.join(os.homedir(), ".local", "etc", "caddy", "dev-sites"); const snippetPath = path.join(snippetsDir, `${slug}.caddy`); mkdirSync(path.dirname(caddyfilePath), { recursive: true }); mkdirSync(snippetsDir, { recursive: true }); ensureCaddyImport(caddyfilePath, snippetsDir); writeProjectSnippet(snippetPath, host, port); ensureCaddyLoaded(caddyfilePath); console.log(`[dev-localhost] ${url} -> 127.0.0.1:${port}`); const child = spawn(path.join(cwd, "node_modules", ".bin", "next"), ["dev", "--hostname", "127.0.0.1", "--port", String(port)], { stdio: "inherit", env: { ...process.env, DEV_HOST: host, DEV_URL: url, PORT: String(port) } }); child.on("exit", (code, signal) => signal ? process.kill(process.pid, signal) : process.exit(code ?? 0)); return child; }
-export function main(cwd = process.cwd()) { return startDevLocalhost(cwd); }
+
+export function main(cwd = process.cwd()) {
+  return startDevLocalhost(cwd);
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) main();
->>>>>>> Stashed changes
