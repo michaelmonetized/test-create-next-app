@@ -18,7 +18,9 @@ if (values.help) {
   process.exit(0);
 }
 
-async function run(cmd, args, opts = {}) {
+type RunOptions = { capture?: boolean };
+
+async function run(cmd: string, args: string[], opts: RunOptions = {}) {
   const proc = Bun.spawn([cmd, ...args], {
     cwd: process.cwd(),
     env: process.env,
@@ -51,7 +53,7 @@ async function branchName() {
   );
 }
 
-async function setupSecrets(repo) {
+async function setupSecrets(repo: string) {
   const project = JSON.parse(await readFile(".vercel/project.json", "utf8"));
   await run("gh", [
     "secret",
