@@ -30,9 +30,7 @@ export default function NavigationMenuExample() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#advanced">
-            Advanced patterns
-          </NavigationMenuLink>
+          <NavigationMenuLink href="#advanced">Advanced patterns</NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
       <NavigationMenuIndicator />

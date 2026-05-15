@@ -74,12 +74,11 @@ const orders: Order[] = [
   },
 ];
 
-const statusVariant: Record<OrderStatus, "default" | "secondary" | "outline"> =
-  {
-    Delivered: "secondary",
-    Shipped: "default",
-    Processing: "outline",
-  };
+const statusVariant: Record<OrderStatus, "default" | "secondary" | "outline"> = {
+  Delivered: "secondary",
+  Shipped: "default",
+  Processing: "outline",
+};
 
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
@@ -118,16 +117,10 @@ export default function OrderHistoryPage() {
                   <TableRow key={order.id}>
                     <TableCell className="font-medium">{order.id}</TableCell>
                     <TableCell>{order.date}</TableCell>
-                    <TableCell className="max-w-[260px] truncate">
-                      {order.items}
-                    </TableCell>
-                    <TableCell className="tabular-nums">
-                      {order.total}
-                    </TableCell>
+                    <TableCell className="max-w-[260px] truncate">{order.items}</TableCell>
+                    <TableCell className="tabular-nums">{order.total}</TableCell>
                     <TableCell>
-                      <Badge variant={statusVariant[order.status]}>
-                        {order.status}
-                      </Badge>
+                      <Badge variant={statusVariant[order.status]}>{order.status}</Badge>
                     </TableCell>
                     <TableCell className="text-right">
                       <Button variant="ghost" size="xs">

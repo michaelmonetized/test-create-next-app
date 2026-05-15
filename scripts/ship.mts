@@ -3,6 +3,8 @@
 import { readFile } from "node:fs/promises";
 import { parseArgs } from "node:util";
 
+type RunOptions = { capture?: boolean };
+
 const { values } = parseArgs({
   args: process.argv.slice(2),
   options: {
@@ -18,8 +20,6 @@ if (values.help) {
   process.exit(0);
 }
 
-type RunOptions = { capture?: boolean };
-
 async function run(cmd: string, args: string[], opts: RunOptions = {}) {
   const proc = Bun.spawn([cmd, ...args], {
     cwd: process.cwd(),
@@ -32,38 +32,28 @@ async function run(cmd: string, args: string[], opts: RunOptions = {}) {
     opts.capture ? new Response(proc.stderr).text() : "",
     proc.exited,
   ]);
-  if (exitCode !== 0)
-    throw new Error(
-      stderr.trim() || `${cmd} ${args.join(" ")} exited ${exitCode}`,
-    );
+  if (exitCode !== 0) {
+    throw new Error(stderr.trim() || `${cmd} ${args.join(" ")} exited ${exitCode}`);
+  }
   return stdout.trim();
 }
 
 async function repoName() {
-  return run(
-    "gh",
-    ["repo", "view", "--json", "nameWithOwner", "--jq", ".nameWithOwner"],
-    { capture: true },
-  );
+  return run("gh", ["repo", "view", "--json", "nameWithOwner", "--jq", ".nameWithOwner"], {
+    capture: true,
+  });
 }
 
 async function branchName() {
-  return (
-    values.branch ?? run("git", ["branch", "--show-current"], { capture: true })
-  );
+  return values.branch ?? run("git", ["branch", "--show-current"], { capture: true });
 }
 
 async function setupSecrets(repo: string) {
-  const project = JSON.parse(await readFile(".vercel/project.json", "utf8"));
-  await run("gh", [
-    "secret",
-    "set",
-    "VERCEL_ORG_ID",
-    "--repo",
-    repo,
-    "--body",
-    project.orgId,
-  ]);
+  const project = JSON.parse(await readFile(".vercel/project.json", "utf8")) as {
+    orgId: string;
+    projectId: string;
+  };
+  await run("gh", ["secret", "set", "VERCEL_ORG_ID", "--repo", repo, "--body", project.orgId]);
   await run("gh", [
     "secret",
     "set",
@@ -89,14 +79,5 @@ const repo = await repoName();
 if (values.setup) await setupSecrets(repo);
 const branch = await branchName();
 await run("git", ["push", "origin", branch]);
-await run("gh", [
-  "workflow",
-  "run",
-  "ship.yml",
-  "--repo",
-  repo,
-  "--ref",
-  branch,
-]);
-if (!values["no-watch"])
-  await run("gh", ["run", "watch", "--repo", repo, "--exit-status"]);
+await run("gh", ["workflow", "run", "ship.yml", "--repo", repo, "--ref", branch]);
+if (!values["no-watch"]) await run("gh", ["run", "watch", "--repo", repo, "--exit-status"]);

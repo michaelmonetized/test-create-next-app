@@ -14,13 +14,7 @@ import { getDevLocalhostInfo } from "./dev-localhost-info.mjs";
 export function startDevLocalhost(cwd = process.cwd()) {
   const { host, port, url, slug } = getDevLocalhostInfo(cwd);
   const caddyfilePath = path.join(os.homedir(), ".local", "etc", "Caddyfile");
-  const snippetsDir = path.join(
-    os.homedir(),
-    ".local",
-    "etc",
-    "caddy",
-    "dev-sites",
-  );
+  const snippetsDir = path.join(os.homedir(), ".local", "etc", "caddy", "dev-sites");
   const snippetPath = path.join(snippetsDir, `${slug}.caddy`);
   mkdirSync(path.dirname(caddyfilePath), { recursive: true });
   mkdirSync(snippetsDir, { recursive: true });

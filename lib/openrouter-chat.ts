@@ -23,10 +23,7 @@ async function readChatMessages(req: Request): Promise<UIMessage[] | Response> {
 
   const messages = (body as { messages?: UIMessage[] }).messages;
   if (!Array.isArray(messages)) {
-    return Response.json(
-      { error: "Expected messages array." },
-      { status: 400 },
-    );
+    return Response.json({ error: "Expected messages array." }, { status: 400 });
   }
   return messages;
 }
@@ -55,8 +52,7 @@ async function streamOpenRouterChat(messages: UIMessage[], apiKey: string) {
   try {
     modelId = await resolveOpenRouterModelId(openrouter);
   } catch (err) {
-    const message =
-      err instanceof Error ? err.message : "Model resolution failed.";
+    const message = err instanceof Error ? err.message : "Model resolution failed.";
     console.error("[openrouter]", message);
     return Response.json({ error: message }, { status: 503 });
   }
@@ -80,7 +76,5 @@ export async function handleAccessibilityChatPost(req: Request) {
   }
 
   const messages = await readChatMessages(req);
-  return messages instanceof Response
-    ? messages
-    : streamOpenRouterChat(messages, apiKey);
+  return messages instanceof Response ? messages : streamOpenRouterChat(messages, apiKey);
 }

@@ -9,12 +9,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 import {
   InputOTP,
   InputOTPGroup,
@@ -50,11 +45,7 @@ export default function InputOtpExample() {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel>Verification code</FieldLabel>
-              <InputOTP
-                maxLength={6}
-                value={field.value}
-                onChange={field.onChange}
-              >
+              <InputOTP maxLength={6} value={field.value} onChange={field.onChange}>
                 <InputOTPGroup>
                   <InputOTPSlot index={0} />
                   <InputOTPSlot index={1} />
@@ -67,9 +58,7 @@ export default function InputOtpExample() {
                   <InputOTPSlot index={5} />
                 </InputOTPGroup>
               </InputOTP>
-              <FieldDescription>
-                Enter the 6-digit code sent to your email.
-              </FieldDescription>
+              <FieldDescription>Enter the 6-digit code sent to your email.</FieldDescription>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}

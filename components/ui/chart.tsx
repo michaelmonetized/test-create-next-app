@@ -15,10 +15,7 @@ const THEMES = { light: "", dark: ".dark" } as const;
 const INITIAL_DIMENSION = { width: 320, height: 200 } as const;
 type TooltipNameType = number | string;
 type TooltipPayload = NonNullable<
-  RechartsPrimitive.DefaultTooltipContentProps<
-    TooltipValueType,
-    TooltipNameType
-  >["payload"]
+  RechartsPrimitive.DefaultTooltipContentProps<TooltipValueType, TooltipNameType>["payload"]
 >;
 type TooltipPayloadItem = TooltipPayload[number];
 
@@ -58,9 +55,7 @@ function ChartContainer({
   ...props
 }: React.ComponentProps<"div"> & {
   config: ChartConfig;
-  children: React.ComponentProps<
-    typeof RechartsPrimitive.ResponsiveContainer
-  >["children"];
+  children: React.ComponentProps<typeof RechartsPrimitive.ResponsiveContainer>["children"];
   initialDimension?: {
     width: number;
     height: number;
@@ -81,9 +76,7 @@ function ChartContainer({
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer
-          initialDimension={initialDimension}
-        >
+        <RechartsPrimitive.ResponsiveContainer initialDimension={initialDimension}>
           {children}
         </RechartsPrimitive.ResponsiveContainer>
       </div>
@@ -92,9 +85,7 @@ function ChartContainer({
 }
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
-  const colorConfig = Object.entries(config).filter(
-    ([, config]) => config.theme ?? config.color,
-  );
+  const colorConfig = Object.entries(config).filter(([, config]) => config.theme ?? config.color);
 
   if (!colorConfig.length) {
     return null;
@@ -109,9 +100,7 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
 ${prefix} [data-chart=${id}] {
 ${colorConfig
   .map(([key, itemConfig]) => {
-    const color =
-      itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ??
-      itemConfig.color;
+    const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ?? itemConfig.color;
     return color ? `  --color-${key}: ${color};` : null;
   })
   .join("\n")}
@@ -140,10 +129,7 @@ function getTooltipLabel({
   payload?: TooltipPayload;
   labelKey?: string;
   label?: unknown;
-  labelFormatter?: (
-    label: React.ReactNode,
-    payload: TooltipPayload,
-  ) => React.ReactNode;
+  labelFormatter?: (label: React.ReactNode, payload: TooltipPayload) => React.ReactNode;
   labelClassName?: string;
 }) {
   if (hideLabel || !payload?.length) {
@@ -157,15 +143,11 @@ function getTooltipLabel({
 
   if (labelFormatter) {
     return (
-      <div className={cn("font-medium", labelClassName)}>
-        {labelFormatter(value, payload)}
-      </div>
+      <div className={cn("font-medium", labelClassName)}>{labelFormatter(value, payload)}</div>
     );
   }
 
-  return value ? (
-    <div className={cn("font-medium", labelClassName)}>{value}</div>
-  ) : null;
+  return value ? <div className={cn("font-medium", labelClassName)}>{value}</div> : null;
 }
 
 function getTooltipItemKey(item: TooltipPayloadItem, explicitKey?: string) {
@@ -203,16 +185,12 @@ function ChartTooltipIndicator({
 }) {
   return (
     <div
-      className={cn(
-        "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
-        {
-          "h-2.5 w-2.5": indicator === "dot",
-          "w-1": indicator === "line",
-          "w-0 border-[1.5px] border-dashed bg-transparent":
-            indicator === "dashed",
-          "my-0.5": nestLabel && indicator === "dashed",
-        },
-      )}
+      className={cn("shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)", {
+        "h-2.5 w-2.5": indicator === "dot",
+        "w-1": indicator === "line",
+        "w-0 border-[1.5px] border-dashed bg-transparent": indicator === "dashed",
+        "my-0.5": nestLabel && indicator === "dashed",
+      })}
       style={
         {
           "--color-bg": color,
@@ -263,9 +241,7 @@ function ChartTooltipDefaultContent({
       >
         <div className="grid gap-1.5">
           {nestLabel ? tooltipLabel : null}
-          <span className="text-muted-foreground">
-            {itemConfig?.label ?? item.name}
-          </span>
+          <span className="text-muted-foreground">{itemConfig?.label ?? item.name}</span>
         </div>
         <ChartTooltipValue value={item.value} />
       </div>
@@ -362,10 +338,7 @@ function ChartTooltipContent({
     nameKey?: string;
     labelKey?: string;
   } & Omit<
-    RechartsPrimitive.DefaultTooltipContentProps<
-      TooltipValueType,
-      TooltipNameType
-    >,
+    RechartsPrimitive.DefaultTooltipContentProps<TooltipValueType, TooltipNameType>,
     "accessibilityLayer"
   >) {
   const { config } = useChart();
@@ -380,15 +353,7 @@ function ChartTooltipContent({
       labelFormatter,
       labelClassName,
     });
-  }, [
-    label,
-    labelFormatter,
-    payload,
-    hideLabel,
-    labelClassName,
-    config,
-    labelKey,
-  ]);
+  }, [label, labelFormatter, payload, hideLabel, labelClassName, config, labelKey]);
 
   if (!active || !payload?.length) {
     return null;
@@ -486,11 +451,7 @@ function ChartLegendContent({
   );
 }
 
-function getPayloadConfigFromPayload(
-  config: ChartConfig,
-  payload: unknown,
-  key: string,
-) {
+function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key: string) {
   if (typeof payload !== "object" || payload === null) {
     return undefined;
   }
@@ -504,9 +465,7 @@ function getPayloadStringValue(payload: object, key: string) {
   if (direct) return direct;
 
   const nestedPayload = "payload" in payload ? payload.payload : undefined;
-  return isObject(nestedPayload)
-    ? getStringProperty(nestedPayload, key)
-    : undefined;
+  return isObject(nestedPayload) ? getStringProperty(nestedPayload, key) : undefined;
 }
 
 function getStringProperty(source: object, key: string) {
@@ -519,10 +478,4 @@ function isObject(value: unknown): value is object {
   return typeof value === "object" && value !== null;
 }
 
-export {
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent,
-};
+export { ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent };

@@ -1,21 +1,14 @@
 /**
  * App Components Examples Alert public module surface.
  */
-import {
-  Alert,
-  AlertAction,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert";
+import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 export default function AlertExample() {
   return (
     <div className="space-y-3">
       <Alert>
         <AlertTitle>Default alert</AlertTitle>
-        <AlertDescription>
-          General-purpose helper copy and contextual messaging.
-        </AlertDescription>
+        <AlertDescription>General-purpose helper copy and contextual messaging.</AlertDescription>
         <AlertAction>
           <Button size="xs" variant="outline">
             Action
@@ -24,9 +17,7 @@ export default function AlertExample() {
       </Alert>
       <Alert variant="destructive">
         <AlertTitle>Destructive alert</AlertTitle>
-        <AlertDescription>
-          Use for irreversible actions or broken states.
-        </AlertDescription>
+        <AlertDescription>Use for irreversible actions or broken states.</AlertDescription>
       </Alert>
     </div>
   );

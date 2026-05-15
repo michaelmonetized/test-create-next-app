@@ -45,10 +45,7 @@ export function ActionsSection() {
           <ToggleExample />
         </DemoCard>
 
-        <DemoCard
-          title="Pagination"
-          description="The full pagination component family."
-        >
+        <DemoCard title="Pagination" description="The full pagination component family.">
           <PaginationExample />
         </DemoCard>
 

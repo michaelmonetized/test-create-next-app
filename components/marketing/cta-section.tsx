@@ -23,8 +23,8 @@ export default function CTASection({ className }: { className?: string }) {
             </h2>
 
             <p className="max-w-128 text-muted-foreground">
-              Join 2,000+ founders who launched their products with Hustle
-              Launch. Get early access — no credit card required.
+              Join 2,000+ founders who launched their products with Hustle Launch. Get early access
+              — no credit card required.
             </p>
 
             <form

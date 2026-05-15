@@ -41,10 +41,7 @@ export function OrderSummaryRows({
   return (
     <>
       {rows.map((row) => (
-        <div
-          key={row.label}
-          className="flex items-center justify-between text-xs"
-        >
+        <div key={row.label} className="flex items-center justify-between text-xs">
           <span className="text-muted-foreground">{row.label}</span>
           <span className="tabular-nums">{row.value}</span>
         </div>

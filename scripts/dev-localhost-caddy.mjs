@@ -5,9 +5,7 @@ import { spawnSync } from "node:child_process";
 export function ensureCaddyImport(caddyfilePath, snippetsDir) {
   const line = `import ${snippetsDir}/*.caddy`;
   const marker = "# Project dev sites";
-  const existing = existsSync(caddyfilePath)
-    ? readFileSync(caddyfilePath, "utf8")
-    : "";
+  const existing = existsSync(caddyfilePath) ? readFileSync(caddyfilePath, "utf8") : "";
   if (existing.includes(line)) return;
   writeFileSync(
     caddyfilePath,
@@ -16,11 +14,7 @@ export function ensureCaddyImport(caddyfilePath, snippetsDir) {
   );
 }
 export function writeProjectSnippet(snippetPath, host, port) {
-  writeFileSync(
-    snippetPath,
-    `${host} {\n\treverse_proxy http://127.0.0.1:${port}\n}\n`,
-    "utf8",
-  );
+  writeFileSync(snippetPath, `${host} {\n\treverse_proxy http://127.0.0.1:${port}\n}\n`, "utf8");
 }
 export function ensureCaddyLoaded(caddyfilePath) {
   const result = spawnSync("caddy", ["reload", "--config", caddyfilePath], {

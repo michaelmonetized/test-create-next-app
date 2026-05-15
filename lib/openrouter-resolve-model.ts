@@ -31,9 +31,7 @@ function buildOpenRouterModelCandidates(): string[] {
  * Picks the first model id that completes a tiny generateText call.
  * Logs failures with `[openrouter]` and the chosen id on success.
  */
-export async function resolveOpenRouterModelId(
-  openrouter: OpenRouterProvider,
-): Promise<string> {
+export async function resolveOpenRouterModelId(openrouter: OpenRouterProvider): Promise<string> {
   if (cachedModelId) {
     return cachedModelId;
   }

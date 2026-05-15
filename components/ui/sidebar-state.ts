@@ -11,12 +11,7 @@ const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
 type CookieStoreLike = {
-  set: (options: {
-    expires: number;
-    name: string;
-    path: string;
-    value: string;
-  }) => Promise<void>;
+  set: (options: { expires: number; name: string; path: string; value: string }) => Promise<void>;
 };
 
 export type SidebarContextProps = {
@@ -30,9 +25,8 @@ export type SidebarContextProps = {
 };
 
 function persistSidebarState(open: boolean) {
-  const cookieStore = (
-    globalThis as typeof globalThis & { cookieStore: CookieStoreLike }
-  ).cookieStore;
+  const cookieStore = (globalThis as typeof globalThis & { cookieStore: CookieStoreLike })
+    .cookieStore;
 
   void cookieStore.set({
     expires: Date.now() + SIDEBAR_COOKIE_MAX_AGE * 1000,
@@ -76,10 +70,7 @@ export function useSidebarState({
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (
-        event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
-        (event.metaKey || event.ctrlKey)
-      ) {
+      if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
         toggleSidebar();
       }

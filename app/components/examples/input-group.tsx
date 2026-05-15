@@ -9,12 +9,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
@@ -27,10 +22,7 @@ const formSchema = z.object({
   hostname: z
     .string()
     .min(4, "Hostname must be at least 4 characters.")
-    .regex(
-      /^[a-z0-9.-]+$/,
-      "Only lowercase letters, numbers, dots, and hyphens.",
-    ),
+    .regex(/^[a-z0-9.-]+$/, "Only lowercase letters, numbers, dots, and hyphens."),
   message: z
     .string()
     .min(1, "Message is required.")
@@ -70,9 +62,7 @@ export default function InputGroupExample() {
                   autoComplete="off"
                 />
               </InputGroup>
-              <FieldDescription>
-                Your custom domain for the project.
-              </FieldDescription>
+              <FieldDescription>Your custom domain for the project.</FieldDescription>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}

@@ -32,28 +32,13 @@ const INITIAL_MESSAGES: UIMessage[] = [
 ];
 
 /** Manages transport, persistence, retry, and submit state for the accessibility chat. */
-export function useLiveChatPanelState({
-  apiConfigured,
-}: {
-  apiConfigured: boolean;
-}) {
+export function useLiveChatPanelState({ apiConfigured }: { apiConfigured: boolean }) {
   const [inputValue, setInputValue] = React.useState("");
   const [storageReady, setStorageReady] = React.useState(false);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
-  const transport = React.useMemo(
-    () => new DefaultChatTransport({ api: "/api/chat" }),
-    [],
-  );
+  const transport = React.useMemo(() => new DefaultChatTransport({ api: "/api/chat" }), []);
 
-  const {
-    messages,
-    sendMessage,
-    setMessages,
-    regenerate,
-    status,
-    error,
-    stop,
-  } = useChat({
+  const { messages, sendMessage, setMessages, regenerate, status, error, stop } = useChat({
     id: CHAT_ID,
     transport,
     messages: INITIAL_MESSAGES,
@@ -114,10 +99,7 @@ function useLiveChatRetry({
   regenerate,
   sendMessage,
   setMessages,
-}: Pick<
-  ReturnType<typeof useChat>,
-  "messages" | "regenerate" | "sendMessage" | "setMessages"
->) {
+}: Pick<ReturnType<typeof useChat>, "messages" | "regenerate" | "sendMessage" | "setMessages">) {
   return React.useCallback(
     async (message: UIMessage) => {
       if (message.role === "assistant") {

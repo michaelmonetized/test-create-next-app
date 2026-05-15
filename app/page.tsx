@@ -36,9 +36,7 @@ export default function Home() {
       <section className="px-md py-lg space-y-4">
         <div className="space-y-2 text-center">
           <h2 className="text-2xl font-black">Services</h2>
-          <p className="text-muted-foreground">
-            Hands-on help when you need it most.
-          </p>
+          <p className="text-muted-foreground">Hands-on help when you need it most.</p>
         </div>
         <ServiceGrid />
       </section>
@@ -54,9 +52,7 @@ export default function Home() {
       <section className="px-md py-lg space-y-4">
         <div className="space-y-2 text-center">
           <h2 className="text-2xl font-black">Simple, transparent pricing</h2>
-          <p className="text-muted-foreground">
-            Start free, upgrade when you&apos;re ready.
-          </p>
+          <p className="text-muted-foreground">Start free, upgrade when you&apos;re ready.</p>
         </div>
         <PricingTable />
       </section>

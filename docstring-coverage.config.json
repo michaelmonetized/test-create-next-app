@@ -1,9 +1,5 @@
 {
-  "include": [
-    "lib/**/*.ts",
-    "components/marketing/**/*.tsx",
-    "components/commerce/**/*.tsx"
-  ],
+  "include": ["lib/**/*.ts", "components/marketing/**/*.tsx", "components/commerce/**/*.tsx"],
   "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/*.d.ts"],
   "excludeNames": ["default"],
   "threshold": 100

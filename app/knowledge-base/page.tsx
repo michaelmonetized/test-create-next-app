@@ -2,13 +2,7 @@
  * App Knowledge Base Page public module surface.
  */
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Layout from "@/components/ui/layout";
 import { Separator } from "@/components/ui/separator";
@@ -25,36 +19,31 @@ const categories = [
     emoji: "\uD83D\uDCB3",
     title: "Account & Billing",
     count: 9,
-    description:
-      "Manage subscriptions, payment methods, invoices, and plan upgrades.",
+    description: "Manage subscriptions, payment methods, invoices, and plan upgrades.",
   },
   {
     emoji: "\uD83D\uDCE3",
     title: "Campaigns",
     count: 18,
-    description:
-      "Create, schedule, and optimize email and SMS campaigns for maximum reach.",
+    description: "Create, schedule, and optimize email and SMS campaigns for maximum reach.",
   },
   {
     emoji: "\uD83D\uDCCA",
     title: "Analytics",
     count: 14,
-    description:
-      "Understand your data with dashboards, reports, and conversion tracking.",
+    description: "Understand your data with dashboards, reports, and conversion tracking.",
   },
   {
     emoji: "\uD83D\uDD17",
     title: "Integrations",
     count: 11,
-    description:
-      "Connect Hustle Launch with Stripe, Zapier, Slack, and 40+ other tools.",
+    description: "Connect Hustle Launch with Stripe, Zapier, Slack, and 40+ other tools.",
   },
   {
     emoji: "\uD83D\uDCD6",
     title: "API Reference",
     count: 23,
-    description:
-      "Full REST API documentation with examples for developers and teams.",
+    description: "Full REST API documentation with examples for developers and teams.",
   },
 ];
 
@@ -106,10 +95,7 @@ export default function KnowledgeBasePage() {
         {/* Category cards */}
         <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((cat) => (
-            <Card
-              key={cat.title}
-              className="cursor-pointer transition-colors hover:bg-muted/40"
-            >
+            <Card key={cat.title} className="cursor-pointer transition-colors hover:bg-muted/40">
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <span className="text-2xl" role="img" aria-label={cat.title}>
@@ -141,9 +127,7 @@ export default function KnowledgeBasePage() {
                   <span className="text-xs font-medium">{article.title}</span>
                   <Badge variant="outline">{article.category}</Badge>
                 </div>
-                <span className="shrink-0 text-xs text-muted-foreground">
-                  {article.updated}
-                </span>
+                <span className="shrink-0 text-xs text-muted-foreground">{article.updated}</span>
               </li>
             ))}
           </ul>

@@ -78,9 +78,7 @@ export default function SelectExample() {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
           />
@@ -103,9 +101,7 @@ export default function SelectExample() {
                     <NativeSelectOption value="zinc">Zinc</NativeSelectOption>
                   </NativeSelectOptGroup>
                 </NativeSelect>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
           />

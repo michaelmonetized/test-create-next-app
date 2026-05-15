@@ -24,13 +24,7 @@ import Hero from "@/components/marketing/hero";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Item,
   ItemContent,
@@ -65,9 +59,7 @@ function SectionHeader({
   return (
     <div className="space-y-1 mb-6" id={id}>
       <h2 className="font-black text-lg tracking-tight uppercase">{title}</h2>
-      {description && (
-        <p className="text-sm text-muted-foreground">{description}</p>
-      )}
+      {description && <p className="text-sm text-muted-foreground">{description}</p>}
     </div>
   );
 }
@@ -88,9 +80,7 @@ function StatCard({
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-xs font-medium text-muted-foreground">
-          {title}
-        </CardTitle>
+        <CardTitle className="text-xs font-medium text-muted-foreground">{title}</CardTitle>
         <Icon className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent>
@@ -122,12 +112,10 @@ export default function UIKitPage() {
       <AppSidebar sections={sections} />
       <main className="flex-1 overflow-y-auto p-6 space-y-12 pb-24">
         <div>
-          <h1 className="text-2xl font-black uppercase tracking-tighter">
-            Web App UI Kit
-          </h1>
+          <h1 className="text-2xl font-black uppercase tracking-tighter">Web App UI Kit</h1>
           <p className="text-muted-foreground">
-            A showcase of common application patterns and interface elements for
-            modern web applications.
+            A showcase of common application patterns and interface elements for modern web
+            applications.
           </p>
         </div>
 
@@ -153,13 +141,7 @@ export default function UIKitPage() {
               trend="up"
               icon={UsersIcon}
             />
-            <StatCard
-              title="Active Now"
-              value="573"
-              change="+201"
-              trend="up"
-              icon={ActivityIcon}
-            />
+            <StatCard title="Active Now" value="573" change="+201" trend="up" icon={ActivityIcon} />
             <StatCard
               title="Churn Rate"
               value="2.4%"
@@ -177,15 +159,13 @@ export default function UIKitPage() {
               </CardHeader>
               <CardContent>
                 <div className="h-[200px] flex items-end gap-2 px-2">
-                  {[40, 70, 45, 90, 65, 48, 82, 55, 95, 60, 75, 50].map(
-                    (h, i) => (
-                      <div
-                        key={i}
-                        className="bg-primary/20 hover:bg-primary transition-colors w-full"
-                        style={{ height: `${h}%` }}
-                      />
-                    ),
-                  )}
+                  {[40, 70, 45, 90, 65, 48, 82, 55, 95, 60, 75, 50].map((h, i) => (
+                    <div
+                      key={i}
+                      className="bg-primary/20 hover:bg-primary transition-colors w-full"
+                      style={{ height: `${h}%` }}
+                    />
+                  ))}
                 </div>
                 <div className="flex justify-between mt-4 text-[10px] text-muted-foreground uppercase font-bold">
                   <span>Jan</span>
@@ -212,9 +192,7 @@ export default function UIKitPage() {
                       />
                     </ItemMedia>
                     <ItemContent>
-                      <ItemTitle className="text-xs">
-                        New user registered
-                      </ItemTitle>
+                      <ItemTitle className="text-xs">New user registered</ItemTitle>
                       <ItemDescription>2 minutes ago</ItemDescription>
                     </ItemContent>
                   </Item>
@@ -225,9 +203,7 @@ export default function UIKitPage() {
                       </div>
                     </ItemMedia>
                     <ItemContent>
-                      <ItemTitle className="text-xs">
-                        Payment successful
-                      </ItemTitle>
+                      <ItemTitle className="text-xs">Payment successful</ItemTitle>
                       <ItemDescription>Invoice #1234 - $299.00</ItemDescription>
                     </ItemContent>
                   </Item>
@@ -238,12 +214,8 @@ export default function UIKitPage() {
                       </div>
                     </ItemMedia>
                     <ItemContent>
-                      <ItemTitle className="text-xs">
-                        New comment received
-                      </ItemTitle>
-                      <ItemDescription>
-                        On post &quot;The future of AI&quot;
-                      </ItemDescription>
+                      <ItemTitle className="text-xs">New comment received</ItemTitle>
+                      <ItemDescription>On post &quot;The future of AI&quot;</ItemDescription>
                     </ItemContent>
                   </Item>
                 </ItemGroup>
@@ -289,8 +261,7 @@ export default function UIKitPage() {
               <CardHeader>
                 <CardTitle>Top Navigation</CardTitle>
                 <CardDescription>
-                  Ideal for simpler apps or those focused on content
-                  consumption.
+                  Ideal for simpler apps or those focused on content consumption.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -339,28 +310,21 @@ export default function UIKitPage() {
                   <div className="border border-border p-6 space-y-4 max-w-sm mx-auto">
                     <div className="space-y-1">
                       <h3 className="font-bold">Pro Plan</h3>
-                      <p className="text-xs text-muted-foreground">
-                        For growing teams
-                      </p>
+                      <p className="text-xs text-muted-foreground">For growing teams</p>
                     </div>
                     <div className="text-3xl font-black">
                       $49
-                      <span className="text-sm font-normal text-muted-foreground">
-                        /mo
-                      </span>
+                      <span className="text-sm font-normal text-muted-foreground">/mo</span>
                     </div>
                     <ul className="space-y-2 text-xs">
                       <li className="flex items-center gap-2">
-                        <CheckIcon className="text-success h-4 w-4" /> Unlimited
-                        projects
+                        <CheckIcon className="text-success h-4 w-4" /> Unlimited projects
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckIcon className="text-success h-4 w-4" /> Advanced
-                        analytics
+                        <CheckIcon className="text-success h-4 w-4" /> Advanced analytics
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckIcon className="text-success h-4 w-4" /> 24/7
-                        priority support
+                        <CheckIcon className="text-success h-4 w-4" /> 24/7 priority support
                       </li>
                     </ul>
                     <Button className="w-full">Get Started</Button>
@@ -381,12 +345,9 @@ export default function UIKitPage() {
                           {i === 3 && <BellIcon />}
                           {i === 4 && <GearIcon />}
                         </div>
-                        <h4 className="text-xs font-bold uppercase">
-                          Feature {i}
-                        </h4>
+                        <h4 className="text-xs font-bold uppercase">Feature {i}</h4>
                         <p className="text-[10px] text-muted-foreground leading-tight">
-                          Describing the amazing benefit of this specific
-                          feature.
+                          Describing the amazing benefit of this specific feature.
                         </p>
                       </div>
                     ))}
@@ -415,9 +376,7 @@ export default function UIKitPage() {
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <h3 className="font-bold">Jane Doe</h3>
-                <p className="text-xs text-muted-foreground mb-4">
-                  Product Designer @ ACME
-                </p>
+                <p className="text-xs text-muted-foreground mb-4">Product Designer @ ACME</p>
                 <div className="flex gap-2 w-full">
                   <Button variant="outline" size="sm" className="flex-1">
                     Message
@@ -442,25 +401,18 @@ export default function UIKitPage() {
                         className="mt-1 flex shrink-0 items-center justify-center gap-2"
                       >
                         <Avatar className="h-8 w-8">
-                          <AvatarImage
-                            src={`https://placecats.com/${40 + i}/${40 + i}`}
-                          />
+                          <AvatarImage src={`https://placecats.com/${40 + i}/${40 + i}`} />
                           <AvatarFallback>U{i}</AvatarFallback>
                         </Avatar>
                       </div>
                       <ItemContent>
                         <ItemHeader>
-                          <ItemTitle className="text-xs font-bold">
-                            User {i}
-                          </ItemTitle>
-                          <span className="text-[10px] text-muted-foreground">
-                            {i * 2}h ago
-                          </span>
+                          <ItemTitle className="text-xs font-bold">User {i}</ItemTitle>
+                          <span className="text-[10px] text-muted-foreground">{i * 2}h ago</span>
                         </ItemHeader>
                         <ItemDescription className="text-xs">
-                          This is a comment that provides some valuable feedback
-                          on the content above. I really like the way the
-                          interface feels!
+                          This is a comment that provides some valuable feedback on the content
+                          above. I really like the way the interface feels!
                         </ItemDescription>
                         <div className="flex gap-4 mt-2">
                           <button

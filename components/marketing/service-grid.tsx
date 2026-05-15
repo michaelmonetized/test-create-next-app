@@ -38,16 +38,13 @@ const services = [
 /** Renders service cards for the marketing overview. */
 export default function ServiceGrid({ className }: { className?: string }) {
   return (
-    <section
-      className={cn("mx-auto w-full max-w-5xl px-6 py-20 md:py-28", className)}
-    >
+    <section className={cn("mx-auto w-full max-w-5xl px-6 py-20 md:py-28", className)}>
       <div className="mb-12 flex flex-col items-center gap-3 text-center">
         <h2 className="font-heading text-2xl font-black tracking-tight text-foreground md:text-3xl">
           Services that move the needle
         </h2>
         <p className="max-w-[28rem] text-sm text-muted-foreground">
-          Beyond the platform. Hands-on services to help you launch with
-          confidence.
+          Beyond the platform. Hands-on services to help you launch with confidence.
         </p>
       </div>
 
@@ -63,12 +60,8 @@ export default function ServiceGrid({ className }: { className?: string }) {
             </span>
 
             <div className="flex flex-col gap-1.5">
-              <h3 className="font-heading text-sm font-bold text-foreground">
-                {service.name}
-              </h3>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                {service.description}
-              </p>
+              <h3 className="font-heading text-sm font-bold text-foreground">{service.name}</h3>
+              <p className="text-xs leading-relaxed text-muted-foreground">{service.description}</p>
             </div>
 
             <span className="mt-auto inline-flex items-center gap-1 font-mono text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100">

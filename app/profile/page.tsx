@@ -11,19 +11,8 @@ import { toast } from "sonner";
 import * as z from "zod";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Field,
-  FieldContent,
-  FieldError,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldContent, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Layout from "@/components/ui/layout";
 import { Separator } from "@/components/ui/separator";
@@ -78,28 +67,20 @@ export default function ProfilePage() {
             <Card>
               <CardContent className="flex flex-col items-center gap-4 pt-6">
                 <Avatar className="size-20">
-                  <AvatarImage
-                    src="/avatar-placeholder.png"
-                    alt="Michael Hurley"
-                  />
+                  <AvatarImage src="/avatar-placeholder.png" alt="Michael Hurley" />
                   <AvatarFallback className="text-lg">MH</AvatarFallback>
                 </Avatar>
 
                 <div className="text-center">
                   <h2 className="text-sm font-bold">Michael Hurley</h2>
-                  <p className="text-xs text-muted-foreground">
-                    michael@hustlelaunch.io
-                  </p>
+                  <p className="text-xs text-muted-foreground">michael@hustlelaunch.io</p>
                 </div>
 
                 <p className="max-w-[24rem] text-center text-xs text-muted-foreground">
-                  Building the future of creator-led growth. Shipping fast and
-                  breaking conventions.
+                  Building the future of creator-led growth. Shipping fast and breaking conventions.
                 </p>
 
-                <p className="text-xs text-muted-foreground">
-                  Joined January 2025
-                </p>
+                <p className="text-xs text-muted-foreground">Joined January 2025</p>
 
                 <Separator />
 
@@ -126,24 +107,17 @@ export default function ProfilePage() {
             <Card>
               <CardHeader>
                 <CardTitle>Edit Profile</CardTitle>
-                <CardDescription>
-                  Update your personal information below.
-                </CardDescription>
+                <CardDescription>Update your personal information below.</CardDescription>
               </CardHeader>
               <CardContent>
-                <Form
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="flex flex-col gap-5"
-                >
+                <Form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
                   {/* Display Name */}
                   <Controller
                     name="displayName"
                     control={control}
                     render={({ field, fieldState }) => (
                       <Field data-invalid={fieldState.invalid}>
-                        <FieldLabel htmlFor={field.name}>
-                          Display Name
-                        </FieldLabel>
+                        <FieldLabel htmlFor={field.name}>Display Name</FieldLabel>
                         <FieldContent>
                           <Input
                             id={field.name}
@@ -152,9 +126,7 @@ export default function ProfilePage() {
                             {...field}
                           />
                         </FieldContent>
-                        {fieldState.invalid && (
-                          <FieldError errors={[fieldState.error]} />
-                        )}
+                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                       </Field>
                     )}
                   />
@@ -175,9 +147,7 @@ export default function ProfilePage() {
                             {...field}
                           />
                         </FieldContent>
-                        {fieldState.invalid && (
-                          <FieldError errors={[fieldState.error]} />
-                        )}
+                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                       </Field>
                     )}
                   />
@@ -197,9 +167,7 @@ export default function ProfilePage() {
                             {...field}
                           />
                         </FieldContent>
-                        {fieldState.invalid && (
-                          <FieldError errors={[fieldState.error]} />
-                        )}
+                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                       </Field>
                     )}
                   />

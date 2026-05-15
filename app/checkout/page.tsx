@@ -32,12 +32,8 @@ const checkoutSchema = z.object({
   address: z.string().min(5, "Address must be at least 5 characters"),
   city: z.string().min(2, "City must be at least 2 characters"),
   zip: z.string().length(5, "ZIP code must be exactly 5 characters"),
-  cardNumber: z
-    .string()
-    .regex(/^\d{16}$/, "Card number must be exactly 16 digits"),
-  expiry: z
-    .string()
-    .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Expiry must be in MM/YY format"),
+  cardNumber: z.string().regex(/^\d{16}$/, "Card number must be exactly 16 digits"),
+  expiry: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Expiry must be in MM/YY format"),
   cvc: z.string().regex(/^\d{3}$/, "CVC must be exactly 3 digits"),
 });
 
@@ -146,12 +142,7 @@ function CheckoutFieldList({
   errors: FieldErrors<CheckoutFormValues>;
 }) {
   return fields.map((field) => (
-    <CheckoutInputField
-      key={field.name}
-      config={field}
-      control={control}
-      errors={errors}
-    />
+    <CheckoutInputField key={field.name} config={field} control={control} errors={errors} />
   ));
 }
 
@@ -222,11 +213,7 @@ export default function CheckoutPage() {
                 <CardTitle>Contact information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <CheckoutFieldList
-                  fields={contactFields}
-                  control={control}
-                  errors={errors}
-                />
+                <CheckoutFieldList fields={contactFields} control={control} errors={errors} />
               </CardContent>
             </Card>
 
@@ -236,16 +223,8 @@ export default function CheckoutPage() {
                 <CardTitle>Shipping address</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <CheckoutFieldList
-                  fields={shippingFields}
-                  control={control}
-                  errors={errors}
-                />
-                <CheckoutFieldGrid
-                  fields={shippingGridFields}
-                  control={control}
-                  errors={errors}
-                />
+                <CheckoutFieldList fields={shippingFields} control={control} errors={errors} />
+                <CheckoutFieldGrid fields={shippingGridFields} control={control} errors={errors} />
               </CardContent>
             </Card>
 
@@ -255,16 +234,8 @@ export default function CheckoutPage() {
                 <CardTitle>Payment details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <CheckoutFieldList
-                  fields={paymentFields}
-                  control={control}
-                  errors={errors}
-                />
-                <CheckoutFieldGrid
-                  fields={paymentGridFields}
-                  control={control}
-                  errors={errors}
-                />
+                <CheckoutFieldList fields={paymentFields} control={control} errors={errors} />
+                <CheckoutFieldGrid fields={paymentGridFields} control={control} errors={errors} />
               </CardContent>
             </Card>
 

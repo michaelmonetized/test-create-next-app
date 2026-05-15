@@ -123,33 +123,27 @@ function SortableTable() {
   const sorted = [...initialRows].sort((a, b) => {
     const av = a[sortKey];
     const bv = b[sortKey];
-    const cmp =
-      typeof av === "number"
-        ? av - (bv as number)
-        : String(av).localeCompare(String(bv));
+    const cmp = typeof av === "number" ? av - (bv as number) : String(av).localeCompare(String(bv));
     return sortDir === "asc" ? cmp : -cmp;
   });
 
-  const arrow = (key: SortKey) =>
-    sortKey === key ? (sortDir === "asc" ? " ↑" : " ↓") : "";
+  const arrow = (key: SortKey) => (sortKey === key ? (sortDir === "asc" ? " ↑" : " ↓") : "");
 
   return (
     <Table>
       <TableCaption>Click a column header to sort</TableCaption>
       <TableHeader>
         <TableRow>
-          {(["branch", "status", "region", "duration", "date"] as const).map(
-            (key) => (
-              <TableHead
-                key={key}
-                className="cursor-pointer select-none hover:text-foreground"
-                onClick={() => handleSort(key)}
-              >
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-                {arrow(key)}
-              </TableHead>
-            ),
-          )}
+          {(["branch", "status", "region", "duration", "date"] as const).map((key) => (
+            <TableHead
+              key={key}
+              className="cursor-pointer select-none hover:text-foreground"
+              onClick={() => handleSort(key)}
+            >
+              {key.charAt(0).toUpperCase() + key.slice(1)}
+              {arrow(key)}
+            </TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -220,9 +214,7 @@ function DragReorderTable() {
             onDragOver={(e) => e.preventDefault()}
             className="cursor-grab active:cursor-grabbing"
           >
-            <TableCell className="text-muted-foreground select-none">
-              ⠿
-            </TableCell>
+            <TableCell className="text-muted-foreground select-none">⠿</TableCell>
             <TableCell className="font-mono">{row.branch}</TableCell>
             <TableCell>
               <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
@@ -256,9 +248,7 @@ function StickyTable() {
         <tbody>
           {[...initialRows, ...initialRows].map((row, i) => (
             <tr key={`${row.id}-${i}`} className="border-b hover:bg-muted/50">
-              <td className="sticky left-0 z-10 bg-background px-3 py-2 font-mono">
-                {row.branch}
-              </td>
+              <td className="sticky left-0 z-10 bg-background px-3 py-2 font-mono">{row.branch}</td>
               <td className="px-3 py-2">
                 <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
               </td>
@@ -273,18 +263,12 @@ function StickyTable() {
         </tbody>
         <tfoot className="sticky bottom-0 z-20 border-t bg-muted/50">
           <tr>
-            <td className="sticky left-0 z-30 bg-muted/50 px-3 py-2 font-medium">
-              Total
-            </td>
+            <td className="sticky left-0 z-30 bg-muted/50 px-3 py-2 font-medium">Total</td>
             <td className="px-3 py-2" colSpan={2}>
               {initialRows.length * 2} deployments
             </td>
             <td className="px-3 py-2">
-              {[...initialRows, ...initialRows].reduce(
-                (s, r) => s + r.duration,
-                0,
-              )}
-              s
+              {[...initialRows, ...initialRows].reduce((s, r) => s + r.duration, 0)}s
             </td>
             <td className="px-3 py-2" colSpan={2} />
           </tr>
@@ -308,8 +292,8 @@ function CaptionSummaryTable() {
   return (
     <Table>
       <TableCaption>
-        Deployment summary — {initialRows.length} total: {totals.ready ?? 0}{" "}
-        ready, {totals.building ?? 0} building, {totals.error ?? 0} errors
+        Deployment summary — {initialRows.length} total: {totals.ready ?? 0} ready,{" "}
+        {totals.building ?? 0} building, {totals.error ?? 0} errors
       </TableCaption>
       <TableHeader>
         <TableRow>
@@ -322,9 +306,7 @@ function CaptionSummaryTable() {
         {(["ready", "building", "error"] as const).map((status) => {
           const matching = initialRows.filter((r) => r.status === status);
           const avg = matching.length
-            ? Math.round(
-                matching.reduce((s, r) => s + r.duration, 0) / matching.length,
-              )
+            ? Math.round(matching.reduce((s, r) => s + r.duration, 0) / matching.length)
             : 0;
           return (
             <TableRow key={status}>
@@ -342,11 +324,7 @@ function CaptionSummaryTable() {
           <TableCell className="font-medium">All</TableCell>
           <TableCell className="text-right">{initialRows.length}</TableCell>
           <TableCell className="text-right">
-            {Math.round(
-              initialRows.reduce((s, r) => s + r.duration, 0) /
-                initialRows.length,
-            )}
-            s
+            {Math.round(initialRows.reduce((s, r) => s + r.duration, 0) / initialRows.length)}s
           </TableCell>
         </TableRow>
       </TableFooter>
@@ -357,9 +335,9 @@ function CaptionSummaryTable() {
 // ── Composed export ──
 
 export default function TableExample() {
-  const [active, setActive] = React.useState<
-    "sortable" | "drag" | "sticky" | "summary"
-  >("sortable");
+  const [active, setActive] = React.useState<"sortable" | "drag" | "sticky" | "summary">(
+    "sortable",
+  );
 
   const tables = {
     sortable: <SortableTable />,

@@ -17,9 +17,7 @@ import Layout from "@/components/ui/layout";
 import { Container } from "@/components/ui/layout/containers";
 
 export default function BillingPage() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
-    "monthly",
-  );
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
 
   return (
     <Layout variant="default">
@@ -30,10 +28,7 @@ export default function BillingPage() {
         <PaymentMethodCard />
         <BillingHistorySection />
         <BillingSeparator />
-        <PlanComparisonSection
-          billingCycle={billingCycle}
-          onBillingCycleChange={setBillingCycle}
-        />
+        <PlanComparisonSection billingCycle={billingCycle} onBillingCycleChange={setBillingCycle} />
       </Container>
     </Layout>
   );

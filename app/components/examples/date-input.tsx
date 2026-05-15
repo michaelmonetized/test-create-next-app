@@ -12,12 +12,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 import { DAYS, getWeekDates, WeekDateButtons } from "./date-picker-shared";
 
@@ -94,12 +89,7 @@ function DatePickerHeader({
         {view === "year" ? (
           <span>{navDate.getFullYear()}</span>
         ) : view === "monthList" ? (
-          <Button
-            type="button"
-            variant="ghost"
-            size="xs"
-            onClick={() => onViewChange("year")}
-          >
+          <Button type="button" variant="ghost" size="xs" onClick={() => onViewChange("year")}>
             {navDate.getFullYear()}
           </Button>
         ) : (
@@ -112,12 +102,7 @@ function DatePickerHeader({
             >
               {MONTH_NAMES[navDate.getMonth()]}
             </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              size="xs"
-              onClick={() => onViewChange("year")}
-            >
+            <Button type="button" variant="ghost" size="xs" onClick={() => onViewChange("year")}>
               {navDate.getFullYear()}
             </Button>
           </>
@@ -182,8 +167,7 @@ function MonthListView({
   return (
     <div className="grid grid-cols-3 gap-2">
       {MONTH_NAMES_SHORT.map((month, i) => {
-        const isCurrentMonth =
-          i === today.getMonth() && year === today.getFullYear();
+        const isCurrentMonth = i === today.getMonth() && year === today.getFullYear();
         return (
           <Button
             key={month}
@@ -203,13 +187,7 @@ function MonthListView({
 
 // ── Year grid view ──
 
-function YearGridView({
-  navDate,
-  onSelect,
-}: {
-  navDate: Date;
-  onSelect: (year: number) => void;
-}) {
+function YearGridView({ navDate, onSelect }: { navDate: Date; onSelect: (year: number) => void }) {
   const currentYear = navDate.getFullYear();
   const startYear = currentYear - 5;
   const years = Array.from({ length: 12 }, (_, i) => startYear + i);
@@ -224,9 +202,7 @@ function YearGridView({
           <Button
             key={year}
             type="button"
-            variant={
-              isSelected ? "default" : isCurrentYear ? "secondary" : "outline"
-            }
+            variant={isSelected ? "default" : isCurrentYear ? "secondary" : "outline"}
             size="sm"
             className="w-full"
             onClick={() => onSelect(year)}
@@ -361,9 +337,7 @@ export default function DateInputExample() {
                 <MonthListView navDate={navDate} onSelect={handleMonthSelect} />
               )}
 
-              {view === "year" && (
-                <YearGridView navDate={navDate} onSelect={handleYearSelect} />
-              )}
+              {view === "year" && <YearGridView navDate={navDate} onSelect={handleYearSelect} />}
 
               <FieldDescription>
                 {selectedDate

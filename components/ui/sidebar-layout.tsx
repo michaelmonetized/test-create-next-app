@@ -16,11 +16,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import {
-  SIDEBAR_WIDTH_MOBILE,
-  SidebarProvider,
-  useSidebar,
-} from "@/components/ui/sidebar-context";
+import { SIDEBAR_WIDTH_MOBILE, SidebarProvider, useSidebar } from "@/components/ui/sidebar-context";
 import { cn } from "@/lib/utils";
 
 type SidebarVariant = "sidebar" | "floating" | "inset";
@@ -80,11 +76,7 @@ export function Sidebar({
   );
 }
 
-function SidebarStatic({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<"div">) {
+function SidebarStatic({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar"
@@ -159,10 +151,7 @@ function SidebarDesktop({
       data-side={side}
       data-slot="sidebar"
     >
-      <div
-        data-slot="sidebar-gap"
-        className={getSidebarGapClassName(variant)}
-      />
+      <div data-slot="sidebar-gap" className={getSidebarGapClassName(variant)} />
       <div
         data-slot="sidebar-container"
         data-side={side}
@@ -231,10 +220,7 @@ export function SidebarTrigger({
   );
 }
 
-export function SidebarInput({
-  className,
-  ...props
-}: React.ComponentProps<typeof Input>) {
+export function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input>) {
   return (
     <Input
       data-slot="sidebar-input"
@@ -245,10 +231,7 @@ export function SidebarInput({
   );
 }
 
-export function SidebarHeader({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-header"
@@ -259,10 +242,7 @@ export function SidebarHeader({
   );
 }
 
-export function SidebarFooter({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-footer"
@@ -273,10 +253,7 @@ export function SidebarFooter({
   );
 }
 
-export function SidebarSeparator({
-  className,
-  ...props
-}: React.ComponentProps<typeof Separator>) {
+export function SidebarSeparator({ className, ...props }: React.ComponentProps<typeof Separator>) {
   return (
     <Separator
       data-slot="sidebar-separator"
@@ -287,10 +264,7 @@ export function SidebarSeparator({
   );
 }
 
-export function SidebarContent({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-content"
@@ -304,10 +278,7 @@ export function SidebarContent({
   );
 }
 
-export function SidebarGroup({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-group"
@@ -338,10 +309,7 @@ export function SidebarGroupLabel({
   );
 }
 
-export function SidebarGroupContent({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function SidebarGroupContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-group-content"

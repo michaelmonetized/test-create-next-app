@@ -4,10 +4,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  type SidebarContextProps,
-  useSidebarState,
-} from "@/components/ui/sidebar-state";
+import { type SidebarContextProps, useSidebarState } from "@/components/ui/sidebar-state";
 import { cn } from "@/lib/utils";
 
 const SIDEBAR_WIDTH = "16rem";

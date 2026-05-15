@@ -46,9 +46,7 @@ export default function DropdownMenuExample() {
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem checked>
-          Pin to sidebar
-        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem checked>Pin to sidebar</DropdownMenuCheckboxItem>
         <DropdownMenuRadioGroup value="team">
           <DropdownMenuRadioItem value="team">Team</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="private">Private</DropdownMenuRadioItem>

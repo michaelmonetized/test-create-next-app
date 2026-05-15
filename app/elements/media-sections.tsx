@@ -18,8 +18,8 @@ export function EmbeddedContentSection() {
         </a>
       </h2>
       <p>
-        Elements that embed external resources: images, audio, video, iframes,
-        SVG, MathML, and canvas.
+        Elements that embed external resources: images, audio, video, iframes, SVG, MathML, and
+        canvas.
       </p>
 
       <h3>Image</h3>
@@ -82,13 +82,7 @@ export function EmbeddedContentSection() {
       ></iframe>
 
       <h3>SVG</h3>
-      <svg
-        role="img"
-        aria-labelledby="svg-title"
-        width={200}
-        height={124}
-        viewBox="0 0 200 124"
-      >
+      <svg role="img" aria-labelledby="svg-title" width={200} height={124} viewBox="0 0 200 124">
         <rect
           x={0}
           y={0}
@@ -185,19 +179,17 @@ export function InteractiveElementsSection() {
         <summary>What is the golden ratio?</summary>
         <p>
           The golden ratio (φ) is an irrational number equal to
-          <code>(1 + √5) / 2</code>, approximately 1.6180339887. It appears in
-          geometry, art, architecture, and nature. Two quantities are in the
-          golden ratio if their ratio equals the ratio of their sum to the
-          larger quantity.
+          <code>(1 + √5) / 2</code>, approximately 1.6180339887. It appears in geometry, art,
+          architecture, and nature. Two quantities are in the golden ratio if their ratio equals the
+          ratio of their sum to the larger quantity.
         </p>
       </details>
       <details>
         <summary>Why use it in CSS?</summary>
         <p>
-          Proportions derived from φ create visual harmony without arbitrary
-          magic numbers. A type scale, spacing system, and layout grid all
-          derived from the same irrational constant produce inherently cohesive
-          designs.
+          Proportions derived from φ create visual harmony without arbitrary magic numbers. A type
+          scale, spacing system, and layout grid all derived from the same irrational constant
+          produce inherently cohesive designs.
         </p>
       </details>
       <details open>

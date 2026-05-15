@@ -30,12 +30,7 @@ export default function ChartExample() {
     <ChartContainer config={chartConfig} className="min-h-64 w-full">
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
-        <XAxis
-          dataKey="month"
-          tickLine={false}
-          axisLine={false}
-          tickMargin={8}
-        />
+        <XAxis dataKey="month" tickLine={false} axisLine={false} tickMargin={8} />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
         <Bar dataKey="desktop" fill="var(--color-desktop)" radius={0} />

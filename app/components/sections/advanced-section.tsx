@@ -9,11 +9,7 @@ import ProgressSpinnerToastExample from "../examples/progress-spinner-toast";
 
 export function AdvancedSection() {
   return (
-    <PageSection
-      id="advanced"
-      title="Advanced"
-      description="State-heavy and con components."
-    >
+    <PageSection id="advanced" title="Advanced" description="State-heavy and con components.">
       <div className="grid gap-4 xl:grid-cols-2 xl:[&>*:last-child:nth-child(odd)]:col-span-full">
         <DemoCard title="Chart">
           <ChartExample />

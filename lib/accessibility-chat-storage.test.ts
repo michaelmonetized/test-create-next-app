@@ -155,10 +155,7 @@ describe("accessibility chat storage", () => {
     storage.setItem(STORAGE_KEY, JSON.stringify({ id: "not-an-array" }));
     expect(loadAccessibilityChatFromStorage()).toBeNull();
 
-    storage.setItem(
-      STORAGE_KEY,
-      JSON.stringify([{ id: "empty", role: "user", parts: [] }]),
-    );
+    storage.setItem(STORAGE_KEY, JSON.stringify([{ id: "empty", role: "user", parts: [] }]));
     expect(loadAccessibilityChatFromStorage()).toBeNull();
   });
 
@@ -173,8 +170,6 @@ describe("accessibility chat storage", () => {
     });
 
     expect(loadAccessibilityChatFromStorage()).toBeNull();
-    expect(() =>
-      saveAccessibilityChatToStorage([textMessage("1", "user", "Hello")]),
-    ).not.toThrow();
+    expect(() => saveAccessibilityChatToStorage([textMessage("1", "user", "Hello")])).not.toThrow();
   });
 });

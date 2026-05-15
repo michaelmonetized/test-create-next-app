@@ -25,18 +25,13 @@ export default function MenuItem({
   return (
     <NavigationMenuItem>
       {href ? (
-        <NavigationMenuLink
-          asChild
-          className={`${navigationMenuTriggerStyle()} ${className}`}
-        >
+        <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} ${className}`}>
           <Link href={href}>{anchor}</Link>
         </NavigationMenuLink>
       ) : (
         children && (
           <>
-            <NavigationMenuTrigger className={className}>
-              {anchor}
-            </NavigationMenuTrigger>
+            <NavigationMenuTrigger className={className}>{anchor}</NavigationMenuTrigger>
             <NavigationMenuContent>{children}</NavigationMenuContent>
           </>
         )

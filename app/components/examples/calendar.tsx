@@ -11,12 +11,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 import { DayView, WeekView, YearView } from "./calendar-views";
 
@@ -98,13 +93,9 @@ export default function CalendarExample() {
                 />
               )}
 
-              {view === "day" && (
-                <DayView date={navDate} onDateChange={setNavDate} />
-              )}
+              {view === "day" && <DayView date={navDate} onDateChange={setNavDate} />}
 
-              {view === "week" && (
-                <WeekView date={navDate} onDateChange={setNavDate} />
-              )}
+              {view === "week" && <WeekView date={navDate} onDateChange={setNavDate} />}
 
               {view === "year" && (
                 <YearView

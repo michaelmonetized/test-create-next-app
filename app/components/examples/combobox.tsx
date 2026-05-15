@@ -23,12 +23,7 @@ import {
   ComboboxList,
   useComboboxAnchor,
 } from "@/components/ui/combobox";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 
 const allItems = [
   { value: "button", label: "Button" },
@@ -72,13 +67,9 @@ export default function ComboboxExample() {
             items={allItems}
             value={selected}
             onValueChange={(val) => {
-              form.setValue(
-                "components",
-                val as z.infer<typeof formSchema>["components"],
-                {
-                  shouldValidate: form.formState.isSubmitted,
-                },
-              );
+              form.setValue("components", val as z.infer<typeof formSchema>["components"], {
+                shouldValidate: form.formState.isSubmitted,
+              });
             }}
             itemToStringLabel={(item) => item.label}
             itemToStringValue={(item) => item.value}

@@ -11,27 +11,13 @@ export default function ToggleExample() {
         <Toggle className="text-foreground" variant="outline" aria-label="Bold">
           Bold
         </Toggle>
-        <Toggle
-          variant="outline"
-          aria-label="Italic"
-          className="text-foreground"
-        >
+        <Toggle variant="outline" aria-label="Italic" className="text-foreground">
           Italic
         </Toggle>
-        <Toggle
-          variant="outline"
-          size="sm"
-          aria-label="Small"
-          className="text-foreground"
-        >
+        <Toggle variant="outline" size="sm" aria-label="Small" className="text-foreground">
           Sm
         </Toggle>
-        <Toggle
-          size="lg"
-          variant="outline"
-          aria-label="Large"
-          className="text-foreground"
-        >
+        <Toggle size="lg" variant="outline" aria-label="Large" className="text-foreground">
           Lg
         </Toggle>
       </div>

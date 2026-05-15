@@ -155,16 +155,10 @@ describe("public app surface", () => {
     expect(prompt.ACCESSIBILITY_CHAT_SYSTEM_PROMPT).toContain("accessibility");
     expect(typeof resolveModel.resolveOpenRouterModelId).toBe("function");
     expect(projectModule.project).toMatchObject({ title: expect.any(String) });
-    expect(biomeLint.buildBiomeArgs(["--fix"])).toEqual([
-      "check",
-      ".",
-      "--write",
-    ]);
+    expect(biomeLint.buildBiomeArgs(["--fix"])).toEqual(["check", ".", "--write"]);
     expect(typeof biomeLint.runBiomeLint).toBe("function");
     expect(typeof devLocalhost.main).toBe("function");
-    expect(
-      devLocalhostInfo.getDevLocalhostInfo("/tmp/example-app"),
-    ).toMatchObject({
+    expect(devLocalhostInfo.getDevLocalhostInfo("/tmp/example-app")).toMatchObject({
       host: "example-app.localhost",
     });
   });

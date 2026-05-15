@@ -140,8 +140,7 @@ export function BillingHeading() {
     <div>
       <h1 className="text-2xl font-bold tracking-tight">Billing</h1>
       <p className="mt-1 text-sm text-muted-foreground">
-        Manage your subscription, usage, and payment details for
-        Hustle&nbsp;Launch.
+        Manage your subscription, usage, and payment details for Hustle&nbsp;Launch.
       </p>
     </div>
   );
@@ -185,9 +184,7 @@ export function CurrentPlanCard() {
 export function UsageSection() {
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-semibold tracking-tight">
-        Usage this period
-      </h2>
+      <h2 className="text-lg font-semibold tracking-tight">Usage this period</h2>
       <div className="grid gap-4 sm:grid-cols-3">
         {usageMeters.map((meter) => {
           const pct = Math.round((meter.used / meter.limit) * 100);
@@ -228,8 +225,7 @@ export function PaymentMethodCard() {
           </div>
           <div className="space-y-0.5">
             <p className="text-sm font-medium">
-              &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull;
-              &bull;&bull;&bull;&bull; 4242
+              &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242
             </p>
             <p className="text-xs text-muted-foreground">Expires 12/27</p>
           </div>
@@ -313,13 +309,7 @@ export function PlanComparisonSection({
 
 export { Separator as BillingSeparator };
 
-function PlanGrid({
-  plans,
-  cycle,
-}: {
-  plans: Plan[];
-  cycle: "monthly" | "yearly";
-}) {
+function PlanGrid({ plans, cycle }: { plans: Plan[]; cycle: "monthly" | "yearly" }) {
   return (
     <div className="grid gap-4 pt-4 sm:grid-cols-3">
       {plans.map((plan) => (
@@ -329,13 +319,7 @@ function PlanGrid({
   );
 }
 
-function PlanCard({
-  plan,
-  cycle,
-}: {
-  plan: Plan;
-  cycle: "monthly" | "yearly";
-}) {
+function PlanCard({ plan, cycle }: { plan: Plan; cycle: "monthly" | "yearly" }) {
   const price = cycle === "monthly" ? plan.monthlyPrice : plan.yearlyPrice;
   const period = price === "Free" ? "" : cycle === "monthly" ? "/mo" : "/yr";
 
@@ -348,9 +332,7 @@ function PlanCard({
         </CardTitle>
         <CardDescription>
           <span className="text-2xl font-bold text-foreground">{price}</span>
-          {period ? (
-            <span className="text-muted-foreground">{period}</span>
-          ) : null}
+          {period ? <span className="text-muted-foreground">{period}</span> : null}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -370,16 +352,10 @@ function PlanCard({
 function PlanFeature({ feature }: { feature: Plan["features"][number] }) {
   return (
     <li className="flex items-center gap-2 text-xs">
-      <span
-        className={
-          feature.included ? "text-primary" : "text-muted-foreground/40"
-        }
-      >
+      <span className={feature.included ? "text-primary" : "text-muted-foreground/40"}>
         {feature.included ? "\u2713" : "\u2014"}
       </span>
-      <span className={cn(!feature.included && "text-muted-foreground/50")}>
-        {feature.text}
-      </span>
+      <span className={cn(!feature.included && "text-muted-foreground/50")}>{feature.text}</span>
     </li>
   );
 }
@@ -394,10 +370,7 @@ function PlanAction({ plan }: { plan: Plan }) {
   }
 
   return (
-    <Button
-      variant={plan.name === "Scale" ? "default" : "outline"}
-      className="w-full"
-    >
+    <Button variant={plan.name === "Scale" ? "default" : "outline"} className="w-full">
       {plan.name === "Starter" ? "Downgrade" : "Upgrade"}
     </Button>
   );

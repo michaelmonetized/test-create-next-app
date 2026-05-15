@@ -2,11 +2,7 @@
  * App Root Layout public module surface.
  */
 import type { Metadata } from "next";
-import {
-  Source_Code_Pro,
-  Source_Sans_3,
-  Source_Serif_4,
-} from "next/font/google";
+import { Source_Code_Pro, Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import Accessibility from "@/components/accessibility";
 import ColorScheme from "@/components/color-scheme";
 import LiveChat from "@/components/marketing/live-chat";

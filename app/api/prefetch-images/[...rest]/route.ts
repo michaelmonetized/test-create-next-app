@@ -16,10 +16,7 @@ function getHostname() {
   return process.env.VERCEL_BRANCH_URL;
 }
 
-export async function GET(
-  _: NextRequest,
-  { params }: { params: Promise<{ rest: string[] }> },
-) {
+export async function GET(_: NextRequest, { params }: { params: Promise<{ rest: string[] }> }) {
   const schema = process.env.NODE_ENV === "development" ? "http" : "https";
   const host = getHostname();
   if (!host) {

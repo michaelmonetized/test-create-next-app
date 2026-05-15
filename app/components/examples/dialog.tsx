@@ -17,12 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -58,9 +53,7 @@ export default function DialogExample() {
       <DialogContent className="sm:max-w-[32rem]">
         <DialogHeader>
           <DialogTitle>Edit metadata defaults</DialogTitle>
-          <DialogDescription>
-            Keep the root-level copy short and predictable.
-          </DialogDescription>
+          <DialogDescription>Keep the root-level copy short and predictable.</DialogDescription>
         </DialogHeader>
         <Form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-2">
@@ -77,12 +70,8 @@ export default function DialogExample() {
                     placeholder="Giant Homemade Cookies | SheBakes"
                     autoComplete="off"
                   />
-                  <FieldDescription>
-                    Provide a concise title for the page.
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
+                  <FieldDescription>Provide a concise title for the page.</FieldDescription>
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                 </Field>
               )}
             />
@@ -99,12 +88,8 @@ export default function DialogExample() {
                     placeholder="Shop 'SheBakes' line of giant homemade cookies. Made with love in the USA."
                     autoComplete="off"
                   />
-                  <FieldDescription>
-                    Provide a detailed description of the page.
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
+                  <FieldDescription>Provide a detailed description of the page.</FieldDescription>
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                 </Field>
               )}
             />

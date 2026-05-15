@@ -22,13 +22,7 @@ const dateInputs = [
 const ratioOptions = [
   ["radio-golden", "golden", "Golden ratio — φ ≈ 1.618", false, true],
   ["radio-silver", "silver", "Silver ratio — δ ≈ 2.414", false, false],
-  [
-    "radio-disabled",
-    "plastic",
-    "Plastic ratio — ρ ≈ 1.325 (disabled)",
-    true,
-    false,
-  ],
+  ["radio-disabled", "plastic", "Plastic ratio — ρ ≈ 1.325 (disabled)", true, false],
 ] as const;
 
 const propertyOptions = [
@@ -75,33 +69,17 @@ function TextInputsDemo() {
     <div className="flex flex-col gap-md grow">
       <h3>Text inputs</h3>
       {textInputs.map(([id, label, type, placeholder]) => (
-        <InputField
-          key={id}
-          id={id}
-          label={label}
-          type={type}
-          placeholder={placeholder}
-        />
+        <InputField key={id} id={id} label={label} type={type} placeholder={placeholder} />
       ))}
       <p>
         <label htmlFor="input-readonly">Read-only</label>
         <br />
-        <input
-          type="text"
-          id="input-readonly"
-          readOnly
-          defaultValue="Cannot edit this"
-        />
+        <input type="text" id="input-readonly" readOnly defaultValue="Cannot edit this" />
       </p>
       <p>
         <label htmlFor="input-disabled">Disabled</label>
         <br />
-        <input
-          type="text"
-          id="input-disabled"
-          disabled
-          defaultValue="Not available"
-        />
+        <input type="text" id="input-disabled" disabled defaultValue="Not available" />
       </p>
     </div>
   );
@@ -184,13 +162,7 @@ function OtherInputsDemo() {
       <p>
         <label htmlFor="input-range">Range</label>
         <br />
-        <input
-          type="range"
-          id="input-range"
-          min={0}
-          max={100}
-          defaultValue={62}
-        />
+        <input type="range" id="input-range" min={0} max={100} defaultValue={62} />
       </p>
       <p>
         <label htmlFor="input-file">File upload</label>
@@ -202,12 +174,7 @@ function OtherInputsDemo() {
       <p>
         <label htmlFor="input-datalist">Favorite ratio</label>
         <br />
-        <input
-          type="text"
-          id="input-datalist"
-          list="ratios"
-          placeholder="Start typing…"
-        />
+        <input type="text" id="input-datalist" list="ratios" placeholder="Start typing…" />
         <datalist id="ratios">
           <option value="Golden ratio (φ)"></option>
           <option value="Silver ratio (δ)"></option>
@@ -219,11 +186,7 @@ function OtherInputsDemo() {
       <p>
         <label htmlFor="textarea">Message</label>
         <br />
-        <textarea
-          id="textarea"
-          rows={4}
-          placeholder="Write something…"
-        ></textarea>
+        <textarea id="textarea" rows={4} placeholder="Write something…"></textarea>
       </p>
     </div>
   );
@@ -261,12 +224,7 @@ function CheckboxesDemo() {
         <legend>Select properties</legend>
         {propertyOptions.map(([id, label, disabled, defaultChecked]) => (
           <p key={id}>
-            <input
-              type="checkbox"
-              id={id}
-              disabled={disabled}
-              defaultChecked={defaultChecked}
-            />
+            <input type="checkbox" id={id} disabled={disabled} defaultChecked={defaultChecked} />
             <label htmlFor={id}>{label}</label>
           </p>
         ))}
@@ -275,13 +233,7 @@ function CheckboxesDemo() {
   );
 }
 
-function ButtonVariantDemo({
-  className,
-  label,
-}: {
-  className: string;
-  label: string;
-}) {
+function ButtonVariantDemo({ className, label }: { className: string; label: string }) {
   const buttonClassName = className || undefined;
 
   return (
@@ -352,8 +304,7 @@ export function FormsSection() {
         </a>
       </h2>
       <p>
-        Interactive controls for collecting user input. Every input must have an
-        associated
+        Interactive controls for collecting user input. Every input must have an associated
         <code>label</code>— either wrapping the input or linked via
         <code>for</code>/<code>id</code>.
       </p>

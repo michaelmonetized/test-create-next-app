@@ -13,9 +13,7 @@ import { cn } from "@/lib/utils";
 /** Concatenates text parts from an AI SDK UI message for display and retry actions. */
 export function getMessageText(message: UIMessage): string {
   return message.parts
-    .filter(
-      (part): part is { type: "text"; text: string } => part.type === "text",
-    )
+    .filter((part): part is { type: "text"; text: string } => part.type === "text")
     .map((part) => part.text)
     .join("");
 }
@@ -39,9 +37,7 @@ function MessageAvatar({ isAssistant }: { isAssistant: boolean }) {
       <AvatarFallback
         className={cn(
           "text-[10px] font-bold",
-          isAssistant
-            ? "bg-primary text-primary-foreground"
-            : "bg-muted text-muted-foreground",
+          isAssistant ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
         )}
         aria-hidden
       >
@@ -66,9 +62,7 @@ function MessageContent({
     <div
       className={cn(
         "max-w-[min(100%,18rem)] rounded-none px-3 py-2 text-xs leading-relaxed",
-        isAssistant
-          ? "bg-muted text-foreground"
-          : "bg-primary text-primary-foreground",
+        isAssistant ? "bg-muted text-foreground" : "bg-primary text-primary-foreground",
       )}
     >
       <p className="whitespace-pre-wrap wrap-break-word">{content}</p>
@@ -106,20 +100,13 @@ function MessageActions({
   onRetry: () => void | Promise<void>;
 }) {
   return (
-    <div
-      className={cn(
-        "flex gap-1",
-        isAssistant ? "ml-8" : "mr-8 flex-row-reverse",
-      )}
-    >
+    <div className={cn("flex gap-1", isAssistant ? "ml-8" : "mr-8 flex-row-reverse")}>
       <Button
         type="button"
         variant="ghost"
         size="icon-sm"
         className="text-muted-foreground hover:text-foreground"
-        aria-label={
-          isAssistant ? "Copy assistant message" : "Copy your message"
-        }
+        aria-label={isAssistant ? "Copy assistant message" : "Copy your message"}
         disabled={!content.trim()}
         onClick={() => void copyMessageText(content)}
       >
@@ -130,9 +117,7 @@ function MessageActions({
         variant="ghost"
         size="icon-sm"
         className="text-muted-foreground hover:text-foreground"
-        aria-label={
-          isAssistant ? "Regenerate assistant reply" : "Resend this message"
-        }
+        aria-label={isAssistant ? "Regenerate assistant reply" : "Resend this message"}
         disabled={!canRetry}
         onClick={() => void onRetry()}
       >
@@ -155,23 +140,12 @@ export function MessageBubble({
   const isAssistant = message.role === "assistant";
   const content = getMessageText(message);
   const isStreaming =
-    isAssistant &&
-    message.parts.some((p) => p.type === "text" && p.state === "streaming");
+    isAssistant && message.parts.some((p) => p.type === "text" && p.state === "streaming");
   const canRetry = !busy && !isStreaming && content.length > 0;
 
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-1",
-        isAssistant ? "items-start" : "items-end",
-      )}
-    >
-      <div
-        className={cn(
-          "flex items-start gap-2",
-          isAssistant ? "flex-row" : "flex-row-reverse",
-        )}
-      >
+    <div className={cn("flex flex-col gap-1", isAssistant ? "items-start" : "items-end")}>
+      <div className={cn("flex items-start gap-2", isAssistant ? "flex-row" : "flex-row-reverse")}>
         <MessageAvatar isAssistant={isAssistant} />
         <MessageContent
           content={content}

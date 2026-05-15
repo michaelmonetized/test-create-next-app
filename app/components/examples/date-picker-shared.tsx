@@ -7,20 +7,7 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
 export const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const HOURS = Array.from({ length: 14 }, (_, i) => i + 7);
 
 export function getWeekDates(date: Date): Date[] {
@@ -75,16 +62,12 @@ export function MonthGrid({
   return (
     <div className="grid grid-cols-3 gap-2">
       {MONTHS.map((month, i) => {
-        const isCurrentMonth =
-          i === today.getMonth() && year === today.getFullYear();
-        const isSelected =
-          i === selectedDate.getMonth() && year === selectedDate.getFullYear();
+        const isCurrentMonth = i === today.getMonth() && year === today.getFullYear();
+        const isSelected = i === selectedDate.getMonth() && year === selectedDate.getFullYear();
         return (
           <Button
             key={month}
-            variant={
-              isSelected ? "default" : isCurrentMonth ? "secondary" : "outline"
-            }
+            variant={isSelected ? "default" : isCurrentMonth ? "secondary" : "outline"}
             size="sm"
             className="w-full"
             onClick={() => onSelect(i)}

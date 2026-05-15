@@ -4,8 +4,7 @@
 import type { UIMessage } from "ai";
 import { z } from "zod";
 
-const ACCESSIBILITY_CHAT_STORAGE_KEY =
-  "accessibility-chat:layout-accessibility-chat";
+const ACCESSIBILITY_CHAT_STORAGE_KEY = "accessibility-chat:layout-accessibility-chat";
 
 const storedTextPartSchema = z
   .object({
@@ -57,9 +56,7 @@ function parseStoredMessage(item: unknown): UIMessage[] {
   if (!result.success) return [];
 
   const parts = result.data.parts.flatMap(parseStoredTextPart);
-  return parts.length
-    ? [{ id: result.data.id, role: result.data.role, parts }]
-    : [];
+  return parts.length ? [{ id: result.data.id, role: result.data.role, parts }] : [];
 }
 
 function parseStoredTextPart(part: unknown): UIMessage["parts"] {
@@ -71,9 +68,7 @@ function parseStoredTextPart(part: unknown): UIMessage["parts"] {
 export function loadAccessibilityChatFromStorage(): UIMessage[] | null {
   if (typeof window === "undefined") return null;
   try {
-    return parseStoredMessages(
-      localStorage.getItem(ACCESSIBILITY_CHAT_STORAGE_KEY),
-    );
+    return parseStoredMessages(localStorage.getItem(ACCESSIBILITY_CHAT_STORAGE_KEY));
   } catch {
     return null;
   }
@@ -84,10 +79,7 @@ export function saveAccessibilityChatToStorage(messages: UIMessage[]): void {
   if (typeof window === "undefined") return;
   try {
     const payload = stripStreamingForStorage(messages);
-    localStorage.setItem(
-      ACCESSIBILITY_CHAT_STORAGE_KEY,
-      JSON.stringify(payload),
-    );
+    localStorage.setItem(ACCESSIBILITY_CHAT_STORAGE_KEY, JSON.stringify(payload));
   } catch {
     // QuotaExceededError or private mode — ignore
   }

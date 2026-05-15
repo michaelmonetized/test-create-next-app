@@ -90,9 +90,7 @@ export default function PricingTable({ className }: { className?: string }) {
   const [interval, setInterval] = React.useState<Interval>("monthly");
 
   return (
-    <section
-      className={cn("mx-auto w-full max-w-6xl px-6 py-20 md:py-28", className)}
-    >
+    <section className={cn("mx-auto w-full max-w-6xl px-6 py-20 md:py-28", className)}>
       <div className="mb-12 flex flex-col items-center gap-4 text-center">
         <h2 className="font-heading text-2xl font-black tracking-tight text-foreground md:text-3xl">
           Simple, transparent pricing
@@ -126,9 +124,7 @@ export default function PricingTable({ className }: { className?: string }) {
             )}
           >
             Yearly
-            <span className="ml-1.5 text-[10px] text-emerald-500">
-              Save 17%
-            </span>
+            <span className="ml-1.5 text-[10px] text-emerald-500">Save 17%</span>
           </button>
         </div>
       </div>
@@ -144,10 +140,7 @@ export default function PricingTable({ className }: { className?: string }) {
           >
             {tier.popular && (
               <div className="absolute -top-3 left-4">
-                <Badge
-                  variant="default"
-                  className="font-mono text-[10px] uppercase tracking-wider"
-                >
+                <Badge variant="default" className="font-mono text-[10px] uppercase tracking-wider">
                   Popular
                 </Badge>
               </div>
@@ -184,11 +177,7 @@ export default function PricingTable({ className }: { className?: string }) {
             </CardContent>
 
             <CardFooter className="mt-auto">
-              <Button
-                variant={tier.popular ? "default" : "outline"}
-                className="w-full"
-                asChild
-              >
+              <Button variant={tier.popular ? "default" : "outline"} className="w-full" asChild>
                 <Link href={tier.href}>{tier.cta}</Link>
               </Button>
             </CardFooter>

@@ -71,13 +71,7 @@ function colorClassName(label: string) {
   return `bg-${label.toLowerCase()}`;
 }
 
-function ColorSwatchGrid({
-  labels,
-  className,
-}: {
-  labels: string[];
-  className: string;
-}) {
+function ColorSwatchGrid({ labels, className }: { labels: string[]; className: string }) {
   return (
     <div className={className}>
       {labels.map((label) => (
@@ -193,13 +187,12 @@ export function HeadingsSection() {
         <code>h1</code>
         through
         <code>h6</code>
-        form the heading content category. Each level carries semantic weight —
-        <code>h1</code>
+        form the heading content category. Each level carries semantic weight —<code>h1</code>
         is the page title,
         <code>h2</code>
         marks major sections, and so on down. Skipping levels (e.g.
-        <code>h2</code>→<code>h4</code>) breaks the document outline and harms
-        assistive technology navigation.
+        <code>h2</code>→<code>h4</code>) breaks the document outline and harms assistive technology
+        navigation.
       </p>
 
       <p className="h1">
@@ -228,9 +221,9 @@ export function HeadingsSection() {
       </p>
 
       <p>
-        The heading demonstrations above are shown in descending order for
-        visual reference only. In a real document, heading levels must reflect
-        the content hierarchy, not the desired font size.
+        The heading demonstrations above are shown in descending order for visual reference only. In
+        a real document, heading levels must reflect the content hierarchy, not the desired font
+        size.
       </p>
     </section>
   );
@@ -253,16 +246,14 @@ export function SectioningContentSection() {
         The elements
         <code>article</code>,<code>aside</code>,<code>nav</code>, and
         <code>section</code>
-        create distinct regions in the document outline. Each can contain its
-        own heading hierarchy.
+        create distinct regions in the document outline. Each can contain its own heading hierarchy.
       </p>
 
       <nav aria-label="Sample navigation">
         <h3>Navigation</h3>
         <p>
           A<code>nav</code>
-          element with a list of links, as you might find in a site header or
-          sidebar:
+          element with a list of links, as you might find in a site header or sidebar:
         </p>
         <ul>
           {["Home", "About", "Services", "Contact"].map((label) => (
@@ -278,13 +269,10 @@ export function SectioningContentSection() {
         <p>
           An
           <code>article</code>
-          represents a self-contained composition — a blog post, a news story, a
-          forum thread. This paragraph is nested inside one. It contains many
-          different, sometimes useful,
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
-            HTML elements
-          </a>
-          . Of course there are classics like
+          represents a self-contained composition — a blog post, a news story, a forum thread. This
+          paragraph is nested inside one. It contains many different, sometimes useful,
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML elements</a>. Of course
+          there are classics like
           <em>emphasis</em>,<strong>strong importance</strong>, and
           <small>small print</small>, but there are many others as well.
         </p>
@@ -293,8 +281,8 @@ export function SectioningContentSection() {
           <p>
             This paragraph lives inside a<code>section</code>
             within the parent
-            <code>article</code>. Nesting sections like this is valid and useful
-            for long-form content with internal structure.
+            <code>article</code>. Nesting sections like this is valid and useful for long-form
+            content with internal structure.
           </p>
           <p>
             ↓ The following paragraph has the
@@ -311,9 +299,8 @@ export function SectioningContentSection() {
         <p>
           An
           <code>aside</code>
-          holds content tangentially related to its surrounding context — a pull
-          quote, a sidebar, a related-links panel. Screen readers can jump
-          directly to it via landmark navigation.
+          holds content tangentially related to its surrounding context — a pull quote, a sidebar, a
+          related-links panel. Screen readers can jump directly to it via landmark navigation.
         </p>
       </aside>
     </section>
@@ -334,8 +321,8 @@ export function GroupingContentSection() {
         </a>
       </h2>
       <p>
-        Block-level elements that group runs of text or other content together:
-        paragraphs, lists, blockquotes, preformatted text, figures, and more.
+        Block-level elements that group runs of text or other content together: paragraphs, lists,
+        blockquotes, preformatted text, figures, and more.
       </p>
 
       <h3>Blockquote</h3>
@@ -344,10 +331,9 @@ export function GroupingContentSection() {
       </blockquote>
       <blockquote cite="https://en.wikipedia.org/wiki/Steve_Jobs">
         <p>
-          People think focus means saying yes to the thing you&apos;ve got to
-          focus on. But that&apos;s not what it means at all. It means saying no
-          to the hundred other good ideas that there are. You have to pick
-          carefully.
+          People think focus means saying yes to the thing you&apos;ve got to focus on. But
+          that&apos;s not what it means at all. It means saying no to the hundred other good ideas
+          that there are. You have to pick carefully.
         </p>
         <footer>
           — Steve Jobs,
@@ -399,19 +385,15 @@ export function GroupingContentSection() {
         <dt>Golden ratio</dt>
         <dd>
           An irrational number approximately equal to
-          <span className="phi-expand">1.618</span>, often denoted by the Greek
-          letter phi (φ).
+          <span className="phi-expand">1.618</span>, often denoted by the Greek letter phi (φ).
         </dd>
         <dt>Fibonacci sequence</dt>
         <dd>
-          A sequence where each number is the sum of the two preceding ones. The
-          ratio of consecutive terms converges to φ.
+          A sequence where each number is the sum of the two preceding ones. The ratio of
+          consecutive terms converges to φ.
         </dd>
         <dt>Kitchen sink</dt>
-        <dd>
-          A document containing every conceivable element, used for testing
-          styles.
-        </dd>
+        <dd>A document containing every conceivable element, used for testing styles.</dd>
       </dl>
 
       <h3>Preformatted text</h3>
@@ -435,9 +417,7 @@ export function GroupingContentSection() {
           width={200}
           height={124}
         />
-        <figcaption>
-          Figure 1: A 200×124 image — approximately φ:1 aspect ratio.
-        </figcaption>
+        <figcaption>Figure 1: A 200×124 image — approximately φ:1 aspect ratio.</figcaption>
       </figure>
 
       <h3>Horizontal rule</h3>
@@ -471,10 +451,9 @@ export function TablesSection() {
         </a>
       </h2>
       <p>
-        Tables are for tabular data — not layout. Proper use of{" "}
-        <code>thead</code>, <code>tbody</code>, <code>tfoot</code>,{" "}
-        <code>th</code> with <code>scope</code>, and <code>caption</code> makes
-        tables accessible to screen readers.
+        Tables are for tabular data — not layout. Proper use of <code>thead</code>,{" "}
+        <code>tbody</code>, <code>tfoot</code>, <code>th</code> with <code>scope</code>, and{" "}
+        <code>caption</code> makes tables accessible to screen readers.
       </p>
 
       <h3>Simple table</h3>
@@ -502,8 +481,7 @@ export function TablesSection() {
 
       <h3>Complex table</h3>
       <p id="characteristics-summary">
-        In this table, negative traits appear on the left and positive traits on
-        the right.
+        In this table, negative traits appear on the left and positive traits on the right.
       </p>
       <table aria-describedby="characteristics-summary">
         <caption>Characteristics with positive and negative sides</caption>

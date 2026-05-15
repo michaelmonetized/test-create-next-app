@@ -8,10 +8,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Link from "@/components/link";
 import Logo from "@/components/logo";
 import MenuItem from "@/components/ui/layout/menu-item";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
